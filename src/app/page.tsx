@@ -5,7 +5,8 @@ import SlideImg from "./componentes/SlideImg";
 export default function Home() {
   return (
     <div>
-      <Header />
+      <div className="mt-10"> <Header /></div>
+     
       <div>
         <SlideImg />
       </div>
