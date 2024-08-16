@@ -1,7 +1,17 @@
+import Footer from "./componentes/Footer";
+import Header from "./componentes/Header";
+import SlideImg from "./componentes/SlideImg";
+
 export default function Home() {
   return (
-    <div className="h-screen flex justify-center items-center text-2xl">
-      Home Page
+    <div>
+      <Header />
+      <div>
+        <SlideImg />
+      </div>
+      <div className="mt-8">
+        <Footer />
+      </div>
     </div>
-  )
+  );
 }
