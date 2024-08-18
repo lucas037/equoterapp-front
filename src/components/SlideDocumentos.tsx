@@ -28,7 +28,7 @@ export default function SlideImgWithThumbnails({ title, images }: SlideDocumento
   };
 
   return (
-    <div className=" mt-20 pt-20 w-full h-full flex flex-col justify-center items-center px-20">
+    <div className=" w-full h-full flex flex-col justify-center items-center">
       <div className="w-full flex justify-between items-center mb-4 px-8">
         <h2 className="text-2xl">{title}</h2>
         <div className="flex space-x-2">

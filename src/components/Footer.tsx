@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className=" mt-20 bg-white text-black h-full pt-20">
+    <footer className=" bg-white text-black h-full">
       <div className="text-2xl mb-4">
         Contato e Localização
       </div>
@@ -16,9 +16,9 @@ export default function Footer() {
 
         <div className="flex flex-col items-center text-center flex-1">
           <p className="mb-2">Instagram: @Nesa</p>
-          <p className="mb-2">Telefone: (XX) XXXX-XXXX</p>
-          <p className="mb-2">Site: www.seusite.com.br</p>
-          <p>WhatsApp: (XX) XXXX-XXXX</p>
+          <p className="mb-2">Telefone: (99) 9999-9999</p>
+          <p className="mb-2">Site: www.Nesa.com.br</p>
+          <p>WhatsApp: (99) 9999-9999</p>
         </div>
 
         <div className="border-l border-gray-600 h-32 hidden md:block"></div>

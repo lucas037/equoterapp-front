@@ -1,4 +1,4 @@
-"use client"; // Adicione esta linha no início do arquivo
+"use client";
 
 import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
