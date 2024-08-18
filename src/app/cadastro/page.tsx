@@ -37,33 +37,52 @@ export default function Cadastro() {
     <div className="h-screen w-full flex flex-col items-center">
       <Header buttonName="Login" handleClick={handleClick}/>
 
+        {etapa === 1 && (
+          <div className='h-[calc(100%-180px)] w-[80%] flex border'>
+            <img 
+              src="/assets/adulto.png"
+              alt="foto"
+              className="w-auto h-full opacity-50"
+            />
+            <Etapa1
+            dadosPaciente={dadosPaciente}
+            changeDadosPaciente={changeDadosPaciente}
+            clickProximaEtapa={clickProximaEtapa}
+            />
+          </div>
+        )}
 
-      <div className='h-[calc(100%-180px)] w-[80%] flex'>
-        <img 
-          src="/assets/adulto.png"
-          alt="foto"
-          className="w-auto h-full opacity-50"
-        />
+        {etapa === 2 && (
+          <div className='h-[calc(100%-180px)] w-[80%] flex border'>
+            <img 
+              src="/assets/adulto.png"
+              alt="foto"
+              className="w-auto h-full opacity-50"
+            />
+            <Etapa2
+            dadosPaciente={dadosPaciente}
+            changeDadosPaciente={changeDadosPaciente}
+            clickProximaEtapa={clickProximaEtapa}
+            clickEtapaAnterior={clickEtapaAnterior}
+            />
+          </div>
+        )}
 
-        {etapa === 1 && (<Etapa1
-          dadosPaciente={dadosPaciente}
-          changeDadosPaciente={changeDadosPaciente}
-          clickProximaEtapa={clickProximaEtapa}
-        />)}
-
-        {etapa === 2 && (<Etapa2
-          dadosPaciente={dadosPaciente}
-          changeDadosPaciente={changeDadosPaciente}
-          clickProximaEtapa={clickProximaEtapa}
-          clickEtapaAnterior={clickEtapaAnterior}
-        />)}
-
-        {etapa === 3 && (<Etapa3
-          dadosPaciente={dadosPaciente}
-          changeDadosPaciente={changeDadosPaciente}
-          clickProximaEtapa={clickProximaEtapa}
-          clickEtapaAnterior={clickEtapaAnterior}
-        />)}
+        {etapa === 3 && (
+          <div className='h-[calc(100%-180px)] w-[80%] flex border'>
+            <img 
+              src="/assets/adulto.png"
+              alt="foto"
+              className="w-auto h-full opacity-50"
+            />
+            <Etapa3
+            dadosPaciente={dadosPaciente}
+            changeDadosPaciente={changeDadosPaciente}
+            clickProximaEtapa={clickProximaEtapa}
+            clickEtapaAnterior={clickEtapaAnterior}
+            />
+          </div>
+        )}
 
         {etapa === 4 && (<Etapa4
           dadosPaciente={dadosPaciente}
@@ -72,6 +91,5 @@ export default function Cadastro() {
           clickEtapaAnterior={clickEtapaAnterior}
         />)}
       </div>
-    </div>
   )
 }

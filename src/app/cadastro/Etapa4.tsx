@@ -1,7 +1,6 @@
-import DropdownOption from "../types/DropdownOption";
+import { useEffect, useState } from "react";
 import DadosPaciente from "../types/DadosPaciente";
-import Dropdown from "@/components/Dropdown";
-import Input from "@/components/Input";
+import MembroFamilia from "../types/MembroFamilia";
 
 interface InterfaceProps {
     dadosPaciente: DadosPaciente,
@@ -11,38 +10,35 @@ interface InterfaceProps {
 }
 
 export default function Etapa3(props: InterfaceProps) {
-    function handleChangeTipoMoradia(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            tipoMoradia: value
-        });
-    }
+    const [membrosFamilia, setMembrosFamilia] = useState<MembroFamilia[]>([]);
 
-    function handleChangePacienteEstudante(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            pacienteEstudante: value
-        });
-    }
+    useEffect(() => {
+        // Exemplo de dois membros da família
+        const exemplosMembrosFamilia: MembroFamilia[] = [
+            {
+                nome: "João Silva",
+                parentesco: "Pai",
+                profissao: "Engenheiro",
+                escolaridade: "Superior Completo",
+                renda: "5000"
+            },
+            {
+                nome: "Maria Silva",
+                parentesco: "Mãe",
+                profissao: "Professora",
+                escolaridade: "Superior Completo",
+                renda: "4500"
+            }
+        ];
 
-    const tipoMoradiaOptions: DropdownOption[] = [
-      { label: "Selecionar", value: "" },
-      { label: "Própria", value: "própria" },
-      { label: "Alugada", value: "alugada" }
-    ];
-      
+        setMembrosFamilia(exemplosMembrosFamilia);
+    }, []);
 
-    const pacienteEstudanteOptions: DropdownOption[] = [
-      { label: "Selecionar", value: "" },
-      { label: "Sim", value: "sim" },
-      { label: "Não", value: "não" }
-    ];
-    
     return (
 
-        <div className='w-full h-auto flex flex-col items-center gap-8 text-2xl font-bold mt-4'>
+        <div className='w-[80%] h-auto flex flex-col items-center gap-8 text-2xl font-bold border'>
 
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-8 mt-4">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
 
                 <div className="text-6xl flex gap-2 text-[#D9D9D9]">
@@ -53,36 +49,44 @@ export default function Etapa3(props: InterfaceProps) {
                 </div>
             </div>
 
+            <div className="w-[90%] flex">MEMBROS DA FAMÍLIA</div>
 
-            <div className='w-[80%] flex flex-col items-center gap-4'>
-
-                <div className="w-full flex justify-between">
-                    <Dropdown
-                    name="TIPO DE MORADIA"
-                    width="w-[50%]"
-                    options={tipoMoradiaOptions}
-                    value={props.dadosPaciente.tipoMoradia}
-                    onChange={handleChangeTipoMoradia}
-                    />
-                    
-                    <Dropdown
-                    name="PACIENTE É ESTUDANTE?"
-                    width="w-[49%]"
-                    options={pacienteEstudanteOptions}
-                    value={props.dadosPaciente.pacienteEstudante}
-                    onChange={handleChangePacienteEstudante}
-                    />
-
+            <div className="w-[90%] flex flex-col gap-4">
+                <div className="w-full flex justify-between text-base">
+                    <div className="w-[20%]">NOME</div>
+                    <div className="w-[20%]">PARENTESCO</div>
+                    <div className="w-[20%]">PROFISSÃO</div>
+                    <div className="w-[20%]">ESCOLARIDADE</div>
+                    <div className="w-[10%]">RENDA</div>
+                    <div className="w-[10%]">AÇÕES</div>
                 </div>
 
-                <div className='w-full h-[70px] bg-[#4B8A89] text-white rounded-2xl flex items-center mt-2'>
-                    <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
-                        VOLTAR
-                    </button>
-                    <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
-                        Finalizar
-                    </button>
-                </div>
+                {membrosFamilia.map((membro, index) => (
+                    <div className="w-full flex-col">
+                        <div key={index} className="w-full flex justify-between text-base text-[#65ADAC]">
+                            <div className="w-[20%]">{membro.nome}</div>
+                            <div className="w-[20%]">{membro.parentesco}</div>
+                            <div className="w-[20%]">{membro.profissao}</div>
+                            <div className="w-[20%]">{membro.escolaridade}</div>
+                            <div className="w-[10%]"> R${membro.renda}</div>
+                            <div className="w-[10%]">
+                                AÇÕES
+                            </div>
+                        </div>
+
+                        <div className="h-[1px] w-full bg-black mt-4"></div>
+                    </div>
+                ))}
+
+            </div>
+
+            <div className='w-[60%] h-[70px] bg-[#4B8A89] text-white rounded-2xl flex items-center mt-12 mb-4'>
+                <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
+                    VOLTAR
+                </button>
+                <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
+                    Finalizar
+                </button>
             </div>
 
 

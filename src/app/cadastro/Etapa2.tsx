@@ -11,59 +11,103 @@ interface InterfaceProps {
 }
 
 export default function Etapa2(props: InterfaceProps) {
-    function handleChangeNome(value: string) {
+    function handleChangeParentesco(value: string) {
         props.changeDadosPaciente({
             ...props.dadosPaciente,
-            nome: value
+            parentesco: value
         });
     }
     
-    function handleChangeCpf(value: string) {
+    function handleChangeMoraComPaciente(value: string) {
         props.changeDadosPaciente({
             ...props.dadosPaciente,
-            cpf: value
+            moraComPaciente: value
         });
     }
-    
-    function handleChangeDataNacimento(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            dataNascimento: value
-        });
-    }
-    
-    function handleChangeNomeDaMae(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            nomeDaMae: value
-        });
-    }
-    
-    function handleChangeNacionalidade(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            nacionalidade: value
-        });
-    }
-    
-    function handleChangeSexo(value: string) {
-        props.changeDadosPaciente({
-            ...props.dadosPaciente,
-            sexo: value
-        });
-    }
-    
 
-    const nacionalidadeOptions: DropdownOption[] = [
+    function handleChangeBeneficiarioBolsaFamilia(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            beneficiarioBolsaFamilia: value
+        });
+    }
+
+    function handleChangeNumeroNis(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            numeroNis: value
+        });
+    }
+
+    function handleChangePacienteEstudante(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            pacienteEstudante: value
+        });
+    }
+
+    function handleChangeTipoDeficiente(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            deficiencia: value
+        });
+    }
+    
+    function handleChangeQuantMembrosCasa(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            quantMembrosCasa: value
+        });
+    }
+
+    function handleChangeTipoMoradia(value: string) {
+        props.changeDadosPaciente({
+            ...props.dadosPaciente,
+            tipoMoradia: value
+        });
+    }
+
+    const parentescoOptions: DropdownOption[] = [
       { label: "Selecionar", value: "" },
-      { label: "Brasileira", value: "brasileira" },
-      { label: "Outra", value: "outra" },
+      { label: "Pai", value: "pai" },
+      { label: "Mãe", value: "mae" },
+      { label: "Avó(ô)", value: "avó" },
+      { label: "Tia(o)", value: "tia" },
+      { label: "Irmã(o)", value: "irmã" },
+      { label: "Outro", value: "outro" },
     ];
   
-    const sexoOptions: DropdownOption[] = [
+    const moraComOptions: DropdownOption[] = [
       { label: "Selecionar", value: "" },
-      { label: "Masculino", value: "masculino" },
-      { label: "Feminino", value: "feminino" },
+      { label: "Sim", value: "sim" },
+      { label: "Não", value: "nao" },
+    ];
+
+    const beneficiarioBolsaFamiliaOptions: DropdownOption[] = [
+      { label: "Selecionar", value: "" },
+      { label: "Sim", value: "sim" },
+      { label: "Não", value: "não" }
+    ];
+
+    const quantMembrosOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        ...Array.from({ length: 9 }, (_, i) => {
+            const value = (i + 1).toString();
+            return { label: value, value };
+        }),
+        { label: "10 ou mais", value: "10+"}
+    ];
+    
+    const tipoMoradiaOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Própria", value: "própria" },
+        { label: "Alugada", value: "alugada" }
+      ];
+
+    const pacienteEstudanteOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Sim", value: "sim" },
+        { label: "Não", value: "não" }
     ];
     
     return (
@@ -83,51 +127,74 @@ export default function Etapa2(props: InterfaceProps) {
 
 
             <div className='w-[80%] flex flex-col items-center gap-4'>
-                <Input
-                name={"NOME DO PACIENTE"}
-                width={"w-full"}
-                value={props.dadosPaciente.nome}
-                onChange={handleChangeNome}
-                />
-
-                <div className="w-full flex justify-between items-center">
-                    <Input
-                    name={"CPF DO PACIENTE"}
-                    width={"w-[50%]"}
-                    value={props.dadosPaciente.cpf}
-                    onChange={handleChangeCpf}
-                    />
-
-                    <Input
-                    name={"DATA DE NASCIMENTO"}
-                    width={"w-[49%]"}
-                    value={props.dadosPaciente.dataNascimento}
-                    onChange={handleChangeDataNacimento}
-                    />
-                </div>
-
-                <Input
-                name={"NOME DA MÃE DO PACIENTE"}
-                width={"w-full"}
-                value={props.dadosPaciente.nomeDaMae}
-                onChange={handleChangeNomeDaMae}
-                />
 
                 <div className="w-full flex justify-between">
                     <Dropdown
-                    name={"NACIONALIDADE DO PACIENTE"}
+                    name={"PARENTESCO DO FAMILIAR"}
                     width={"w-[60%]"}
-                    options={nacionalidadeOptions}
-                    value={props.dadosPaciente.nacionalidade}
-                    onChange={handleChangeNacionalidade}
+                    options={parentescoOptions}
+                    value={props.dadosPaciente.parentesco}
+                    onChange={handleChangeParentesco}
                     />
 
                     <Dropdown
-                    name={"SEXO DO PACIENTE"}
+                    name={"MORA COM O PACIENTE?"}
                     width={"w-[39%]"}
-                    options={sexoOptions}
-                    value={props.dadosPaciente.sexo}
-                    onChange={handleChangeSexo}
+                    options={moraComOptions}
+                    value={props.dadosPaciente.moraComPaciente}
+                    onChange={handleChangeMoraComPaciente}
+                    />
+                </div>
+
+                <div className="w-full flex justify-between">
+                    <Dropdown
+                    name="BENEFICIÁRIO BOLSA FAMÍLIA"
+                    width="w-[60%]"
+                    options={beneficiarioBolsaFamiliaOptions}
+                    value={props.dadosPaciente.beneficiarioBolsaFamilia}
+                    onChange={handleChangeBeneficiarioBolsaFamilia}
+                    />
+
+                    <Input
+                    name="NÚMERO DO NIS"
+                    width="w-[39%]"
+                    value={props.dadosPaciente.numeroNis}
+                    onChange={handleChangeNumeroNis}
+                    />
+                </div>
+
+                <div className="w-full flex justify-between">
+                    <Dropdown
+                    name="PACIENTE É ESTUDANTE?"
+                    width="w-[60%]"
+                    options={pacienteEstudanteOptions}
+                    value={props.dadosPaciente.pacienteEstudante}
+                    onChange={handleChangePacienteEstudante}
+                    />
+
+                    <Input
+                    name="TIPO DE DEFICIÊNCIA"
+                    width="w-[39%]"
+                    value={props.dadosPaciente.deficiencia}
+                    onChange={handleChangeTipoDeficiente}
+                    />
+                </div>
+
+                <div className="w-full flex justify-between">
+                    <Dropdown
+                    name="QUANTIDADE DE MEMBROS DA CASA"
+                    width="w-[60%]"
+                    options={quantMembrosOptions}
+                    value={props.dadosPaciente.quantMembrosCasa}
+                    onChange={handleChangeQuantMembrosCasa}
+                    />
+
+                    <Dropdown
+                    name="TIPO DE MORADIA"
+                    width="w-[39%]"
+                    options={tipoMoradiaOptions}
+                    value={props.dadosPaciente.tipoMoradia}
+                    onChange={handleChangeTipoMoradia}
                     />
                 </div>
 

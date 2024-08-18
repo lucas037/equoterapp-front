@@ -3,6 +3,8 @@ export default interface DadosPaciente {
     cpf: string
     dataNascimento: string
     nomeDaMae: string
+    deficiencia: string
+    pacienteEstudante: string
     nomeFamiliar: string
     cpfFamiliar: string
     telefoneFamiliar: string
@@ -17,5 +19,4 @@ export default interface DadosPaciente {
     numeroNis: string
     valorBeneficio: string
     tipoMoradia: string
-    pacienteEstudante: string
 }
