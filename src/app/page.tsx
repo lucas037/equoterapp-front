@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div>
       <div className='w-screen flex justify-center'>
-        <Header buttonName='Registro' handleClick={handleClick} />
+        <Header buttonName='Cadastro' handleClick={handleClick} />
       </div>
 
       <div className="h-[50vh]">
@@ -63,9 +63,8 @@ export default function Home() {
         <SlideInfo 
           title={'Como funciona'} 
           slides={[
-            {text1: 'Texto do Primeiro Slider 1', text2: 'Texto do Primeiro Slider 2'},
-            {text1: 'Texto do Segundo Slider 1', text2: 'Texto do Segundo Slider 2'},
-            {text1: 'Texto do Terceiro Slider 1', text2: 'Texto do Terceiro Slider 2'}
+            {text1: 'Texto do Primeiro Slider 1A', text2: 'Texto do Primeiro Slider 1B'},
+            {text1: 'Texto do Segundo Slider 2A', text2: 'Texto do Segundo Slider 2B'},
           ]}
         />
       </div>

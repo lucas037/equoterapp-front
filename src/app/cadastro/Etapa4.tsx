@@ -36,7 +36,7 @@ export default function Etapa3(props: InterfaceProps) {
 
     return (
 
-        <div className='w-[80%] h-auto flex flex-col items-center gap-8 text-2xl font-bold border'>
+        <div className='w-[80%] min-h-[80%] flex flex-col items-center gap-8 text-2xl font-bold border border-[#C3C3C3]'>
 
             <div className="flex flex-col items-center gap-8 mt-4">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
@@ -62,21 +62,21 @@ export default function Etapa3(props: InterfaceProps) {
                 </div>
 
                 {membrosFamilia.map((membro, index) => (
-                    <div className="w-full flex-col">
-                        <div key={index} className="w-full flex justify-between text-base text-[#65ADAC]">
+                    <div key={index} className="w-full flex-col">  {/* Mova a key para este div */}
+                        <div className="w-full flex justify-between text-base text-[#65ADAC]">
                             <div className="w-[20%]">{membro.nome}</div>
                             <div className="w-[20%]">{membro.parentesco}</div>
                             <div className="w-[20%]">{membro.profissao}</div>
                             <div className="w-[20%]">{membro.escolaridade}</div>
-                            <div className="w-[10%]"> R${membro.renda}</div>
+                            <div className="w-[10%]">R${membro.renda}</div>
                             <div className="w-[10%]">
                                 AÇÕES
                             </div>
                         </div>
-
                         <div className="h-[1px] w-full bg-black mt-4"></div>
                     </div>
                 ))}
+
 
             </div>
 
