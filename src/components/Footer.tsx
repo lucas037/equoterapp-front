@@ -2,30 +2,75 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className=" bg-white text-black h-full">
-      <div className="text-2xl mb-4">
-        Contato e Localização
+    <footer className="bg-white h-52 w-full flex">
+      <div className=" w-[0%] lg:w-[20%] h-[0%] lg:h-full flex items-center justify-center rounded-full bg-black">
+        <img 
+          src="/assets/logoufersa.png" 
+          alt="Logo da Ufersa" 
+          className="max-h-full max-w-full h-auto object-contain" 
+        />
       </div>
 
-      <div className="container mx-auto flex justify-between items-start space-x-8 px-8 md:px-16">
-        <div className="flex-col items-center justify-center hidden md:flex">
-          <img src="/assets/logoufersa.png" alt="LogoUfersa" className="w-32 mb-4" />
+      <div className="  w-[100%] lg:w-[80%] h-full bg-black text-white flex flex-col justify-between">
+        <div className="flex justify-between p-4">
+          <div>
+            <div className='text-[#44807E] text-2xl '>
+              NESA
+            </div>
+            <div className='text-[#859594] text-lg'>
+              Núcleo de Equoterapia do Semiárido
+            </div>
+          </div>
+          <div>
+            <img src="/assets/image12.png" alt="Logo da lotus" className="h-8 mr-2" />
+            <div className='text-purple-600'> &lt;lacapdevs&gt; </div>
+          </div>
         </div>
 
-        <div className="border-l border-gray-600 h-32 hidden md:block"></div>
-
-        <div className="flex flex-col items-center text-center flex-1">
-          <p className="mb-2">Instagram: @Nesa</p>
-          <p className="mb-2">Telefone: (99) 9999-9999</p>
-          <p className="mb-2">Site: www.Nesa.com.br</p>
-          <p>WhatsApp: (99) 9999-9999</p>
-        </div>
-
-        <div className="border-l border-gray-600 h-32 hidden md:block"></div>
-
-        <div className="flex flex-col items-center text-center flex-1">
-          <p className="mb-2">Endereço: Rua Exemplo, 123</p>
-          <p>CEP: 12345-678</p>
+        <div className="p-4 flex flex-row justify-between">
+          <div className="mb-0">
+            <div className='text-[#44807E] text-base'>
+              Localização
+            </div>
+            <div className='text-white text-sm'>
+              Av. Francisco Mota, 572 - Bairro Costa e Silva, Mossoró/RN
+            </div>
+            <div className='text-white text-sm'>
+              CEP: 59.625-900
+            </div>
+            <div className='text-white text-sm'>
+              CNPJ: 24.529.265/0001-40
+            </div>
+          </div>
+          <div className="mb-0">
+            <div className='text-[#44807E] text-base'>
+              REDES SOCIAIS
+            </div>
+            <div className='text-white text-sm flex items-center'>
+              <img src="/assets/instagram.png" alt="Instagram" className="h-5 mr-2" />
+              @NESA_UFERSA
+            </div>
+            <div className='text-white text-sm flex items-center'>
+              <img src="/assets/Facebook.png" alt="Facebook" className="h-5 mr-2" />
+              @NESA UFERSA
+            </div>
+          </div>
+          <div>
+            <div className='text-[#44807E] text-base'>
+              CONTATO
+            </div>
+            <div className='text-white text-sm flex items-center'>
+              <img src="/assets/vector.png" alt="Telefone" className="h-5 mr-2" />
+              <div>
+                +55 84 3317-8200<br />
+                +55 84 3317-8200
+              </div>
+            </div>
+            <div className='text-white text-sm flex items-center'>
+              <img src="/assets/Gmail.png" alt="Email" className="h-5 mr-2" />
+              nesaufersa@gmail.com
+            </div>
+          </div>
         </div>
       </div>
     </footer>
