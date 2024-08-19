@@ -7,15 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 
 interface SlideDocumentosProps {
   title: string;
-  images: { image: string; alt: string; }[];
+  images: { image: string; alt: string; nameDocument:string; }[];
 }
 
-export default function SlideImgWithThumbnails({ title, images }: SlideDocumentosProps) {
+export default function SlideDocumentos({ title, images }: SlideDocumentosProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
     slidesToShow: 3, 
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 3000,
     speed: 500,
@@ -25,10 +25,20 @@ export default function SlideImgWithThumbnails({ title, images }: SlideDocumento
     beforeChange: (oldIndex: number, newIndex: number) => {
       setCurrentSlide(newIndex);
     },
+    responsive: [
+      {
+        breakpoint: 1024, 
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: '0',
+        }
+      }
+    ]
   };
 
   return (
-    <div className=" w-full h-full flex flex-col justify-center items-center">
+    <div className="w-full h-full flex flex-col justify-center items-center">
       <div className="w-full flex justify-between items-center mb-4 px-8">
         <h2 className="text-2xl">{title}</h2>
         <div className="flex space-x-2">
@@ -47,6 +57,7 @@ export default function SlideImgWithThumbnails({ title, images }: SlideDocumento
         {images.map((imagens, index) => (
           <div key={index} className="flex justify-center items-center px-2">
             <div className="relative w-[90%] h-[50vh]">
+              <div>{imagens.nameDocument}</div>
               <Image
                 src={imagens.image}
                 alt={imagens.alt}

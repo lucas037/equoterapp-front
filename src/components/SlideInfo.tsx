@@ -26,34 +26,30 @@ export default function SlideInfo({ title, slides }: SlideInfoProps) {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
-      
-      <div className="w-full flex justify-between items-center mb-4 px-8">
-        <h2 className="text-2xl">{title}</h2>
+    <div className="w-full h-full flex flex-col items-center px-4 lg:px-8">
+      <div className="w-full flex justify-between items-center mb-4">
+        <h2 className="text-xl lg:text-2xl">{title}</h2>
         <div className="flex space-x-2">
           {slides.map((_, index) => (
             <div
               key={index}
-              className={`h-3 w-3 rounded-full ${currentSlide === index ? "bg-[#137472]" : "bg-gray-400"}`}
+              className={`h-2 w-2 lg:h-3 lg:w-3 rounded-full ${currentSlide === index ? "bg-[#137472]" : "bg-gray-400"}`}
             />
           ))}
         </div>
       </div>
 
-      <Slider {...settings} className="w-full px-8">
+      <Slider {...settings} className="w-full">
         {slides.map((slide, index) => (
-          <div key={index} className="">
-            <div className='flex'>
-              <div className="w-[50%] h-[100px] flex justify-center items-center bg-[#65ADAC]  text-white text-xl text-center">
-                {slide.text1}
-              </div>
-              
-              <div className="w-[50%] h-[100px] flex justify-center items-center bg-[#65ADAC] text-white text-xl text-center">
-                {slide.text2}
-              </div>
-
+          <div key={index}>
+            <div className="flex justify-between items-center space-x-2 lg:space-x-4">
+            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center">
+              {slide.text1}
             </div>
-
+            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center">
+              {slide.text2}
+            </div>
+            </div>
           </div>
         ))}
       </Slider>
