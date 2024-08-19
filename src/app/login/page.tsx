@@ -18,14 +18,14 @@ export default function Login() {
 
       <Header buttonName='Cadastro' handleClick={handleClick}/>
       
-      <div className='h-[calc(100%-180px)] w-[80%] flex'>
+      <div className='h-[75%] w-[80%] flex'>
         <img 
           src="/assets/adulto.png"
           alt="foto"
-          className="w-auto h-full opacity-50"
+          className="w-auto h-full opacity-50 hidden xl:flex xl:max-w-[100%]"
         />
 
-        <div className='w-full h-auto flex flex-col items-center justify-around gap-8 text-2xl font-bold'>
+        <div className='w-full h-full flex flex-col items-center justify-around text-2xl font-bold'>
 
           <div>FAÇA LOGIN PARA ENTRAR NO SISTEMA</div>
 
@@ -37,7 +37,6 @@ export default function Login() {
               ENTRAR
             </div>
           </div>
-
 
           <div className='text-sm flex gap-1'>
             NÃO POSSUI CONTA? <div className='font-bold text-black underline'>CADASTRE-SE</div>

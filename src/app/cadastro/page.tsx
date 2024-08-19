@@ -38,11 +38,11 @@ export default function Cadastro() {
       <Header buttonName="Login" handleClick={handleClick}/>
 
         {etapa === 1 && (
-          <div className='h-[calc(100%-180px)] w-[80%] flex border border-[#C3C3C3]'>
+          <div className='h-[75%] w-[80%] flex'>
             <img 
               src="/assets/adulto.png"
               alt="foto"
-              className="w-auto h-full opacity-50 border border-[#C3C3C3]"
+              className="w-auto h-full opacity-50 border border-[#C3C3C3] hidden xl:flex xl:max-w-[100%]"
             />
             <Etapa1
             dadosPaciente={dadosPaciente}
@@ -53,11 +53,11 @@ export default function Cadastro() {
         )}
 
         {etapa === 2 && (
-          <div className='h-[calc(100%-180px)] w-[80%] flex border border-[#C3C3C3]'>
+          <div className='h-[75%] w-[80%] flex'>
             <img 
               src="/assets/adulto.png"
               alt="foto"
-              className="w-auto h-full opacity-50 border border-[#C3C3C3]"
+              className="w-auto h-full opacity-50 border border-[#C3C3C3] hidden xl:flex xl:max-w-[100%]"
             />
             <Etapa2
             dadosPaciente={dadosPaciente}
@@ -69,11 +69,11 @@ export default function Cadastro() {
         )}
 
         {etapa === 3 && (
-          <div className='h-[calc(100%-180px)] w-[80%] flex border border-[#C3C3C3]'>
+          <div className='h-[75%] w-[80%] flex'>
             <img 
               src="/assets/adulto.png"
               alt="foto"
-              className="w-auto h-full opacity-50 border border-[#C3C3C3]"
+              className="w-auto h-full opacity-50 border border-[#C3C3C3] hidden xl:flex xl:max-w-[100%]"
             />
             <Etapa3
             dadosPaciente={dadosPaciente}

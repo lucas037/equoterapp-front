@@ -47,9 +47,9 @@ export default function Etapa1(props: InterfaceProps) {
     
     return (
 
-        <div className='w-full h-auto flex flex-col items-center gap-8 text-2xl font-bold mt-4'>
+        <div className='w-full h-full flex flex-col items-center justify-around gap-2 text-xl font-bold border border-[#C3C3C3]'>
 
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-2 mt-2">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
 
                 <div className="text-6xl flex gap-2 text-[#D9D9D9]">
@@ -61,7 +61,7 @@ export default function Etapa1(props: InterfaceProps) {
             </div>
 
 
-            <div className='w-[80%] flex flex-col items-center gap-4'>
+            <div className='w-[80%] flex flex-col items-center gap-8 text-base'>
                 <Input
                 name={"NOME DO FAMILIAR"}
                 width={"w-full"}
@@ -72,14 +72,14 @@ export default function Etapa1(props: InterfaceProps) {
                 <div className="w-full flex justify-between items-center">
                     <Input
                     name={"CPF DO FAMILIAR"}
-                    width={"w-[60%]"}
+                    width={"w-[50%]"}
                     value={props.dadosPaciente.cpfFamiliar}
                     onChange={handleChangeCpfFamiliar}
                     />
 
                     <Input
                     name={"TELEFONE DO FAMILIAR"}
-                    width={"w-[39%]"}
+                    width={"w-[49%]"}
                     value={props.dadosPaciente.telefoneFamiliar}
                     onChange={handleChangeTelefoneFamiliar}
                     />
@@ -99,11 +99,11 @@ export default function Etapa1(props: InterfaceProps) {
                 onChange={handleChangeSenhaFamiliar}
                 type="password"
                 />
-
-                <button className='w-full h-[70px] bg-[#4B8A89] text-white rounded-2xl flex justify-center items-center mt-2' onClick={props.clickProximaEtapa}>
-                    PRÓXIMA ETAPA
-                </button>
             </div>
+
+            <button className='w-[80%] h-[70px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center mb-2' onClick={props.clickProximaEtapa}>
+                PRÓXIMA ETAPA
+            </button>
 
 
         </div>

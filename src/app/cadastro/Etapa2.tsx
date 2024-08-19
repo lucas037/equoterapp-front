@@ -112,9 +112,9 @@ export default function Etapa2(props: InterfaceProps) {
     
     return (
 
-        <div className='w-full h-auto flex flex-col items-center gap-8 text-2xl font-bold mt-4'>
+        <div className='w-full h-full flex flex-col items-center justify-around gap-2 text-xl font-bold border border-[#C3C3C3]'>
 
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-2 mt-2">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
 
                 <div className="text-6xl flex gap-2 text-[#D9D9D9]">
@@ -126,9 +126,9 @@ export default function Etapa2(props: InterfaceProps) {
             </div>
 
 
-            <div className='w-[80%] flex flex-col items-center gap-4'>
+            <div className='w-[80%] flex flex-col items-center gap-8 text-base'>
 
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center">
                     <Dropdown
                     name={"PARENTESCO DO FAMILIAR"}
                     width={"w-[60%]"}
@@ -182,7 +182,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <div className="w-full flex justify-between">
                     <Dropdown
-                    name="QUANTIDADE DE MEMBROS DA CASA"
+                    name="QUANTIDADE DE MEMBROS"
                     width="w-[60%]"
                     options={quantMembrosOptions}
                     value={props.dadosPaciente.quantMembrosCasa}
@@ -198,14 +198,15 @@ export default function Etapa2(props: InterfaceProps) {
                     />
                 </div>
 
-                <div className='w-full h-[70px] bg-[#4B8A89] text-white rounded-2xl flex items-center mt-2'>
-                    <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
-                        VOLTAR
-                    </button>
-                    <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
-                        PRÓXIMA ETAPA
-                    </button>
-                </div>
+            </div>
+            
+            <div className='w-[80%] h-[70px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center mb-2'>
+                <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
+                    VOLTAR
+                </button>
+                <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
+                    PRÓXIMA ETAPA
+                </button>
             </div>
 
 

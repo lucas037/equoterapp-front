@@ -38,18 +38,7 @@ export default function Etapa3(props: InterfaceProps) {
 
         <div className='w-[80%] min-h-[80%] flex flex-col items-center gap-8 text-2xl font-bold border border-[#C3C3C3]'>
 
-            <div className="flex flex-col items-center gap-8 mt-4">
-                <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
-
-                <div className="text-6xl flex gap-2 text-[#D9D9D9]">
-                    <div className="text-[#4B8A89]">•</div>
-                    <div className="text-[#4B8A89]">•</div>
-                    <div className="text-[#4B8A89]">•</div>
-                    <div className="text-[#4B8A89]">•</div>
-                </div>
-            </div>
-
-            <div className="w-[90%] flex">MEMBROS DA FAMÍLIA</div>
+            <div className="w-[90%] flex mt-8">MEMBROS DA FAMÍLIA</div>
 
             <div className="w-[90%] flex flex-col gap-4">
                 <div className="w-full flex justify-between text-base">
@@ -80,13 +69,8 @@ export default function Etapa3(props: InterfaceProps) {
 
             </div>
 
-            <div className='w-[60%] h-[70px] bg-[#4B8A89] text-white rounded-2xl flex items-center mt-12 mb-4'>
-                <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
-                    VOLTAR
-                </button>
-                <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
-                    Finalizar
-                </button>
+            <div className='w-[40%] h-[70px] bg-[#4B8A89] text-white rounded-2xl flex justify-center items-center mt-12 mb-4'>
+                Finalizar
             </div>
 
 
