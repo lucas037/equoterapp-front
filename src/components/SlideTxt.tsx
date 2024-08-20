@@ -41,9 +41,11 @@ export default function SlideTxt({ title, slides }: SlideTxtProps) {
 
       <Slider {...settings} className="w-full">
         {slides.map((text, index) => (
-          <div key={index} className="flex justify-center items-center bg-[#65ADAC]">
-            <div className="text-sm lg:text-xl text-white text-center p-4 w-full lg:w-[300px] h-[100px] lg:h-[200px] overflow-hidden">
-              {text}
+          <div key={index} className="flex justify-center items-center bg-[#65ADAC]"> {/* Adicionei mx-4 para espaçamento horizontal */}
+            <div className="text-sm lg:text-xl text-white text-center p-4 lg:p-8 w-full ">
+              <p className="text-justify overflow-auto">
+                {text}
+              </p>
             </div>
           </div>
         ))}

@@ -40,19 +40,19 @@ export default function SlideInfo({ title, slides }: SlideInfoProps) {
       </div>
 
       <Slider {...settings} className="w-full">
-        {slides.map((slide, index) => (
-          <div key={index}>
-            <div className="flex justify-between items-center space-x-2 lg:space-x-4">
-            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center">
-              {slide.text1}
+      {slides.map((slide, index) => (
+        <div key={index}>
+          <div className="flex justify-between items-center space-x-4 lg:space-x-20">
+            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center p-4 lg:p-8">
+              <p className="text-justify">{slide.text1}</p>
             </div>
-            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center">
-              {slide.text2}
-            </div>
+            <div className="w-[45%] lg:w-[50%] h-[100px] lg:h-[200px] flex justify-center items-center bg-[#65ADAC] text-white text-sm lg:text-xl text-center p-4 lg:p-8">
+              <p className="text-justify">{slide.text2}</p>
             </div>
           </div>
-        ))}
-      </Slider>
+        </div>
+      ))}
+    </Slider>
     </div>
   );
 }

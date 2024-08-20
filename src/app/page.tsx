@@ -33,37 +33,38 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col lg:flex-row h-full justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4">
-        <div className="lg:w-1/2 h-full">
-          <SlideTxt
-            title="Quem somos nós?"
-            slides={[
-              "Texto do Primeiro Slider 1",
-              "Texto do Primeiro Slider 2",
-              "Texto do Primeiro Slider 3",
-              "Texto do Primeiro Slider 4"
-            ]}
-          />
-        </div>
-        <div className="lg:w-1/2 h-full">
-          <SlideTxt
-            title="Regras"
-            slides={[
-              "lorem",
-              "Texto do Segundo Slider 2",
-              "Texto do Segundo Slider 3",
-              "Texto do Segundo Slider 4"
-            ]}
-          />
-        </div>
-      </div>
+      <div className="lg:w-1/2 h-full flex items-center justify-center">
+
+    <SlideTxt
+      title="Quem somos nós?"
+      slides={[
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
+        "There are many variations of passages of Lorem Ipsum available...",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+      ]}
+    />
+  </div>
+  <div className="lg:w-1/2 h-full flex items-center justify-center">
+    <SlideTxt
+      title="Regras"
+      slides={[
+        "It is a long established fact that a reader will be distracted...",
+        "There are many variations of passages of Lorem Ipsum available...",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+      ]}
+    />
+  </div>
+</div>
 
       <div className="flex flex-col space-y-10 lg:space-y-0">
         <div className="h-full px-4 lg:px-20">
           <SlideInfo
             title={'Como funciona'}
             slides={[
-              { text1: 'Texto do Primeiro Slider 1A', text2: 'Texto do Primeiro Slider 1B' },
-              { text1: 'Texto do Segundo Slider 2A', text2: 'Texto do Segundo Slider 2B' },
+              { text1: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..', text2: 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.' },
+              { text1: 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', text2: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..' },
             ]}
           />
         </div>
