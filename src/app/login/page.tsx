@@ -38,7 +38,7 @@ export default function Login() {
             <Input name={"EMAIL"} width={"w-full"} value={email} onChange={setEmail} />
             <Input name={"SENHA"} width={"w-full"} value={password} onChange={setPassword} type="password" />
             <div className='w-full flex justify-end text-sm'>Esqueci minha senha</div>
-            <div className='w-full h-[70px] bg-[#4B8A89] text-white rounded-2xl flex justify-center items-center'>
+            <div className='w-full h-[70px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center'>
               ENTRAR
             </div>
           </div>
