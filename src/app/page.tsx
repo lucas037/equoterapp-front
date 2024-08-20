@@ -6,6 +6,7 @@ import Header2 from '../components/Header2';
 import SlideImg from '../components/SlideImg';
 import SlideDocumentos from '@/components/SlideDocumentos';
 import SlideInfo from '@/components/SlideInfo';
+import Header from '@/components/Header';
 
 export default function Home() {
   const images = [
@@ -18,11 +19,14 @@ export default function Home() {
     { image: '/assets/Capturar7.png', alt: 'Imagem Principal', nameDocument: 'Documento 7' },
   ];
 
+  function handleClick() {
+    window.location.href = "/login";
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="h-[15vh] mt-2">
-        <Header2 />
-      </div>
+      
+      <Header buttonName='Login' handleClick={handleClick}/>
 
       <div className="flex-grow">
         <SlideImg />
