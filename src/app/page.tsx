@@ -1,15 +1,19 @@
 "use client"
-
 import SlideTxt from '@/components/SlideTxt';
 import Footer from '../components/Footer';
-import Header2 from '../components/Header2';
+import Header from '../components/Header';
 import SlideImg from '../components/SlideImg';
 import SlideDocumentos from '@/components/SlideDocumentos';
 import SlideInfo from '@/components/SlideInfo';
+import { motion } from 'framer-motion';
+
+const handleNavigation = () => {
+  window.location.href = '/login'; 
+};
 
 export default function Home() {
   const images = [
-    { image: '/assets/Capturar.png', alt: 'Imagem Principal', nameDocument: 'Documento 1' },
+    { image: '/assets/Capturar.png', alt: 'Imagem Principal', nameDocument: 'Documento1' },
     { image: '/assets/Capturar2.png', alt: 'Imagem Principal2', nameDocument: 'Documento 2' },
     { image: '/assets/Capturar3.png', alt: 'Imagem Principal', nameDocument: 'Documento 3' },
     { image: '/assets/Capturar4.png', alt: 'Imagem Principal2', nameDocument: 'Documento 4' },
@@ -19,16 +23,24 @@ export default function Home() {
   ];
 
   return (
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.5 }}
+    id="page-transition"
+    className="flex flex-col min-h-screen"
+  >
     <div className="flex flex-col min-h-screen">
       <div className="h-[15vh] mt-2">
-        <Header2 />
+        <Header buttonName='Entrar'  handleClick={handleNavigation} />
       </div>
 
       <div className="flex-grow">
         <SlideImg />
       </div>
 
-      <div className="flex flex-col lg:flex-row h-full justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4">
+      <div className="flex flex-col lg:flex-row h-full justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4 mt-20">
         <div className="lg:w-1/2 h-full">
           <SlideTxt
             title="Quem somos nós?"
@@ -53,7 +65,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col space-y-10 lg:space-y-0">
+      <div className="flex flex-col space-y-10 lg:space-y-0 mt-20">
         <div className="h-full px-4 lg:px-20">
           <SlideInfo
             title={'Como funciona'}
@@ -64,7 +76,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="h-full px-4 lg:px-20 mt-20">
+        <div className=" flex h-full px-4 lg:px-20 pt-20">
           <SlideDocumentos title='Documentos' images={images} />
         </div>
       </div>
@@ -73,5 +85,6 @@ export default function Home() {
         <Footer />
       </div>
     </div>
+  </motion.div>
   );
 }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from 'react';
 import Image from 'next/image';
 import Slider from 'react-slick';
@@ -28,26 +28,46 @@ export default function SlideImg() {
 
     const settings = {
         centerMode: true,
-        centerPadding: '25%',
+        centerPadding: '15%',
         slidesToShow: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 40000,
         speed: 500,
         infinite: true,
         arrows: false,
         dots: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    centerPadding: '10%',
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    centerPadding: '5%',
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    centerPadding: '0%', 
+                }
+            }
+        ]
     };
 
     return (
         <div className="w-full h-[80vh] mt-5">
             <Slider {...settings}>
                 {images.map((imagens, index) => (
-                    <div key={index} className="h-full">
-                        <div className="relative w-full h-[50vh]"> 
+                    <div key={index} className="h-full flex justify-center items-center">
+                        <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]">
                             <Image
-                                src={imagens.image} 
+                                src={imagens.image}
                                 alt={imagens.alt}
-                                fill 
+                                fill
                                 className="object-contain rounded-lg"
                             />
                         </div>

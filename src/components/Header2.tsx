@@ -25,7 +25,7 @@ const handleNavigation = () => {
             <div className=" flex-1 text-center">
                 <h1>Documentos</h1>
             </div>
-            <div className=" hidden md:flex flex-1 text-center">
+            <div className=" flex-1 text-center">
                 <Botao variant='contained' onClick={handleNavigation}>
                     Entrar
                 </Botao>

@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header';
 import Input from '@/components/Input';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 export default function Login() {
@@ -13,6 +14,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   return (
+    <motion.div
+    initial={{ y:20, opacity: 0 }}
+    animate={{y:0, opacity: 1 }}
+    transition={{ease:'easeInOut', duration: 0.5 }}
+  >
 
     <div className="h-screen w-full flex flex-col items-center">
 
@@ -48,5 +54,6 @@ export default function Login() {
       </div>
 
     </div>
+    </motion.div>
   );
 }
