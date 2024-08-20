@@ -16,13 +16,13 @@ export default function Input(props: InterfaceProps) {
     
     return (
 
-        <div className={`${props.width} text-base flex flex-col`}>
+        <div className={`${props.width} text-sm flex flex-col`}>
             <div className='ml-1'>{props.name}</div>
             <input
             type={props.type}
             value={props.value}
             onChange={handleChange}
-            className="w-[full] h-[60px] border border-black p-2 rounded-lg"
+            className="w-[full] h-[50px] border border-black p-2 rounded-lg"
             />
         </div>
     )

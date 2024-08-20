@@ -67,12 +67,13 @@ export default function Etapa2(props: InterfaceProps) {
     
     return (
 
-        <div className='w-full h-full flex flex-col items-center justify-around gap-2 text-xl font-bold border border-[#C3C3C3]'>
+        <div className="w-full h-full flex flex-col items-center text-sm font-bold border border-[#C3C3C3] bg-white p-4 justify-around">
+      
 
-            <div className="flex flex-col items-center gap-2 mt-2">
+      <div className="flex flex-col items-center gap-2">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
 
-                <div className="text-6xl flex gap-2 text-[#D9D9D9]">
+                <div className="text-5xl flex gap-2 text-[#D9D9D9]">
                     <div className="text-[#4B8A89]">•</div>
                     <div className="text-[#4B8A89]">•</div>
                     <div className="text-[#4B8A89]">•</div>
@@ -81,42 +82,36 @@ export default function Etapa2(props: InterfaceProps) {
             </div>
 
 
-            <div className='w-[80%] flex flex-col items-center gap-4'>
+            <div className="w-full flex flex-col gap-8">
 
                 <Input
                 name={"NOME DO PACIENTE"}
-                width={"w-full"}
+                width={"w-full text-xs"}
                 value={props.dadosPaciente.nome}
                 onChange={handleChangeNome}
                 />
 
-                <div className="w-full flex justify-between items-center">
+                <div className="w-full flex justify-between items-center space-x-4">
                     <Input
                     name={"CPF DO PACIENTE"}
-                    width={"w-[50%]"}
+                    width={"w-[70%] text-xs"}
                     value={props.dadosPaciente.cpf}
                     onChange={handleChangeCpf}
                     />
 
                     <Input
                     name={"DATA DE NASCIMENTO"}
-                    width={"w-[49%]"}
+                    width={"w-[30%] text-xs"}
                     value={props.dadosPaciente.dataNascimento}
                     onChange={handleChangeDataNacimento}
                     />
                 </div>
 
-                <Input
-                name={"NOME DA MÃE DO PACIENTE"}
-                width={"w-full"}
-                value={props.dadosPaciente.nomeDaMae}
-                onChange={handleChangeNomeDaMae}
-                />
 
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center space-x-4">
                     <Dropdown
                     name={"NACIONALIDADE DO PACIENTE"}
-                    width={"w-[60%]"}
+                    width={"w-[70%] text-xs"}
                     options={nacionalidadeOptions}
                     value={props.dadosPaciente.nacionalidade}
                     onChange={handleChangeNacionalidade}
@@ -124,7 +119,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                     <Dropdown
                     name={"SEXO DO PACIENTE"}
-                    width={"w-[39%]"}
+                    width={"w-[30%]"}
                     options={sexoOptions}
                     value={props.dadosPaciente.sexo}
                     onChange={handleChangeSexo}
@@ -133,11 +128,12 @@ export default function Etapa2(props: InterfaceProps) {
 
             </div>
 
-            <div className='w-[80%] h-[70px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center mb-2'>
-                <button className="w-[80%] h-full bg-[#546261] rounded-2xl flex justify-center items-center" onClick={props.clickEtapaAnterior}>
+            <div className=' mt-4 w-full h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm'>
+                <button className="w-full h-[60px] bg-[#262c2cb5] text-white rounded-md flex justify-center items-center text-sm font-bold" onClick={props.clickEtapaAnterior}>
                     VOLTAR
                 </button>
-                <button className="w-[100%] h-full flex justify-center items-center" onClick={props.clickProximaEtapa}>
+                <button className="w-full h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
+                    onClick={props.clickProximaEtapa}>
                     PRÓXIMA ETAPA
                 </button>
             </div>

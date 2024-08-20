@@ -15,12 +15,12 @@ export default function Input(props: InterfaceProps) {
     };
 
     return (
-        <div className={`${props.width} text-base flex flex-col`}>
+        <div className={`${props.width} text-xs flex flex-col`}>
             <div className="ml-1">{props.name}</div>
             <select
                 value={props.value}
                 onChange={handleChange}
-                className="w-full h-[60px] border border-black p-2 rounded-2xl"
+                className="w-full h-[40px] border border-black p-2 rounded-lg"
             >
                 {props.options?.map((option) => (
                     <option key={option.label} value={option.value}>
