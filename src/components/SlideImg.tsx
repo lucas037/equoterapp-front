@@ -13,16 +13,24 @@ export default function SlideImg() {
 
     const images: imagesProps[] = [
         {
-            image: '/assets/imgPrincipal.png',
+            image: '/assets/imgEquoterapia.webp',
             alt: 'Imagem Principal'
         },
         {
-            image: '/assets/logoufersa.png',
+            image: '/assets/imgPrincipal.png',
             alt: 'Imagem Principal 2'
         },
         {
-            image: '/assets/logo.png',
+            image: '/assets/imgEquoterapia2.png',
             alt: 'Imagem Principal 3'
+        },
+        {
+            image: '/assets/imgEquoterapia3.png',
+            alt: 'Imagem Principal 4'
+        },
+        {
+            image: '/assets/imgEquoterapia4.png',
+            alt: 'Imagem Principal 5'
         },
     ];
 
@@ -32,7 +40,7 @@ export default function SlideImg() {
         slidesToShow: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        speed: 500,
+        speed: 800,
         infinite: true,
         arrows: false,
         dots: true,
@@ -42,13 +50,13 @@ export default function SlideImg() {
         <div className="w-full h-[80vh] mt-5">
             <Slider {...settings}>
                 {images.map((imagens, index) => (
-                    <div key={index} className="h-full">
+                    <div key={index} className="h-full px-2"> {/* Adiciona espaço entre as imagens */}
                         <div className="relative w-full h-[50vh]"> 
                             <Image
                                 src={imagens.image} 
                                 alt={imagens.alt}
                                 fill 
-                                className="object-contain rounded-lg"
+                                className="object-cover rounded-lg" // Alterado para object-cover
                             />
                         </div>
                     </div>
