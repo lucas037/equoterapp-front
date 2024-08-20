@@ -15,7 +15,7 @@ export default function SlideTxt({ title, slides }: SlideTxtProps) {
   const settings = {
     slidesToShow: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 9000,
     speed: 500,
     infinite: true,
     arrows: false,

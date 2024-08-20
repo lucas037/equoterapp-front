@@ -39,15 +39,15 @@ export default function SlideImg() {
         centerPadding: '25%',
         slidesToShow: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
-        speed: 800,
+        autoplaySpeed: 9000,
+        speed: 500,
         infinite: true,
         arrows: false,
         dots: true,
     };
 
     return (
-        <div className="w-full h-[80vh] mt-5">
+        <div className="w-full h-[50vh] mt-5">
             <Slider {...settings}>
                 {images.map((imagens, index) => (
                     <div key={index} className="h-full px-2"> {/* Adiciona espaço entre as imagens */}
