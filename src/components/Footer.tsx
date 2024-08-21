@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative w-full h-full bg-white text-black flex flex-col justify-between lg:pl-[25%] z-10">
+      <div className="relative w-full h-[10%] bg-white text-black flex flex-col justify-between lg:pl-[25%] z-10">
         <div className="flex justify-between p-4">
           <div>
             <div className='text-[#44807E] text-2xl'>
@@ -27,9 +27,8 @@ export default function Footer() {
               Núcleo de Equoterapia do Semiárido
             </div>
           </div>
-          <div className="relative z-0">
-            <img src="/assets/image12.png" alt="Logo da lotus" className="h-8 mr-2" />
-            <div className='text-purple-600'> &lt;lacapdevs&gt; </div>
+          <div className="relative z-0 justify-items-center center mr-16">
+            <img src="/assets/image12.png" alt="Logo da lotus" className=''/>
           </div>
         </div>
 
@@ -49,31 +48,30 @@ export default function Footer() {
             </div>
           </div>
           <div className="mb-0">
-            <div className='text-[#44807E] text-base'>
+            <div className='text-[#44807E] text-base mb-3'>
               REDES SOCIAIS
             </div>
             <div className='text-black text-sm flex items-center'>
-              <img src="/assets/instagram.png" alt="Instagram" className="h-5 mr-2" />
+              <img src="/assets/instagram.png" alt="Instagram" className="h-4 mr-2" />
               @NESA_UFERSA
             </div>
             <div className='text-black text-sm flex items-center'>
-              <img src="/assets/Facebook.png" alt="Facebook" className="h-5 mr-2" />
+              <img src="/assets/Facebook.png" alt="Facebook" className="h-4 mr-2" />
               @NESA UFERSA
             </div>
           </div>
-          <div>
-            <div className='text-[#44807E] text-base'>
+          <div className='mr-20 justify-items-start ml-5'>
+            <div className='text-[#44807E] text-base mb-3'>
               CONTATO
             </div>
             <div className='text-black text-sm flex items-center'>
-              <img src="/assets/vector.png" alt="Telefone" className="h-5 mr-2" />
-              <div>
-                +55 84 3317-8200<br />
-                +55 84 3317-8200
+              <img src="/assets/tel.png" alt="Telefone" className="h-4 mr-2 text-sm"/>
+              <div className='text-sm'>
+                +55 84 3317-8200        
               </div>
             </div>
             <div className='text-black text-sm flex items-center'>
-              <img src="/assets/Gmail.png" alt="Email" className="h-5 mr-2" />
+              <img src="/assets/Gmail.png" alt="Email" className="h-4 mr-2" />
               nesaufersa@gmail.com
             </div>
           </div>
