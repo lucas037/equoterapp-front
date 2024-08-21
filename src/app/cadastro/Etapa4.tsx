@@ -36,12 +36,11 @@ export default function Etapa3(props: InterfaceProps) {
 
     return (
 
-        <div className='w-[80%] min-h-[80%] flex flex-col items-center gap-8 text-2xl font-bold border border-[#C3C3C3]'>
+        <div className='w-full min-h-[80%] flex flex-col gap-8 text-2xl font-bold border border-[#C3C3C3]'>
 
-            <div className="w-[90%] flex mt-8">MEMBROS DA FAMÍLIA</div>
-
-            <div className="w-[90%] flex flex-col gap-4">
-                <div className="w-full flex justify-between text-base">
+            <div className="mt-8 mb-8 text-left text-lg ml-8">MEMBROS DA FAMÍLIA</div>
+            <div className="flex flex-col gap-4 ml-8 justify-center">
+                <div className="w-full flex text-base">
                     <div className="w-[20%]">NOME</div>
                     <div className="w-[20%]">PARENTESCO</div>
                     <div className="w-[20%]">PROFISSÃO</div>
@@ -69,7 +68,11 @@ export default function Etapa3(props: InterfaceProps) {
 
             </div>
 
-            <div className='w-[40%] h-[70px] bg-[#4B8A89] text-white rounded-2xl flex justify-center items-center mt-12 mb-4'>
+            <div className='h-[60px] w-[20%] bg-[#ffffff00] text-green-950 rounded-md m-5 border border-gray-800 text-left pt-3 pl-4'>
+            (+) Adicionar Membro
+            </div>
+
+            <div className='h-[60px] w-[50%] bg-[#4B8A89] text-white rounded-md flex justify-center items-center m-5'>
                 Finalizar
             </div>
 
