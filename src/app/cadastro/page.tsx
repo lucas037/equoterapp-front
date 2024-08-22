@@ -8,8 +8,6 @@
   import Etapa3 from "./Etapa3";
   import Etapa4 from "./Etapa4";
 
-  import Input from "@/components/Input";
-
   export default function Cadastro() {
     const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
     const [etapa, setEtapa] = useState(1);

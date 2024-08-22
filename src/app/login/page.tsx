@@ -4,14 +4,32 @@ import Header from '@/components/Header';
 import Input from '@/components/Input';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import DadosPaciente from '../types/DadosPaciente';
 
 export default function Login() {
+  const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
+
   function handleClick() {
     window.location.href = "/cadastro";
   }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  function changeDadosPaciente(dadosPaciente: DadosPaciente) {
+    setDadosPaciente(dadosPaciente);
+  }
+
+  function handleChangeEmailFamiliar(value: string) {
+    setDadosPaciente({
+      ...dadosPaciente,
+      emailFamiliar: value
+    })
+  }
+
+  function handleChangeSenhaFamiliar(value: string) {
+    setDadosPaciente({
+      ...dadosPaciente,
+      senhaFamiliar: value
+    })
+  }
 
   return (
     <motion.div
@@ -34,8 +52,8 @@ export default function Login() {
             <div>FAÇA LOGIN PARA ENTRAR NO SISTEMA</div>
 
             <div className='w-[80%] flex flex-col items-center gap-4'>
-              <Input name={"EMAIL"} width={"w-full"} value={email} onChange={(e) => setEmail(e.target.value)} />
-              <Input name={"SENHA"} width={"w-full"} value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+              <Input name={"EMAIL"} width={"w-full"} value={dadosPaciente.emailFamiliar} onChange={handleChangeEmailFamiliar} />
+              <Input name={"SENHA"} width={"w-full"} value={dadosPaciente.senhaFamiliar} onChange={handleChangeSenhaFamiliar} type="password" />
               <div className='w-full flex justify-end text-sm cursor-pointer'>Esqueci minha senha</div>
               <button
                 onClick={() => console.log('Entrar')} // Substitua com a lógica de login
