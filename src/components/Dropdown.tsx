@@ -3,7 +3,7 @@ import { useState } from "react";
 
 interface InterfaceProps {
     name: string;
-    width: string;
+    style: string;
     options: DropdownOption[];
     value: string;
     onChange: (value: string) => void;
@@ -15,7 +15,7 @@ export default function Input(props: InterfaceProps) {
     };
 
     return (
-        <div className={`${props.width} text-xs flex flex-col`}>
+        <div className={`${props.style} flex flex-col`}>
             <div className="ml-1">{props.name}</div>
             <select
                 value={props.value}

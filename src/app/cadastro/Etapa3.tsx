@@ -67,7 +67,7 @@ export default function Etapa2(props: InterfaceProps) {
     
     return (
 
-        <div className="w-full h-full flex flex-col items-center text-sm font-bold border border-[#C3C3C3] bg-white p-4 justify-around">
+        <div className="w-full h-full flex flex-col items-center font-bold border border-[#C3C3C3] bg-white p-4 justify-around text-xs">
       
 
       <div className="flex flex-col items-center gap-2">
@@ -86,7 +86,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <Input
                 name={"NOME DO PACIENTE"}
-                width={"w-full text-xs"}
+                style={"w-full"}
                 value={props.dadosPaciente.nome}
                 onChange={handleChangeNome}
                 />
@@ -94,14 +94,14 @@ export default function Etapa2(props: InterfaceProps) {
                 <div className="w-full flex justify-between items-center space-x-4">
                     <Input
                     name={"CPF DO PACIENTE"}
-                    width={"w-[70%] text-xs"}
+                    style={"w-[70%]"}
                     value={props.dadosPaciente.cpf}
                     onChange={handleChangeCpf}
                     />
 
                     <Input
                     name={"DATA DE NASCIMENTO"}
-                    width={"w-[30%] text-xs"}
+                    style={"w-[30%]"}
                     value={props.dadosPaciente.dataNascimento}
                     onChange={handleChangeDataNacimento}
                     />
@@ -111,7 +111,7 @@ export default function Etapa2(props: InterfaceProps) {
                 <div className="w-full flex justify-between items-center space-x-4">
                     <Dropdown
                     name={"NACIONALIDADE DO PACIENTE"}
-                    width={"w-[70%] text-xs"}
+                    style={"w-[70%]"}
                     options={nacionalidadeOptions}
                     value={props.dadosPaciente.nacionalidade}
                     onChange={handleChangeNacionalidade}
@@ -119,7 +119,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                     <Dropdown
                     name={"SEXO DO PACIENTE"}
-                    width={"w-[30%]"}
+                    style={"w-[30%]"}
                     options={sexoOptions}
                     value={props.dadosPaciente.sexo}
                     onChange={handleChangeSexo}

@@ -44,7 +44,7 @@ export default function Etapa1(props: InterfaceProps) {
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center text-sm font-bold border border-[#C3C3C3] bg-white p-4 justify-around">
+    <div className="w-full h-full flex flex-col items-center text-xs font-bold border border-[#C3C3C3] bg-white p-4 justify-around">
       
       <div className="flex flex-col items-center gap-2">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
@@ -59,21 +59,21 @@ export default function Etapa1(props: InterfaceProps) {
       <div className="w-full flex flex-col gap-8">
         <Input
           name={"NOME DO FAMILIAR"}
-          width={"w-full"}
+          style={"w-full"}
           value={props.dadosPaciente.nomeFamiliar}
           onChange={handleChangeNomeFamiliar}
         />
 
-        <div className="w-full flex flex-wrap gap-4">
+        <div className="w-full flex justify-between">
           <Input
             name={"CPF DO FAMILIAR"}
-            width={"w-full sm:w-[48%]"}
+            style={"w-full sm:w-[48%]"}
             value={props.dadosPaciente.cpfFamiliar}
             onChange={handleChangeCpfFamiliar}
           />
           <Input
             name={"TELEFONE DO FAMILIAR"}
-            width={"w-full sm:w-[48%]"}
+            style={"w-full sm:w-[48%]"}
             value={props.dadosPaciente.telefoneFamiliar}
             onChange={handleChangeTelefoneFamiliar}
           />
@@ -81,7 +81,7 @@ export default function Etapa1(props: InterfaceProps) {
 
         <Input
           name={"SENHA DO FAMILIAR"}
-          width={"w-full"}
+          style={"w-full"}
           value={props.dadosPaciente.senhaFamiliar}
           onChange={handleChangeSenhaFamiliar}
           type="password"

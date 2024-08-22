@@ -13,10 +13,6 @@ export default function Login() {
     window.location.href = "/cadastro";
   }
 
-  function changeDadosPaciente(dadosPaciente: DadosPaciente) {
-    setDadosPaciente(dadosPaciente);
-  }
-
   function handleChangeEmailFamiliar(value: string) {
     setDadosPaciente({
       ...dadosPaciente,
@@ -52,8 +48,8 @@ export default function Login() {
             <div>FAÇA LOGIN PARA ENTRAR NO SISTEMA</div>
 
             <div className='w-[80%] flex flex-col items-center gap-4'>
-              <Input name={"EMAIL"} width={"w-full"} value={dadosPaciente.emailFamiliar} onChange={handleChangeEmailFamiliar} />
-              <Input name={"SENHA"} width={"w-full"} value={dadosPaciente.senhaFamiliar} onChange={handleChangeSenhaFamiliar} type="password" />
+              <Input name={"EMAIL"} style={"w-full"} value={dadosPaciente.emailFamiliar} onChange={handleChangeEmailFamiliar} />
+              <Input name={"SENHA"} style={"w-full"} value={dadosPaciente.senhaFamiliar} onChange={handleChangeSenhaFamiliar} type="password" />
               <div className='w-full flex justify-end text-sm cursor-pointer'>Esqueci minha senha</div>
               <button
                 onClick={() => console.log('Entrar')} // Substitua com a lógica de login

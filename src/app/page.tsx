@@ -32,6 +32,7 @@ export default function Home() {
       id="page-transition"
       className="flex flex-col min-h-screen"
     >
+      
       <Header buttonName='Entrar' handleClick={handleNavigation} />
 
       <main className="flex-grow mt-2">
