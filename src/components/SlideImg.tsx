@@ -39,7 +39,7 @@ export default function SlideImg() {
         centerPadding: '25%',
         slidesToShow: 1,
         autoplay: true,
-        autoplaySpeed: 9000,
+        autoplaySpeed: 12000,
         speed: 500,
         infinite: true,
         arrows: false,

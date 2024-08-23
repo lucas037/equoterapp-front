@@ -17,7 +17,7 @@ export default function SlideDocumentos({ title, images }: SlideDocumentosProps)
     slidesToShow: 3, 
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 9000,
+    autoplaySpeed: 12000,
     speed: 500,
     infinite: true,
     arrows: false,
