@@ -69,10 +69,10 @@ export default function Login() {
             className="w-auto h-full opacity-50 border border-[#C3C3C3] hidden xl:flex xl:max-w-[100%]"
           />
 
-          <div className='w-full h-full flex flex-col items-center justify-around text-2xl font-bold border border-[#C3C3C3] xl:flex xl:max-w-[100%]'>
+          <div className='w-full h-full flex flex-col items-center justify-around text-base font-bold border border-[#C3C3C3] xl:flex xl:max-w-[100%]'>
             <div>FAÇA LOGIN PARA ENTRAR NO SISTEMA</div>
 
-            <div className='w-[80%] flex flex-col items-center gap-4'>
+            <div className='w-[80%] flex flex-col items-center gap-4 text-sm'>
               <Input name={"EMAIL"} style={"w-full"} value={dadosPaciente.emailFamiliar} onChange={handleChangeEmailFamiliar} />
               <Input name={"SENHA"} style={"w-full"} value={dadosPaciente.senhaFamiliar} onChange={handleChangeSenhaFamiliar} type="password" />
               <div className='w-full flex justify-end text-sm cursor-pointer'>Esqueci minha senha</div>
