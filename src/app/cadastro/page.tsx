@@ -100,9 +100,7 @@
 
           {etapa === 4 && (<Etapa4
             dadosPaciente={dadosPaciente}
-            changeDadosPaciente={changeDadosPaciente}
-            clickProximaEtapa={cadastroFinalizado}
-            clickEtapaAnterior={clickEtapaAnterior}
+            cadastroFinalizado={cadastroFinalizado}
           />)}
         </div>
       </div>

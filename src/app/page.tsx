@@ -31,6 +31,7 @@ export default function Home() {
     transition={{ease:'easeOut', duration: 1 }}
 
     >
+      
       <Header buttonName='Entrar' handleClick={handleNavigation} />
 
       <main className="flex-grow mt-2">

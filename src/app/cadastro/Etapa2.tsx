@@ -112,7 +112,7 @@ export default function Etapa2(props: InterfaceProps) {
 
     return (
 
-        <div className="w-full h-full flex flex-col items-center text-sm font-bold border border-[#C3C3C3] bg-white p-4 justify-around">
+        <div className="w-full h-full flex flex-col items-center font-bold border border-[#C3C3C3] bg-white p-4 justify-around text-xs">
 
             <div className="flex flex-col items-center gap-2 text-sm">
                 <div>REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
@@ -130,7 +130,7 @@ export default function Etapa2(props: InterfaceProps) {
             <div className="w-full flex justify-center items-center space-x-4">
                 <Dropdown
                     name={"PARENTESCO DO FAMILIAR"}
-                    width={"w-[50%]"}
+                    style={"w-[50%]"}
                     options={parentescoOptions}
                     value={props.dadosPaciente.parentesco}
                     onChange={handleChangeParentesco}
@@ -138,7 +138,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <Dropdown
                     name={"MORA COM O PACIENTE?"}
-                    width={"w-[50%]"}
+                    style={"w-[50%]"}
                     options={moraComOptions}
                     value={props.dadosPaciente.moraComPaciente}
                     onChange={handleChangeMoraComPaciente}
@@ -148,7 +148,7 @@ export default function Etapa2(props: InterfaceProps) {
             <div className="w-full flex justify-center space-x-4">
                 <Dropdown
                     name="BENEFICIÁRIO BOLSA FAMÍLIA"
-                    width="w-[50%]"
+                    style="w-[50%]"
                     options={beneficiarioBolsaFamiliaOptions}
                     value={props.dadosPaciente.beneficiarioBolsaFamilia}
                     onChange={handleChangeBeneficiarioBolsaFamilia}
@@ -156,7 +156,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <Input
                     name="NÚMERO DO NIS"
-                    width="w-[50%] h-[55px] text-xs"
+                    style="w-[50%] h-[55px]"
                     value={props.dadosPaciente.numeroNis}
                     onChange={handleChangeNumeroNis}
                 />
@@ -165,7 +165,7 @@ export default function Etapa2(props: InterfaceProps) {
             <div className="w-full flex justify-center space-x-4">
                 <Dropdown
                     name="PACIENTE É ESTUDANTE?"
-                    width="w-[50%]"
+                    style="w-[50%]"
                     options={pacienteEstudanteOptions}
                     value={props.dadosPaciente.pacienteEstudante}
                     onChange={handleChangePacienteEstudante}
@@ -173,7 +173,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <Input
                     name="TIPO DE DEFICIÊNCIA"
-                    width="w-[50%] h-[55px] text-xs"
+                    style="w-[50%] h-[55px]"
                     value={props.dadosPaciente.deficiencia}
                     onChange={handleChangeTipoDeficiente}
                 />
@@ -182,7 +182,7 @@ export default function Etapa2(props: InterfaceProps) {
             <div className="w-full flex justify-center space-x-4">
                 <Dropdown
                     name="QUANTIDADE DE MEMBROS"
-                    width="w-[50%]"
+                    style="w-[50%]"
                     options={quantMembrosOptions}
                     value={props.dadosPaciente.quantMembrosCasa}
                     onChange={handleChangeQuantMembrosCasa}
@@ -190,7 +190,7 @@ export default function Etapa2(props: InterfaceProps) {
 
                 <Dropdown
                     name="TIPO DE MORADIA"
-                    width="w-[50%]"
+                    style="w-[50%]"
                     options={tipoMoradiaOptions}
                     value={props.dadosPaciente.tipoMoradia}
                     onChange={handleChangeTipoMoradia}
@@ -199,7 +199,7 @@ export default function Etapa2(props: InterfaceProps) {
 
 
             <div className='w-full h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm'>
-                <button className="w-full h-[60px] bg-[#262c2cb5] text-white rounded-md flex justify-center items-center text-sm font-bold" onClick={props.clickEtapaAnterior}>
+                <button className="w-full h-[60px] bg-[#262c2cb5] text-white rounded-md flex justify-center items-center font-bold" onClick={props.clickEtapaAnterior}>
                     VOLTAR
                 </button>
                 <button className="w-full h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
