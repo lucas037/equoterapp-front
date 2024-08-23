@@ -31,12 +31,37 @@ export default function Login() {
     })
   }
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      x: "-100vw"
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "tween",
+        ease: "anticipate",
+        duration: 0.6
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: "100vw",
+      transition: {
+        type: "tween",
+        ease: "anticipate",
+        duration: 0.6
+      }
+    }
+  };
+
   return (
     <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ ease: 'easeInOut', duration: 0.5 }}
-    >
+    initial={pageVariants.initial}
+    animate={pageVariants.animate}
+    exit={pageVariants.exit}
+  >
       <div className="h-screen w-full flex flex-col items-center">
 
         <Header buttonName='Cadastro' handleClick={handleClick} />

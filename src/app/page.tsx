@@ -25,12 +25,11 @@ export default function Home() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      id="page-transition"
-      className="flex flex-col min-h-screen"
+    initial={{ x:-100, opacity: 0 }}
+    animate={{x:0, opacity: 1 }}
+    exit={{ x: 100, opacity: 0 }}
+    transition={{ease:'easeOut', duration: 1 }}
+
     >
       <Header buttonName='Entrar' handleClick={handleNavigation} />
 

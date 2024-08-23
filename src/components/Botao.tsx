@@ -10,4 +10,5 @@ export const Botao = styled(Button)<ButtonProps>(({ theme }) => ({
     '&:hover': {
       backgroundColor: '#137472',
     },
-}));
+}))
+;

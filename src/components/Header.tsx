@@ -1,3 +1,4 @@
+import { Botao } from './Botao';
 import Button from './Button';
 
 interface InterfaceProps {
@@ -31,7 +32,9 @@ export default function Header(props: InterfaceProps) {
                     <div>Documentos</div>
                 </div>
         
-                <Button name={props.buttonName} handleClick={props.handleClick}/>
+                <Botao onClick={props.handleClick} className='w-[140px] h-[50px] rounded-md flex justify-center items-center'>
+                    {props.buttonName}
+                </Botao> 
 
             </div>
   
