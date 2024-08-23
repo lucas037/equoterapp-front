@@ -1,5 +1,6 @@
 'use client'
 import Header from "@/components/Header";
+import BotaoDocumento from "../submissao/BotaoDocumento";
 import { motion } from "framer-motion";
 
 export default function ValidarCadastro() {
@@ -47,6 +48,13 @@ export default function ValidarCadastro() {
                             <p className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold">
                                 BAIXAR MODELO
                             </p>
+                           
+                            <p className="text-lg text-[#1D6C11] font-bold my-2 flex justify-center items-center" >ENVIADO</p>
+                            <div className="flex justify-center items-center border-2 rounded-md border-black">
+                            <BotaoDocumento buttonName="Enviar Documento" handleClick={handleNavigation}></BotaoDocumento>
+                            </div>
+
+                            
                         </div>
                     </div>
                     <div className="relative">
