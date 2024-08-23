@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-white h-64 w-full flex border border-t-4">
+    <footer className="relative bg-slate-200 h-64 w-full flex border-teal-400 border-t-4">
       <div className="relative h-full flex items-center justify-center">
         {/* Círculo verde maior */}
-        <div className="hidden lg:flex absolute left-4 lg:left-8 top-1/2 transform -translate-y-1/2 w-40 h-40 lg:w-56 lg:h-56 rounded-full bg-gray-800 items-center justify-center z-20 ml-14 mb-16">
+        <div className="hidden lg:flex absolute left-4 lg:left-8 top-1/2 transform -translate-y-1/2 w-40 h-40 lg:w-56 lg:h-56 rounded-full bg-slate-300 items-center justify-center z-20 mb-16">
           {/* Círculo preto com imagem */}
-          <div className="relative w-36 h-36 lg:w-48 lg:h-48 rounded-full bg-white flex items-center justify-center z-30">
+          <div className="relative w-36 h-36 lg:w-48 lg:h-48 rounded-full bg-slate-500 flex items-center justify-center z-30">
             <img 
               src="/assets/logoufersa.png" 
               alt="Logo da Ufersa" 
@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative w-full h-[10%] bg-white text-black flex flex-col justify-between lg:pl-[25%] z-10">
+      <div className="relative w-full h-[10%] bg-slate-200 text-black flex flex-col justify-between lg:pl-[25%] z-10">
         <div className="flex justify-between p-4">
           <div>
             <div className='text-[#44807E] text-2xl'>
