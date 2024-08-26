@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { motion } from 'framer-motion';
 import BotaoAceitar from './BotaoAceitar';
 import BotaoRecusar from './BotaoRecusar';
+import InfoResponsavel from './InfoResponsavel';
 
 export default function Verificacao() {
 
@@ -72,6 +73,7 @@ export default function Verificacao() {
             <Header buttonName='sair' handleClick={handleNavigation} />
 
             <div className="w-full h-full px-20">
+            <InfoResponsavel nome='MARIA JOSEFINA PAULINA' />
                 <div className="gap-x-8 gap-y-12 w-full h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 border-2 border-black p-4">
                     {documentData.map((document) => (
                         
