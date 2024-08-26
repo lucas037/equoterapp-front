@@ -1,13 +1,12 @@
 'use client'
 import React from 'react';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
-import DownloadIcon from '@mui/icons-material/Download';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import Header from "@/components/Header";
-import BotaoDocumento from './BotaoDocumentos';
-import { Botao } from '@/components/Botao';
 import { motion } from 'framer-motion';
+import BotaoAceitar from './BotaoAceitar';
+import BotaoRecusar from './BotaoRecusar';
 
-export default function ValidarCadastro() {
+export default function Verificacao() {
 
     const handleNavigation = () => {
         window.location.href = '/login';
@@ -38,7 +37,6 @@ export default function ValidarCadastro() {
         { id: 10, title: "DOCUMENTOX", imageSrc: "/assets/Capturar.PNG", downloadLink: "/arquivos/FichadeAvaliaçãoMédica(2.1).pdf" }
         
     ];
-
     const pageVariants = {
         initial: {
           opacity: 0,
@@ -79,35 +77,30 @@ export default function ValidarCadastro() {
                         
                         <div key={document.id} className="relative">
                             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
-                            <p className="text-xl text-[rgb(65,100,99)] mb-1">{document.title}</p>
+                            <p className="text-xl text-[#214E4D] mb-1">{document.title}</p>
                             <div className="relative">
                                 <img src={document.imageSrc} alt="Imagem Principal" className="shadow-md shadow-gray-600 border-8 border-gray-600 blur-sm w-full h-64" />
                                 <a href={document.downloadLink} download className="absolute inset-0 flex items-center justify-center w-full">
-                                    <div className="flex items-center justify-center border-2 rounded-md border-black p-2  bg-white bg-opacity-80 mx-4 md:mx-8 w-auto max-w-full">
-                                        <span className="text-black text-lg font-bold md:text-base sm:text-sm whitespace-nowrap">
-                                            BAIXAR MODELO
+                                    <div className="flex items-center justify-center border-2 rounded-md border-black p-2 bg-white bg-opacity-80 mx-4 md:mx-8 w-auto max-w-full">
+                                        <span className="text[#214E4D] text-lg font-bold md:text-base sm:text-sm whitespace-nowrap">
+                                            VER DOCUMENTO
                                         </span>
-                                        <DownloadIcon className="ml-2 md:text-base sm:text-sm" />
+                                        <RemoveRedEyeIcon className="ml-2 md:text-base sm:text-sm" />
                                     </div>
                                 </a>
                             </div>
                             </motion.div>
-                            <p className="text-lg text-[#1D6C11] font-bold my-2 flex justify-center items-center">ENVIADO</p>
-                            
-                                <BotaoDocumento 
-                                    icon={<FileUploadIcon />} 
-                                    buttonName="Enviar Documento" 
+                                <div className=' mt-2 h-full space-y-4'>
+                                <BotaoAceitar 
+                                    buttonName="Aprovar" 
                                     handleClick={handleFileUpload} 
                                 />
+                                <BotaoRecusar buttonName='Reprovar' handleClick={handleFileUpload}/>
+                                </div>
                         </div>
                        
                     ))}
                 </div>
-            </div>
-            <div className='flex justify-center items-center my-5'>
-                <Botao onClick={handleNavigation} className='p-4 w-auto h-auto rounded-md justify-center items-center text-lg'>
-                    Enviar Documentos
-                </Botao> 
             </div>
         </div>
         </motion.div>

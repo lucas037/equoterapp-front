@@ -7,6 +7,7 @@
   import DadosPaciente from "../types/DadosPaciente";
   import Etapa3 from "./Etapa3";
   import Etapa4 from "./Etapa4";
+import { motion } from "framer-motion";
 
   export default function Cadastro() {
     const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
@@ -32,8 +33,37 @@
     function clickEtapaAnterior() {
       setEtapa(etapa - 1);
     }
+    const pageVariants = {
+      initial: {
+        opacity: 0,
+        x: "-100vw"
+      },
+      animate: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          type: "tween",
+          ease: "anticipate",
+          duration: 0.6
+        }
+      },
+      exit: {
+        opacity: 0,
+        x: "100vw",
+        transition: {
+          type: "tween",
+          ease: "anticipate",
+          duration: 0.6
+        }
+      }
+    };
 
     return (
+      <motion.div
+    initial={pageVariants.initial}
+    animate={pageVariants.animate}
+    exit={pageVariants.exit}
+  >
       <div className="h-screen w-full flex flex-col items-center">
         <Header buttonName="Login" handleClick={handleClick} />
 
@@ -104,5 +134,6 @@
           />)}
         </div>
       </div>
+      </motion.div>
     );
   }
