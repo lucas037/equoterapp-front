@@ -78,7 +78,7 @@ export default function Login() {
               <div className='w-full flex justify-end text-sm cursor-pointer'>Esqueci minha senha</div>
               <button
                 onClick={() => console.log('Entrar')} // Substitua com a lógica de login
-                className='w-full h-[70px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center'
+                className='w-full h-[50px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center'
               >
                 ENTRAR
               </button>
