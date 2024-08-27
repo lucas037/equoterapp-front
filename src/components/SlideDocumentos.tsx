@@ -64,7 +64,7 @@ export default function SlideDocumentos({ title, images }: SlideDocumentosProps)
       <Slider {...settings} className="w-full">
         {images.map((imagens, index) => (
           <div key={index} className="flex justify-center items-center">
-            <div className="relative w-[50%] h-[30vh]">
+            <div className="relative w-64 h-64">
             <div className='mb-2'>{imagens.nameDocument}</div>
               <Image
                 src={imagens.image}

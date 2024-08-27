@@ -7,6 +7,7 @@ import SlideImg from '../components/SlideImg';
 import SlideDocumentos from '@/components/SlideDocumentos';
 import SlideInfo from '@/components/SlideInfo';
 import { motion } from 'framer-motion';
+import FuturoHeader from '@/components/FuturoHeader';
 
 const handleNavigation = () => {
   window.location.href = '/login'; 
@@ -32,7 +33,7 @@ export default function Home() {
 
     >
       
-      <Header buttonName='Entrar' handleClick={handleNavigation} />
+      <FuturoHeader buttonName='Entrar' handleClick={handleNavigation} />
 
       <main className="flex-grow mt-2">
         <SlideImg />
