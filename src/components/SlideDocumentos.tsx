@@ -17,7 +17,7 @@ export default function SlideDocumentos({ title, images }: SlideDocumentosProps)
     slidesToShow: 3, 
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 12000,
+    autoplaySpeed: 19000,
     speed: 500,
     infinite: true,
     arrows: false,
@@ -29,9 +29,17 @@ export default function SlideDocumentos({ title, images }: SlideDocumentosProps)
       {
         breakpoint: 1024, 
         settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: false,
+        }
+      },
+      {
+        breakpoint: 768, 
+        settings: {
           slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '0',
+          slidesToScroll: 1,
+          centerMode: false,
         }
       }
     ]
@@ -53,11 +61,11 @@ export default function SlideDocumentos({ title, images }: SlideDocumentosProps)
         </div>
       </div>
 
-      <Slider {...settings} className="w-full px-8">
+      <Slider {...settings} className="w-full">
         {images.map((imagens, index) => (
-          <div key={index} className="flex justify-center items-center px-2">
-            <div className="relative w-[90%] h-[50vh]">
-              <div>{imagens.nameDocument}</div>
+          <div key={index} className="flex justify-center items-center">
+            <div className="relative w-[50%] h-[30vh]">
+            <div className='mb-2'>{imagens.nameDocument}</div>
               <Image
                 src={imagens.image}
                 alt={imagens.alt}

@@ -15,7 +15,7 @@ export default function SlideInfo({ title, slides }: SlideInfoProps) {
   const settings = {
     slidesToShow: 1,
     autoplay: true,
-    autoplaySpeed: 12000,
+    autoplaySpeed: 19000,
     speed: 500,
     infinite: true,
     arrows: false,
