@@ -303,28 +303,31 @@ export default function Sessoes() {
     return (
         <div className="w-[100%] h-screen flex flex-col items-center">
             <Header buttonName="Sair" handleClick={handleClick}/>
-
+    
             <div className="w-[90%] h-[80%] flex">
-
+    
                 <div className="w-full md:w-[30%] lg:w-[22%] xl:w-[18%] h-full flex flex-col overflow-y-auto">
                     {Array.from({ length: sessoesPorMes.length }).map((_, i) => (
-                        <div className="text-base mt-8">
+                        <div key={i} className="text-base mt-8">
                             <div className="text-[18px] text-[#255A59] font-bold">{sessoesPorMes[i].mes}</div>
                             {Array.from({length: sessoesPorMes[i].sessoes.length }).map((_, j) => (
-                                <button className="ml-6 mb-1 mt-1 text-[16px] text-[#0B3F3E] flex items-center gap-1" onClick={() => handleClickSessao(i, j)}>
-                                    {modal && i == indexesModal[0] && j == indexesModal[1] && <div className="text-2xl">
-                                        •
-                                    </div>}
-
+                                <button 
+                                    key={j} 
+                                    className="ml-6 mb-1 mt-1 text-[16px] text-[#0B3F3E] flex items-center gap-1" 
+                                    onClick={() => handleClickSessao(i, j)}
+                                >
+                                    {modal && i === indexesModal[0] && j === indexesModal[1] && (
+                                        <div className="text-2xl">•</div>
+                                    )}
                                     SESSÃO DO DIA {sessoesPorMes[i].sessoes[j].dia}
                                 </button>
                             ))}
                         </div>
                     ))}
                 </div>
-
-
+    
             </div>
         </div>
     )
+    
 }
