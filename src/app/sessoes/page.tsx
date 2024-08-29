@@ -314,7 +314,7 @@ export default function Sessoes() {
     
             <div className="w-[90%] h-[80%] flex">
     
-                <div className={`${modal? 'hidden lg:block': 'flex flex-col'} overflow-y-auto w-[50%] sm:w-[42%] md:w-[34%] lg:w-[26%] xl:w-[18%] h-full`}>
+                <div className={`${modal? 'hidden lg:block': 'flex flex-col'} overflow-y-auto w-[80%] sm:w-[42%] md:w-[34%] lg:w-[26%] xl:w-[18%] h-full`}>
                     {Array.from({ length: sessoesPorMes.length }).map((_, i) => (
                         <div key={i} className="text-base mt-8">
                             <div className="text-[18px] text-[#255A59] font-bold">{sessoesPorMes[i].mes}</div>
@@ -344,7 +344,7 @@ export default function Sessoes() {
                           <button onClick={handleClickFecharSessao} className="w-[25px] h-[25px] flex justify-center items-center lowercase text-2xl">x</button>
                         </div>
 
-                        <div className="w-full h-[150px] flex flex-col sm:flex-row sm:h-[100px] sm:justify-between">  {/*Barra superior (informações da sessão*/}
+                        <div className="w-full min-h-[150px] flex flex-col sm:flex-row sm:h-[100px] sm:justify-between">  {/*Barra superior (informações da sessão*/}
                           <div className="flex gap-8">
                             <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={60} height={60} className=""/>
                             <div className="flex flex-col items-center justify-center">
@@ -364,12 +364,12 @@ export default function Sessoes() {
                           </div>
 
                           <div className="flex sm:hidden justify-between mt-8 gap-2">
-                            <div className="flex-col items-center justify-center gap-1">
-                              <div className="text-[18px] font-bold text-[#2C5454]">Sessão número {sessao.sessao}</div>
+                            <div className="w-[40%] flex-col items-center justify-center gap-1">
+                              <div className="text-[18px] font-bold text-[#2C5454] mt-4">Sessão número {sessao.sessao}</div>
                               <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.turma}</div>
                             </div>
                             
-                            <div className="flex-col items-center justify-center gap-1">
+                            <div className="w-[40%] flex-col items-center justify-center gap-1 mt-4">
                               <div className="text-[18px] font-bold text-[#2C5454]">Data</div>
                               <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.data}</div>
                             </div>
