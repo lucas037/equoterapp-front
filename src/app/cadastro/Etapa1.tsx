@@ -80,6 +80,14 @@ export default function Etapa1(props: InterfaceProps) {
         </div>
 
         <Input
+          name={"EMAIL DO FAMILIAR"}
+          style={"w-full"}
+          value={props.dadosPaciente.emailFamiliar}
+          onChange={handleChangeEmailFamiliar}
+          type="password"
+        />
+
+        <Input
           name={"SENHA DO FAMILIAR"}
           style={"w-full"}
           value={props.dadosPaciente.senhaFamiliar}

@@ -302,15 +302,19 @@ export default function Sessoes() {
         setIndexesModal([a, b])
         setSessao(sessoesPorMes[a].sessoes[b]);
     }
+
+    function handleClickFecharSessao() {
+        setModal(false);
+    }
       
 
     return (
-        <div className="w-[100%] h-screen flex flex-col items-center">
+        <div className="w-screen h-screen flex flex-col items-center">
             <Header buttonName="Sair" handleClick={handleClick}/>
     
             <div className="w-[90%] h-[80%] flex">
     
-                <div className="overflow-y-auto w-full md:w-[34%] lg:w-[26%] xl:w-[18%] h-full flex flex-col">
+                <div className={`${modal? 'hidden lg:block': 'flex flex-col'} overflow-y-auto w-[50%] sm:w-[42%] md:w-[34%] lg:w-[26%] xl:w-[18%] h-full`}>
                     {Array.from({ length: sessoesPorMes.length }).map((_, i) => (
                         <div key={i} className="text-base mt-8">
                             <div className="text-[18px] text-[#255A59] font-bold">{sessoesPorMes[i].mes}</div>
@@ -323,68 +327,84 @@ export default function Sessoes() {
                                     {modal && i === indexesModal[0] && j === indexesModal[1] && (
                                         <div className="text-2xl">•</div>
                                     )}
-                                    SESSÃO DO DIA {sessoesPorMes[i].sessoes[j].dia}
+                                    SESSÃO DIA {sessoesPorMes[i].sessoes[j].dia}
                                 </button>
                             ))}
                         </div>
                     ))}
                 </div>
 
-                {modal && <div className="hidden md:block w-full h-full">
-                  <div className="w-full h-full flex justify-center">
+                {modal && <div className="w-full h-full">
+                  <div className="w-full min-h-full flex justify-center">
                     <div className="w-[90%] h-full border border-black flex justify-center">
 
-                      <div className="w-[96%] h-full uppercase flex-col items-center">
+                      <div className="w-[96%] h-full uppercase flex-col items-center mt-4">
 
-                        <div className="w-full h-[100px] flex justify-between mt-4">
+                        <div className="flex lg:hidden justify-end">
+                          <button onClick={handleClickFecharSessao} className="w-[25px] h-[25px] flex justify-center items-center lowercase text-2xl">x</button>
+                        </div>
+
+                        <div className="w-full h-[150px] flex flex-col sm:flex-row sm:h-[100px] sm:justify-between">  {/*Barra superior (informações da sessão*/}
                           <div className="flex gap-8">
-                            <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={80} height={40} />
+                            <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={60} height={60} className=""/>
                             <div className="flex flex-col items-center justify-center">
                               <div className="text-[18px] font-bold text-[#2C5454]">Cavalo</div>
                               <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.cavalo}</div>
                             </div>
                           </div>
 
-                          <div className="flex flex-col items-center justify-center gap-1">
+                          <div className="hidden sm:flex flex-col items-center justify-center gap-1">
                             <div className="text-[18px] font-bold text-[#2C5454]">Sessão número {sessao.sessao}</div>
                             <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.turma}</div>
                           </div>
                           
-                          <div className="flex flex-col items-center justify-center gap-1">
+                          <div className="hidden sm:flex flex-col items-center justify-center gap-1">
                             <div className="text-[18px] font-bold text-[#2C5454]">Data</div>
                             <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.data}</div>
+                          </div>
+
+                          <div className="flex sm:hidden justify-between mt-8 gap-2">
+                            <div className="flex-col items-center justify-center gap-1">
+                              <div className="text-[18px] font-bold text-[#2C5454]">Sessão número {sessao.sessao}</div>
+                              <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.turma}</div>
+                            </div>
+                            
+                            <div className="flex-col items-center justify-center gap-1">
+                              <div className="text-[18px] font-bold text-[#2C5454]">Data</div>
+                              <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.data}</div>
+                            </div>
                           </div>
                         </div>
 
                         <div className="w-full h-[1px] bg-[#4B8A89] mt-4 mb-4"></div> {/*Linha*/}
 
 
-                        <div className="w-full h-[45%] xl:h-[50%] flex flex-col gap-8">
+                        <div className="w-full min-h-[45%] xl:h-[50%] flex flex-col gap-8">
 
                           <div className="flex gap-4 mt-4">
-                            <div className="flex flex-col gap-1 w-[40%]">
+                            <div className="flex flex-col gap-1 w-full">
                               <div className="text-[18px] font-bold text-[#8D8F8F]">Paciente</div>
                               <div className="text-[18px] font-bold text-[#2C5454]">{sessao.paciente}</div>
-                            </div>
-                            <div className="flex flex-col gap-1 w-[40%]">
-                              <div className="text-[18px] font-bold text-[#8D8F8F]">Mediador</div>
-                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.mediador}</div>
                             </div>
                           </div>
 
                           <div className="flex gap-4">
-                            <div className="flex flex-col gap-1 w-[30%]">
+                            <div className="flex flex-col gap-1 w-full">
                               <div className="text-[18px] font-bold text-[#8D8F8F]">Presença</div>
                               <div className="text-[18px] font-bold text-[#2C5454]">{sessao.presenca? 'Sim': 'Não'}</div>
                             </div>
                           </div>
                           
-                          <div className="flex gap-4 mt-4">
-                            <div className="flex flex-col gap-1 w-[40%]">
+                          <div className="flex flex-col gap-8 sm:flex-row sm:gap-4 sm:mt-4">  {/*Profissionais e paciente da sessão*/}
+                            <div className="flex flex-col gap-1 w-[33%]">
                               <div className="text-[18px] font-bold text-[#8D8F8F]">Guia</div>
                               <div className="text-[18px] font-bold text-[#2C5454]">{sessao.guia}</div>
                             </div>
-                            <div className="flex flex-col gap-1 w-[40%]">
+                            <div className="flex flex-col gap-1 w-[33%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Mediador</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.mediador}</div>
+                            </div>
+                            <div className="flex flex-col gap-1 w-[33%]">
                               <div className="text-[18px] font-bold text-[#8D8F8F]">Arreamento</div>
                               <div className="text-[18px] font-bold text-[#2C5454]">{sessao.arreamento}</div>
                             </div>
@@ -395,7 +415,7 @@ export default function Sessoes() {
 
                         <div className="w-full h-[1px] bg-[#4B8A89] mt-4 mb-4"></div> {/*Linha*/}
 
-                        <div className="w-full flex flex-col gap-1">
+                        <div className="w-full flex flex-col gap-1 mb-4">   {/*Observações*/}
                           <div className="text-lg font-bold text-[#8D8F8F]">Observações</div>
                           <div className="h-[150px] bg-[#C6E2E1] flex justify-center items-center">
                             <div className="overflow-y-auto w-[96%] h-[72%] text-[#2C5454] text-sm font-bold">{sessao.observacoes}</div>
