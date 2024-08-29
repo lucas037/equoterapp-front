@@ -3,10 +3,13 @@
 import Header from "@/components/Header";
 import SessaoPorMes from "../types/SessaoPorMes";
 import { useState } from "react";
+import Sessao from "../types/Sessao";
+import Image from 'next/image';
 
 export default function Sessoes() {
     const [modal, setModal] = useState(false);
     const [indexesModal, setIndexesModal] = useState([0, 0]);
+    const [sessao, setSessao] = useState<Sessao>({} as Sessao);
 
     const sessoesPorMes: SessaoPorMes[] = [
         {
@@ -14,29 +17,29 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Ares",
-                sessao: "Sessão 1",
+                sessao: 1,
                 turma: "Turma A",
                 data: "2024-01-05",
                 dia: "5",
-                paciente: "Lucas Almeida",
-                mediador: "Clara Lima",
+                paciente: "Lucas Almeida Duarte de Oliveira Neto",
+                mediador: "Clara Lima Duarte de Oliveira Ferreira",
                 presenca: true,
-                guia: "Paula",
+                guia: "Paula Nobre",
                 arreamento: "Arreamento E",
                 observacoes: "Primeira sessão do ano."
               },
               {
                 cavalo: "Zeus",
-                sessao: "Sessão 2",
+                sessao: 2,
                 turma: "Turma B",
                 data: "2024-01-20",
                 dia: "20",
                 paciente: "Lucas Almeida",
                 mediador: "João Costa",
                 presenca: false,
-                guia: "Daniel",
-                arreamento: "Arreamento F",
-                observacoes: "Segunda sessão do mês."
+                guia: "Daniel Nobre",
+                arreamento: "Carlos Silva",
+                observacoes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
               }
             ]
           },
@@ -45,7 +48,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Apollo",
-                sessao: "Sessão 1",
+                sessao: 3,
                 turma: "Turma A",
                 data: "2024-02-10",
                 dia: "10",
@@ -58,7 +61,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Hermes",
-                sessao: "Sessão 2",
+                sessao: 4,
                 turma: "Turma B",
                 data: "2024-02-25",
                 dia: "25",
@@ -76,7 +79,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Atena",
-                sessao: "Sessão 1",
+                sessao: 5,
                 turma: "Turma A",
                 data: "2024-03-12",
                 dia: "12",
@@ -89,7 +92,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Poseidon",
-                sessao: "Sessão 2",
+                sessao: 6,
                 turma: "Turma B",
                 data: "2024-03-28",
                 dia: "28",
@@ -107,7 +110,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Hades",
-                sessao: "Sessão 1",
+                sessao: 7,
                 turma: "Turma A",
                 data: "2024-04-08",
                 dia: "8",
@@ -120,7 +123,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Deméter",
-                sessao: "Sessão 2",
+                sessao: 8,
                 turma: "Turma B",
                 data: "2024-04-22",
                 dia: "22",
@@ -138,7 +141,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Hera",
-                sessao: "Sessão 1",
+                sessao: 9,
                 turma: "Turma A",
                 data: "2024-05-10",
                 dia: "10",
@@ -151,7 +154,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Apolo",
-                sessao: "Sessão 2",
+                sessao: 10,
                 turma: "Turma B",
                 data: "2024-05-25",
                 dia: "25",
@@ -169,7 +172,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Hades",
-                sessao: "Sessão 1",
+                sessao: 11,
                 turma: "Turma A",
                 data: "2024-06-05",
                 dia: "5",
@@ -182,7 +185,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Ares",
-                sessao: "Sessão 2",
+                sessao: 12,
                 turma: "Turma B",
                 data: "2024-06-18",
                 dia: "18",
@@ -200,7 +203,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Hera",
-                sessao: "Sessão 1",
+                sessao: 13,
                 turma: "Turma A",
                 data: "2024-07-12",
                 dia: "12",
@@ -213,7 +216,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Zeus",
-                sessao: "Sessão 2",
+                sessao: 14,
                 turma: "Turma B",
                 data: "2024-07-26",
                 dia: "26",
@@ -231,7 +234,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Trovão",
-                sessao: "Sessão 1",
+                sessao: 15,
                 turma: "Turma A",
                 data: "2024-08-10",
                 dia: "10",
@@ -244,7 +247,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Estrela",
-                sessao: "Sessão 2",
+                sessao: 16,
                 turma: "Turma B",
                 data: "2024-08-20",
                 dia: "20",
@@ -262,7 +265,7 @@ export default function Sessoes() {
             sessoes: [
               {
                 cavalo: "Sol",
-                sessao: "Sessão 1",
+                sessao: 17,
                 turma: "Turma A",
                 data: "2024-09-05",
                 dia: "5",
@@ -275,7 +278,7 @@ export default function Sessoes() {
               },
               {
                 cavalo: "Lua",
-                sessao: "Sessão 2",
+                sessao: 18,
                 turma: "Turma C",
                 data: "2024-09-15",
                 dia: "15",
@@ -297,6 +300,7 @@ export default function Sessoes() {
     function handleClickSessao(a: number, b: number) {
         setModal(true);
         setIndexesModal([a, b])
+        setSessao(sessoesPorMes[a].sessoes[b]);
     }
       
 
@@ -306,7 +310,7 @@ export default function Sessoes() {
     
             <div className="w-[90%] h-[80%] flex">
     
-                <div className="w-full md:w-[30%] lg:w-[22%] xl:w-[18%] h-full flex flex-col overflow-y-auto">
+                <div className="overflow-y-auto w-full md:w-[34%] lg:w-[26%] xl:w-[18%] h-full flex flex-col">
                     {Array.from({ length: sessoesPorMes.length }).map((_, i) => (
                         <div key={i} className="text-base mt-8">
                             <div className="text-[18px] text-[#255A59] font-bold">{sessoesPorMes[i].mes}</div>
@@ -325,6 +329,84 @@ export default function Sessoes() {
                         </div>
                     ))}
                 </div>
+
+                {modal && <div className="hidden md:block w-full h-full">
+                  <div className="w-full h-full flex justify-center">
+                    <div className="w-[90%] h-full border border-black flex justify-center">
+
+                      <div className="w-[96%] h-full uppercase flex-col items-center">
+
+                        <div className="w-full h-[100px] flex justify-between mt-4">
+                          <div className="flex gap-8">
+                            <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={80} height={40} />
+                            <div className="flex flex-col items-center justify-center">
+                              <div className="text-[18px] font-bold text-[#2C5454]">Cavalo</div>
+                              <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.cavalo}</div>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col items-center justify-center gap-1">
+                            <div className="text-[18px] font-bold text-[#2C5454]">Sessão número {sessao.sessao}</div>
+                            <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.turma}</div>
+                          </div>
+                          
+                          <div className="flex flex-col items-center justify-center gap-1">
+                            <div className="text-[18px] font-bold text-[#2C5454]">Data</div>
+                            <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.data}</div>
+                          </div>
+                        </div>
+
+                        <div className="w-full h-[1px] bg-[#4B8A89] mt-4 mb-4"></div> {/*Linha*/}
+
+
+                        <div className="w-full h-[45%] xl:h-[50%] flex flex-col gap-8">
+
+                          <div className="flex gap-4 mt-4">
+                            <div className="flex flex-col gap-1 w-[40%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Paciente</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.paciente}</div>
+                            </div>
+                            <div className="flex flex-col gap-1 w-[40%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Mediador</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.mediador}</div>
+                            </div>
+                          </div>
+
+                          <div className="flex gap-4">
+                            <div className="flex flex-col gap-1 w-[30%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Presença</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.presenca? 'Sim': 'Não'}</div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex gap-4 mt-4">
+                            <div className="flex flex-col gap-1 w-[40%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Guia</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.guia}</div>
+                            </div>
+                            <div className="flex flex-col gap-1 w-[40%]">
+                              <div className="text-[18px] font-bold text-[#8D8F8F]">Arreamento</div>
+                              <div className="text-[18px] font-bold text-[#2C5454]">{sessao.arreamento}</div>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                        <div className="w-full h-[1px] bg-[#4B8A89] mt-4 mb-4"></div> {/*Linha*/}
+
+                        <div className="w-full flex flex-col gap-1">
+                          <div className="text-lg font-bold text-[#8D8F8F]">Observações</div>
+                          <div className="h-[150px] bg-[#C6E2E1] flex justify-center items-center">
+                            <div className="overflow-y-auto w-[96%] h-[72%] text-[#2C5454] text-sm font-bold">{sessao.observacoes}</div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>}
     
             </div>
         </div>

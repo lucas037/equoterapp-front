@@ -1,6 +1,6 @@
 export default interface Sessao {
     cavalo: string,
-    sessao: string,
+    sessao: number,
     turma: string,
     dia: string,
     data: string,
