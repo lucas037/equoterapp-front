@@ -345,8 +345,8 @@ export default function Sessoes() {
                         </div>
 
                         <div className="w-full min-h-[150px] flex flex-col sm:flex-row sm:h-[100px] sm:justify-between">  {/*Barra superior (informações da sessão*/}
-                          <div className="flex gap-8">
-                            <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={60} height={60} className=""/>
+                          <div className="flex gap-8 items-center">
+                            <Image src={"/assets/iconCavalo.png"} alt={"icon cavalo"} width={100} height={100} className="w-[80px] h-[80px]"/>
                             <div className="flex flex-col items-center justify-center">
                               <div className="text-[18px] font-bold text-[#2C5454]">Cavalo</div>
                               <div className="text-[16px] font-bold text-[#8D8F8F]">{sessao.cavalo}</div>
