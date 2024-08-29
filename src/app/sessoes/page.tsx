@@ -21,10 +21,10 @@ export default function Sessoes() {
                 turma: "Turma A",
                 data: "2024-01-05",
                 dia: "5",
-                paciente: "Lucas Almeida Duarte de Oliveira Neto",
-                mediador: "Clara Lima Duarte de Oliveira Ferreira",
+                paciente: "Lucas Almeida",
+                mediador: "Clara Lima",
                 presenca: true,
-                guia: "Paula Nobre",
+                guia: "Matheus Silveira",
                 arreamento: "Arreamento E",
                 observacoes: "Primeira sessão do ano."
               },
@@ -321,13 +321,20 @@ export default function Sessoes() {
                             {Array.from({length: sessoesPorMes[i].sessoes.length }).map((_, j) => (
                                 <button 
                                     key={j} 
-                                    className="ml-6 mb-1 mt-1 text-[16px] text-[#0B3F3E] flex items-center gap-1" 
+                                    className="mb-1 mt-1 text-[16px] text-[#0B3F3E] flex items-center gap-1 h-[30px]" 
                                     onClick={() => handleClickSessao(i, j)}
                                 >
-                                    {modal && i === indexesModal[0] && j === indexesModal[1] && (
-                                        <div className="text-2xl">•</div>
-                                    )}
-                                    SESSÃO DIA {sessoesPorMes[i].sessoes[j].dia}
+                                    {modal && i === indexesModal[0] && j === indexesModal[1] ? (
+                                        <div className="w-6 h-full text-4xl flex justify-center items-center mb-1 text-[#137472]">•</div>
+                                        ) :
+                                        (
+                                          <div className="w-6 h-full"></div>
+                                        )
+                                    }
+
+                                    <div className="">SESSÃO DIA {sessoesPorMes[i].sessoes[j].dia}</div>
+                                    
+
                                 </button>
                             ))}
                         </div>
