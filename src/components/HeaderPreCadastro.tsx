@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Botao } from './Botao';
 import Button from './Button';
+import { motion } from 'framer-motion';
 
 interface InterfaceProps {
     buttonName: string,
@@ -11,6 +13,8 @@ export default function Header(props: InterfaceProps) {
         window.location.href = "/";
     }
 
+    const [showTooltip, setShowTooltip] = useState(false);
+
     return (
 
         <div className="w-[80%] h-[120px] flex justify-center mb-4 bg-[#4B8A89] rounded-md">
@@ -19,12 +23,36 @@ export default function Header(props: InterfaceProps) {
 
 
                 <div className='text-xl flex flex-col xl:flex xl:max-w-[100%] text-white'>
-                    <div>Olá Maria</div>
-                    <div>Seu Pré Cadastro no sistema se encontra</div>
+                    <div>Olá Maria,</div>
+                    <div>Seu pré-cadastro no sistema se encontra</div>
                 </div>
 
-                <div className='text-xl flex flex-col xl:flex xl:max-w-[100%] text-white'>
-                    <div>APROVADO</div>
+                <div className='text-xl flex flex-col xl:flex xl:max-w-[100%] text-white relative'>
+                    <Botao className='w-[140px] h-[50px] rounded-md flex justify-center items-center bg-white text-teal-600 font-extrabold'>
+                        {props.buttonName}
+                    </Botao>
+                    <div
+                        className='w-10 h-10 rounded-full bg-teal-400 flex items-center justify-center cursor-pointer shadow-lg absolute top-5 left-28'
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <span className='text-white font-bold text-lg'>i</span>
+                    </div>
+
+                    {showTooltip && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className='absolute bottom-12 right-0 transform translate-x-full w-max max-w-xs bg-teal-500 text-white p-3 rounded-md shadow-lg z-10'
+                            style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
+                        >
+                            <p className='text-sm leading-tight'>
+                                Isso significa que seu cadastro foi aprovado e você já pode concluir seu cadastro no sistema.
+                            </p>
+                        </motion.div>
+                    )}
+
                 </div>
 
 
