@@ -47,7 +47,7 @@ export default function SlideImg() {
     };
 
     return (
-        <div className="w-full h-[50vh] mt-5">
+        <div className="w-full h-[50vh]">
             <Slider {...settings}>
                 {images.map((imagens, index) => (
                     <div key={index} className="h-full px-2"> {/* Adiciona espaço entre as imagens */}
