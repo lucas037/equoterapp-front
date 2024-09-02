@@ -131,10 +131,8 @@ export default function Etapa3(props: InterfaceProps) {
     return (
         <div className="w-full h-full flex justify-center">
 
-            { !modal && <div className="w-[90%] min-h-[80%] flex flex-col gap-8 text-2xl font-bold border border-[#C3C3C3] fixed">
-                {modalAcompanharPreCadastro && <HeaderPreCadastro buttonName={'Aprovado'} handleClick={() => { throw new Error('Function not implemented.'); }} />}
-
-                <div className="mt-8 mb-8 text-left text-lg ml-8">MEMBROS DA FAMÍLIA</div>
+            { !modal && <div className="w-[90%] min-h-[80%] flex flex-col gap-8 text-2xl font-bold border border-[#C3C3C3] fixed mt-6">
+                <div className="mt-8 mb-8 text-lg ml-8 text-center">MEMBROS DA FAMÍLIA</div>
                 
                 <div className="w-full flex flex-col gap-4 justify-center">
                     <div className="w-full flex justify-around text-base">
