@@ -4,6 +4,7 @@ import MembroFamilia from "../types/MembroFamilia";
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../types/DropdownOption";
+import HeaderPreCadastro from "@/components/HeaderPreCadastro";
 
 interface InterfaceProps {
     dadosPaciente: DadosPaciente,
@@ -11,6 +12,7 @@ interface InterfaceProps {
 }
 
 export default function Etapa3(props: InterfaceProps) {
+    const [modalAcompanharPreCadastro, setModalAcompanharPreCadastro] = useState(true);
     const [membrosFamilia, setMembrosFamilia] = useState<MembroFamilia[]>([]);
     const [novoMembroFamilia, setNovoMembroFamilia] = useState<MembroFamilia>({} as MembroFamilia);
     const [modal, setModal] = useState<boolean>(false);
@@ -129,7 +131,8 @@ export default function Etapa3(props: InterfaceProps) {
     return (
         <div className="w-full h-full flex justify-center">
 
-            { !modal && <div className="w-[90%] h-[90%] flex flex-col gap-8 text-2xl font-bold border border-[#C3C3C3] fixed">
+            { !modal && <div className="w-[90%] min-h-[80%] flex flex-col gap-8 text-2xl font-bold border border-[#C3C3C3] fixed">
+                {modalAcompanharPreCadastro && <HeaderPreCadastro buttonName={'Aprovado'} handleClick={() => { throw new Error('Function not implemented.'); }} />}
 
                 <div className="mt-8 mb-8 text-left text-lg ml-8">MEMBROS DA FAMÍLIA</div>
                 

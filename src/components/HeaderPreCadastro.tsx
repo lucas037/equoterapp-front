@@ -17,7 +17,7 @@ export default function Header(props: InterfaceProps) {
 
     return (
 
-        <div className="w-[80%] h-[120px] flex justify-center mb-4 bg-[#4B8A89] rounded-md">
+        <div className="w-full h-[120px] flex justify-center mb-4 bg-[#4B8A89] rounded-md">
             <div className='w-[90%] h-[120px] flex justify-between items-center'>
 
 
