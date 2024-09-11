@@ -15,13 +15,13 @@ const handleNavigation = () => {
 
 export default function Home() {
   const images = [
-    { image: '/assets/Capturar.png', alt: 'Imagem Principal', nameDocument: 'Documento1' },
-    { image: '/assets/Capturar2.png', alt: 'Imagem Principal2', nameDocument: 'Documento 2' },
-    { image: '/assets/Capturar3.png', alt: 'Imagem Principal', nameDocument: 'Documento 3' },
-    { image: '/assets/Capturar4.png', alt: 'Imagem Principal2', nameDocument: 'Documento 4' },
-    { image: '/assets/Capturar5.png', alt: 'Imagem Principal', nameDocument: 'Documento 5' },
-    { image: '/assets/Capturar6.png', alt: 'Imagem Principal2', nameDocument: 'Documento 6' },
-    { image: '/assets/Capturar7.png', alt: 'Imagem Principal', nameDocument: 'Documento 7' },
+    { image: '/assets/Capturar.PNG', alt: 'Imagem Principal', nameDocument: 'Documento1' },
+    { image: '/assets/Capturar2.PNG', alt: 'Imagem Principal2', nameDocument: 'Documento 2' },
+    { image: '/assets/Capturar3.PNG', alt: 'Imagem Principal', nameDocument: 'Documento 3' },
+    { image: '/assets/Capturar4.PNG', alt: 'Imagem Principal2', nameDocument: 'Documento 4' },
+    { image: '/assets/Capturar5.PNG', alt: 'Imagem Principal', nameDocument: 'Documento 5' },
+    { image: '/assets/Capturar6.PNG', alt: 'Imagem Principal2', nameDocument: 'Documento 6' },
+    { image: '/assets/Capturar7.PNG', alt: 'Imagem Principal', nameDocument: 'Documento 7' },
   ];
 
   return (
