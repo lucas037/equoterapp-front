@@ -5,16 +5,11 @@ import Image from 'next/image';
 interface InterfaceProps {
     buttonName: string,
     handleClick: () => void,
-    button1?: [string, () => void],
-    button2?: [string, () => void],
-    button3?: [string, () => void],
-    button4?: [string, () => void]
+    buttonsNames: string[]
 }
 
 export default function Header(props: InterfaceProps) {
     const [isOpenedMenu, setIsOpenedMenu] = useState(false);
-
-    const buttons: [string, () => void][] = [props.button1, props.button2, props.button3, props.button4].filter(Boolean) as [string, () => void][];
 
     function clickLogo() {
       window.location.href = "/";
@@ -25,6 +20,10 @@ export default function Header(props: InterfaceProps) {
             setIsOpenedMenu(false);
         else
             setIsOpenedMenu(true);
+    }
+
+
+    function goTo(name: String, justCheck?:boolean) {
     }
 
     return (
@@ -44,18 +43,19 @@ export default function Header(props: InterfaceProps) {
 
     
                 <div className='text-xl gap-32 items-center hidden xl:flex xl:max-w-[100%]'>
-                    {buttons.map((items, index) => (
+                    {props.buttonsNames.map((item, index) => (
                         <div 
-                            key={index} 
-                            onClick={items[1]}
+                            key={index}
+                            onClick={() => goTo(item)}
+                            className="cursor-pointer"
                         >
-                            {items[0]}
+                            {item}
                         </div>
                     ))}
                 </div>
         
                 {
-                buttons.length > 0 && <Image
+                props.buttonsNames.length > 0 && <Image
                     src="/assets/svg/burger-menu.svg"
                     alt="foto"
                     width={200}
@@ -75,13 +75,13 @@ export default function Header(props: InterfaceProps) {
             {
                 isOpenedMenu &&
                 <div className="xl:hidden w-[80%] flex flex-col md:flex-row md:justify-between">
-                    {buttons.map((items, index) => (
+                    {props.buttonsNames.map((item, index) => (
                         <div 
                             key={index} 
-                            className="h-[60px] flex justify-center items-center text-lg cursor-pointer"
-                            onClick={items[1]}
+                            onClick={() => goTo(item)}
+                            className="cursor-pointer"
                         >
-                            {items[0]}
+                            {item}
                         </div>
                     ))}
                 </div>
