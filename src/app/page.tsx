@@ -42,43 +42,27 @@ export default function Home() {
           {/* Card "Quem somos" */}
           <div className="lg:w-1/2 h-full justify-center">
             <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Quem somos nós?</h2>
-            <motion.div
-              whileHover={{
-                scale: 1.03,
-                boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
-                backgroundColor: '#2c4a4a',
-              }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="rounded-lg"
-            >
-
+         
+                <div className='bg-[#2c4a4a]'>
               <div className="bg-gradient-to-t from-[#4B8A89] via-[#4B8A89] to-[#4B8A89] shadow-lg rounded-lg p-6 w-full">
                 <p className="text-white text-left">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
               </div>
-            </motion.div>
+              </div>
 
           </div>
 
           {/* Slide "Como Funciona" */}
           <div className="lg:w-1/2 h-full justify-center">
             <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Como participar?</h2>
-            <motion.div
-              whileHover={{
-                scale: 1.03,
-                boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
-                backgroundColor: '#2c4a4a',
-              }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="rounded-lg"
-            >
+              <div className='bg-[#2c4a4a]'>
               <div className="bg-gradient-to-t from-[#4B8A89] via-[#4B8A89] to-[#4B8A89] shadow-lg rounded-lg p-6 w-full">
                 <p className="text-white text-left">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </section>
@@ -88,15 +72,7 @@ export default function Home() {
           <div className="w-full h-full items-center justify-center">
             <h2 className="text-2xl font-bold text-[#1f5857] mb-4 text-left">Regras</h2>
 
-            <motion.div
-              whileHover={{
-                scale: 1.03,
-                boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
-                backgroundColor: '#2c4a4a',
-              }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="rounded-lg"
-            >
+          
 
               <div className="bg-gradient-to-r from-[#3a5f5f] via-[#4B8A89] to-[#3a5f5f] shadow-lg rounded-lg p-6 w-full">
                 <ul className="text-white grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -112,27 +88,20 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-            </motion.div>
 
           </div>
         </section>
 
-        <section className="flex flex-col space-y-10 lg:space-y- px-4 lg:px-20 mb-10">
-      <div className="pt-10 ">
-        <h2 className="text-2xl font-bold text-[#1f5857] mb-6 text-left">Documentos Médicos</h2>
-        <motion.div
-          whileHover={{
-            scale: 1.03,
-            boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.5)',
-            backgroundColor: '#2c4a4a',
-          }}
-          transition={{ type: 'spring', stiffness: 300 }}
-          className="bg-gradient-to-r from-[#3a5f5f] via-[#4B8A89] to-[#3a5f5f] shadow-lg rounded-lg p-6 w-full"
-        >
-          <SlideDocumentos title='' images={images} />
-        </motion.div>
-      </div>
-    </section>
+        <section className="flex flex-col space-y-10 lg:space-y-0 px-4 lg:px-20 mb-10">
+          <div className="pt-10">
+            <h2 className="text-2xl font-bold text-[#1f5857] mb-6 text-left">Documentos Médicos</h2>
+            <div className='bg-[#2c4a4a]'>
+              <div className="bg-gradient-to-r from-[#3a5f5f] via-[#4B8A89] to-[#3a5f5f] shadow-lg rounded-lg p-6 w-full">
+                <SlideDocumentos title='' images={images} />
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
