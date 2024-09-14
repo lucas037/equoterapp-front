@@ -33,7 +33,14 @@ export default function Home() {
 
     >
 
-      <FuturoHeader buttonName='Entrar' handleClick={handleNavigation} />
+      <Header
+        buttonName='Entrar'
+        handleClick={handleNavigation}
+        button1={["Quem Somos", () => {}]} 
+        button2={["Regras", () => {}]} 
+        button3={["Contatos", () => {}]} 
+        button4={["Documentos", () => {}]} 
+      />
 
       <main className="flex-grow mt-2">
         <SlideImg />
