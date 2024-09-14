@@ -310,7 +310,12 @@ export default function Sessoes() {
 
     return (
         <div className="w-screen h-screen flex flex-col items-center">
-            <Header buttonName="Sair" handleClick={handleClick}/>
+            <Header
+              buttonName='Sair'
+              handleClick={handleClick}
+              buttonsNames={["Sessões", "Agendar", "Evolução", "Perfil"]}
+              colaborador={false}
+            />
     
             <div className="w-[90%] h-[80%] flex">
     

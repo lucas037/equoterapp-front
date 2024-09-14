@@ -5,7 +5,8 @@ import Image from 'next/image';
 interface InterfaceProps {
     buttonName: string,
     handleClick: () => void,
-    buttonsNames: string[]
+    buttonsNames: string[],
+    colaborador?: boolean
 }
 
 export default function Header(props: InterfaceProps) {
@@ -23,7 +24,18 @@ export default function Header(props: InterfaceProps) {
     }
 
 
-    function goTo(name: String, justCheck?:boolean) {
+    function goTo(name: string, justCheck?:boolean) {
+        if (name === "Verificar Documentos") {
+            window.location.href = "/verificacao";
+        }
+
+        if (name === "Sessões") {
+            if (props.colaborador) {
+
+            }
+
+            window.location.href = "/sessoes";
+        }
     }
 
     return (
@@ -74,7 +86,7 @@ export default function Header(props: InterfaceProps) {
 
             {
                 isOpenedMenu &&
-                <div className="xl:hidden w-[80%] flex flex-col md:flex-row md:justify-between">
+                <div className="xl:hidden w-[80%] flex flex-col gap-3 items-center md:flex-row md:justify-between">
                     {props.buttonsNames.map((item, index) => (
                         <div 
                             key={index} 

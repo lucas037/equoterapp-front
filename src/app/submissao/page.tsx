@@ -71,7 +71,12 @@ export default function ValidarCadastro() {
         exit={pageVariants.exit}
       >
         <div>
-            <Header buttonName='sair' handleClick={handleNavigation} />
+            <Header
+            buttonName='Sair'
+            handleClick={handleNavigation}
+            buttonsNames={["Submeter Documentos", "Dúvidas", "Contato", "Perfil"]}
+            colaborador={false}
+            />
 
             <div className="w-full h-full px-20">
                 <div className="gap-x-8 gap-y-12 w-full h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 border-2 border-black p-4">

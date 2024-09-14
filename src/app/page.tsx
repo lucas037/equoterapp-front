@@ -34,10 +34,7 @@ export default function Home() {
       <Header
           buttonName='Entrar'
           handleClick={handleNavigation}
-          button1={["Quem Somos", () => {}]}
-          button2={["Regras", () => {}]}
-          button3={["Contatos", () => {}]}
-          button4={["Documentos", () => {}]}
+          buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
       />
 
 

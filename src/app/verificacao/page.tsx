@@ -70,7 +70,12 @@ export default function Verificacao() {
         exit={pageVariants.exit}
       >
         <div>
-            <Header buttonName='sair' handleClick={handleNavigation} />
+            <Header
+                buttonName='Sair'
+                handleClick={handleNavigation}
+                buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
+                colaborador={true}
+            />
 
             <div className="w-full h-full px-20">
             <InfoResponsavel nome='MARIA JOSEFINA PAULINA' />

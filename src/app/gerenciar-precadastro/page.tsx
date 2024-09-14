@@ -529,7 +529,12 @@ export default function GerenciarPreCadastro() {
       exit={pageVariants.exit}
     >
       <div>
-        <Header buttonName='Sair' handleClick={handleNavigation} />
+        <Header
+          buttonName='Sair'
+          handleClick={handleNavigation}
+          buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
+          colaborador={true}
+        />
 
         <div className="w-full h-full px-20">
           <div className="w-full h-full border-2 border-black p-4">

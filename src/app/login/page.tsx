@@ -63,10 +63,7 @@ export default function Login() {
         <Header
             buttonName='Cadastro'
             handleClick={handleClick}
-            button1={["Quem Somos", () => {}]}
-            button2={["Regras", () => {}]}
-            button3={["Contatos", () => {}]}
-            button4={["Documentos", () => {}]}
+            buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
         />
 
         <div className='h-[75%] w-[80%] flex'>

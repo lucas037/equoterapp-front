@@ -68,10 +68,7 @@ import { motion } from "framer-motion";
         <Header
             buttonName='Login'
             handleClick={handleClick}
-            button1={["Quem Somos", () => {}]}
-            button2={["Regras", () => {}]}
-            button3={["Contatos", () => {}]}
-            button4={["Documentos", () => {}]}
+            buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
         />
 
         <div className="w-[90vw] h-[75vh] flex flex-col xl:flex-row overflow-hidden">

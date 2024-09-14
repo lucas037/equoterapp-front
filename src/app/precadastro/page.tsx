@@ -54,7 +54,13 @@ export default function PreCadastroView() {
             exit={pageVariants.exit}
         >
             <div className="h-screen w-full flex flex-col items-center">
-                <Header buttonName='Sair' handleClick={handleClick} />
+                <Header
+                buttonName='Sair'
+                handleClick={handleClick}
+                buttonsNames={["Quem somos", "Regras", "Contato", "Documentos"]}
+                colaborador={false}
+                />
+
                 <HeaderPreCadastro buttonName={showStatus} handleClick={() => { throw new Error('Function not implemented.'); }} />
 
                 <div className='h-[60%] w-[80%] flex border border-[#C3C3C3] items-center justify-center'>
