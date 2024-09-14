@@ -1,11 +1,9 @@
 "use client";
 
-import SlideTxt from '@/components/SlideTxt';
+
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import SlideImg from '../components/SlideImg';
 import SlideDocumentos from '@/components/SlideDocumentos';
-import SlideInfo from '@/components/SlideInfo';
 import { motion } from 'framer-motion';
 import FuturoHeader from '@/components/FuturoHeader';
 
