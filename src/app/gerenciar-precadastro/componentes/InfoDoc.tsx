@@ -14,21 +14,19 @@ export default function InfoDoc({ nome, nMembros, rendaM, handleNavigation }: In
         <div className="flex flex-col text-[#255A59] w-[70%] justify-between">
           <h2>{nome.toUpperCase()}</h2>
           <div className="flex flex-row gap-x-4">
-            {/* Coluna de número de membros */}
             <div className="flex flex-col items-center">
               <p>{nMembros}</p>
               <p>membros</p>
             </div>
-            {/* Coluna de renda mensal */}
             <div className="flex flex-col items-center">
               <p>R${rendaM}</p>
               <p>renda mensal</p>
             </div>
           </div>
         </div>
-        <div className="w-[30%] h-full border-2 border-[#255A59] p-2">
-          <button onClick={handleNavigation}>
-            <ArrowForwardIosIcon className="text-[#255A59] h-full w-full" />
+        <div className="w-[30%] h-full border-2 border-[#4B8A89] p-2 rounded-md">
+          <button onClick={handleNavigation} className="w-full h-full">
+            <ArrowForwardIosIcon className="text-[#4B8A89] w-full h-full " />
           </button>
         </div>
       </div>
