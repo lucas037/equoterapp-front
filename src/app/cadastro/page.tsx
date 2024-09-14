@@ -65,7 +65,14 @@ import { motion } from "framer-motion";
     exit={pageVariants.exit}
   >
       <div className="h-screen w-full flex flex-col items-center">
-        <Header buttonName="Login" handleClick={handleClick} />
+        <Header
+            buttonName='Login'
+            handleClick={handleClick}
+            button1={["Quem Somos", () => {}]}
+            button2={["Regras", () => {}]}
+            button3={["Contatos", () => {}]}
+            button4={["Documentos", () => {}]}
+        />
 
         <div className="w-[90vw] h-[75vh] flex flex-col xl:flex-row overflow-hidden">
         {etapa === 1 && (
