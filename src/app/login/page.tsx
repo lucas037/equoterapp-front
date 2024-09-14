@@ -60,7 +60,14 @@ export default function Login() {
   >
       <div className="h-screen w-full flex flex-col items-center">
 
-        <Header buttonName='Cadastro' handleClick={handleClick} />
+        <Header
+            buttonName='Cadastro'
+            handleClick={handleClick}
+            button1={["Quem Somos", () => {}]}
+            button2={["Regras", () => {}]}
+            button3={["Contatos", () => {}]}
+            button4={["Documentos", () => {}]}
+        />
 
         <div className='h-[75%] w-[80%] flex'>
           <img
