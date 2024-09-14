@@ -13,7 +13,6 @@ import { Botao } from '@/components/Botao';
 
 
 export default function PreCadastroView() {
-
     const name = "PreCadastro";
 
     const pageVariants = {
@@ -44,7 +43,6 @@ export default function PreCadastroView() {
     function handleClick() {
         window.location.href = "/cadastro";
     }
-
     const [showStatus, setShowStatus] = useState('Pendente');
     const [boolModificado, setboolModificado] = useState(false);
 
