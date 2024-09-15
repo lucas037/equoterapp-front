@@ -10,4 +10,5 @@ export default interface DadosColaborador {
     numeroCasa: string,
     email: string,
     senha: string,
+    quantidadeSessoes?: number
 }

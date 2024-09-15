@@ -9,5 +9,6 @@ export default interface Sessao {
     presenca: boolean,
     guia: string,
     arreamento: string,
-    observacoes: string
+    observacoes: string,
+    observacoesInternas?: string
 }
