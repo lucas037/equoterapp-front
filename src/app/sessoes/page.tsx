@@ -6,6 +6,6 @@ import { SessoesUsuario } from "./SessoesUsuario"
 
 export default function Sessoes() {
   return (
-    <SessoesColaborador/>
+    <SessoesUsuario/>
   )    
 }
