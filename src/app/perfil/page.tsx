@@ -26,20 +26,15 @@ export default function Perfil() {
     function handleClickFecharSessao() {
         setModal(false);
     }
-    
-    const dadosColaborador: DadosColaborador = {
-      nome: "MARIA JOSÉ PAULINA",
-      cpf: "934.234.123-53",
-      cargo: "Psicologa",
-      email: "maria.jose@gmail.com",
-      telefone: "915644789749",
-      rua: "RUA PADRE CICERO",
-      numeroCasa: "29",
-      quantidadeSessoes: 9,
-      sexo: "",
-      aniversario: "",
-      bairro: "CENTRO",
-      senha: ""
+
+    function calcNumeroSessoes(sessoes: SessaoPorMes[]) {
+      let total = 0;
+
+      for (let i = 0; i < sessoes.length; i++) {
+        total += sessoes[i].sessoes.length;
+      }
+
+       return total;
     }
     
     const sessoesPorMes: SessaoPorMes[] = [
@@ -341,6 +336,21 @@ export default function Perfil() {
             ]
           }
     ];
+    
+    const dadosColaborador: DadosColaborador = {
+      nome: "MARIA JOSÉ PAULINA",
+      cpf: "934.234.123-53",
+      cargo: "Psicologa",
+      email: "maria.jose@gmail.com",
+      telefone: "915644789749",
+      rua: "RUA PADRE CICERO",
+      numeroCasa: "29",
+      quantidadeSessoes: calcNumeroSessoes(sessoesPorMes),
+      sexo: "",
+      aniversario: "",
+      bairro: "CENTRO",
+      senha: ""
+    }
 
 
     return (
@@ -366,7 +376,7 @@ export default function Perfil() {
             </div>
 
             
-            <div className="w-[90%] h-[80%] flex flex-col gap-4 xl:flex-row xl:justify-between">
+            <div className="w-[90%] h-[80%] flex flex-col gap-4 xl:flex-row xl:justify-between mb-2">
                 <div className={`${modal? 'hidden xl:flex xl:flex-col xl:gap-2': ''} mt-5 w-[300px] sm:w-[42%] md:w-[34%] lg:w-[26%] xl:w-[18%]`}>
 
                   <div className="text-sm font-bold">SESSÕES PARTICIPADAS</div>
