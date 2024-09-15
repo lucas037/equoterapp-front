@@ -1,6 +1,5 @@
 "use client"
 
-import SessoesColaborador from "./SessoesColaborador"
 import { SessoesUsuario } from "./SessoesUsuario"
 
 
