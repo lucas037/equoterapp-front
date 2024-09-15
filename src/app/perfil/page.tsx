@@ -6,6 +6,7 @@ import SessaoPorMes from "../types/SessaoPorMes";
 import { useState } from "react";
 import Sessao from "../types/Sessao";
 import DadosColaborador from "../types/DadosColaborador";
+import DownloadPdfComponent from "./jsx";
 
 export default function Perfil() {
     const [modal, setModal] = useState(false);
@@ -37,7 +38,7 @@ export default function Perfil() {
       quantidadeSessoes: 9,
       sexo: "",
       aniversario: "",
-      bairro: "",
+      bairro: "CENTRO",
       senha: ""
     }
     
@@ -403,20 +404,9 @@ export default function Perfil() {
                     
                     <div className="flex justify-between items-end">
                         <div className="text-sm font-bold">RELATÓRIO</div>
-                        
-                        <div
-                        className="w-[150px] h-[40px] border border-black flex justify-around items-center rounded-lg cursor-pointer"
-                        >
-                            <Image
-                                src = "/assets/svg/add-button.svg"
-                                alt = ""
-                                width={1}
-                                height={1}
-                                className="h-[24px] w-[24px]"
-                            />
 
-                            <div className="font-bold text-sm">BAIXAR PDF</div>
-                        </div>
+                        <DownloadPdfComponent colaborador={dadosColaborador} sessoes={sessoesPorMes}/>
+
                     </div>
 
                     <div className="w-full h-full border border-black flex justify-center bg-[#C0DDDD] rounded-lg">
@@ -536,7 +526,7 @@ export default function Perfil() {
                         <div className="text-[#255A59] font-bold">{dadosColaborador.cargo}</div>
 
                         <div className="text-[#8D8F8F] text-sm font-bold">ENDEREÇO</div>
-                        <div className="text-[#255A59] font-bold">{dadosColaborador.rua}, {dadosColaborador.numeroCasa}</div>
+                        <div className="text-[#255A59] font-bold">{dadosColaborador.bairro}, {dadosColaborador.rua}, {dadosColaborador.numeroCasa}</div>
                         
                         <div className="text-[#8D8F8F] text-sm font-bold">EMAIL</div>
                         <div className="text-[#255A59] font-bold">{dadosColaborador.email}</div>
