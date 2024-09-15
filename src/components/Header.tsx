@@ -24,17 +24,17 @@ export default function Header(props: InterfaceProps) {
     }
 
 
-    function goTo(name: string, justCheck?:boolean) {
-        if (name === "Verificar Documentos") {
-            window.location.href = "/verificacao";
+    function goToPage(name: string, justCheck?:boolean) {
+        if (name === "Perfil") {
+            window.location.href = "/perfil";
+        }
+        
+        if (name === "Sessões") {
+            window.location.href = "/sessoes";
         }
 
-        if (name === "Sessões") {
-            if (props.colaborador) {
-
-            }
-
-            window.location.href = "/sessoes";
+        if (name === "Verificar Documentos") {
+            window.location.href = "/verificacao";
         }
     }
 
@@ -58,7 +58,7 @@ export default function Header(props: InterfaceProps) {
                     {props.buttonsNames.map((item, index) => (
                         <div 
                             key={index}
-                            onClick={() => goTo(item)}
+                            onClick={() => goToPage(item)}
                             className="cursor-pointer"
                         >
                             {item}
@@ -90,7 +90,7 @@ export default function Header(props: InterfaceProps) {
                     {props.buttonsNames.map((item, index) => (
                         <div 
                             key={index} 
-                            onClick={() => goTo(item)}
+                            onClick={() => goToPage(item)}
                             className="cursor-pointer"
                         >
                             {item}
