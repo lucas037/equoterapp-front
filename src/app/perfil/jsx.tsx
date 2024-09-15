@@ -74,7 +74,7 @@ const DownloadPdfComponent = (props: InterfaceProps) => {
         for (let i = 0; i < props.sessoes.length; i++) {
             for (let j = 0; j < props.sessoes[i].sessoes.length; j++) {
 
-                doc.text("Sessão: "+props.sessoes[i].sessoes[j].sessao+", "+props.sessoes[i].sessoes[j].turma+" ("+props.sessoes[i].sessoes[j].data+")", 10, y);
+                doc.text("Sessão: "+numSessao+", "+props.sessoes[i].sessoes[j].turma+" ("+props.sessoes[i].sessoes[j].data+")", 10, y);
                 y = adicionarY(y, espaco);
                 numSessao++;
                 
