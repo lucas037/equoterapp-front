@@ -84,7 +84,11 @@ const DownloadPdfComponent = (props: InterfaceProps) => {
                 doc.text("Paciente: "+props.sessoes[i].sessoes[j].paciente, 10, y);
                 y = adicionarY(y, espaco);
 
-                doc.text("Paciente Presente: "+props.sessoes[i].sessoes[j].presenca, 10, y);
+                if (props.sessoes[i].sessoes[j].presenca)
+                  doc.text("Paciente Presente: Sim", 10, y);
+                else
+                  doc.text("Paciente Presente: Não", 10, y);
+
                 y = adicionarY(y, espaco);
 
                 doc.text("Guia: "+props.sessoes[i].sessoes[j].guia, 10, y);
