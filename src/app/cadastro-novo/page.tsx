@@ -9,7 +9,7 @@ import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../types/DropdownOption";
 import axios from "axios";
 
-export default function cadastro() {
+export default function Cadastro() {
     const [etapa, setEtapa] = useState(1);
     const [dadosFamiliar, setDadosFamiliar] = useState<DadosFamiliar>({} as DadosFamiliar);
 
