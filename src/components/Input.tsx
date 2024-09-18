@@ -10,21 +10,13 @@ interface InterfaceProps {
 }
 
 export default function Input(props: InterfaceProps) {
-    const [height, setHeight] = useState("h-[40px]");
-
-    useEffect(() => {
-        if (props.height != null) {
-            setHeight(props.height);
-        }
-    }, [props.height]);
-    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       props.onChange(event.target.value);
     };
 
     if (props.type === null)
         props.type = "text";
-    
+
     return (
 
         <div className={`${props.style} flex flex-col`}>
@@ -33,7 +25,7 @@ export default function Input(props: InterfaceProps) {
             type={props.type}
             value={props.value}
             onChange={handleChange}
-            className={`w-full ${height} border border-black p-2 rounded-lg`}
+            className={`w-full ${props.height != null ? props.height : 'h-[40px]'} border border-black p-2 rounded-lg`}
             />
         </div>
     )
