@@ -5,7 +5,7 @@ export default interface DadosFamiliar {
     email: string,
     password: string,
     gender: string,
-    escolaridade: string,
+    scholarity: string,
     workingPlace: string,
     occupation: string,
     workPhone: string,
