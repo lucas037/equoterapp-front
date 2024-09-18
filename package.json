@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.0.0-rc.0",
     "@mui/material": "^6.0.0-beta.5",
+    "axios": "^1.7.7",
     "equoterapp": "file:",
     "framer-motion": "^11.3.28",
     "jspdf": "^2.5.1",
