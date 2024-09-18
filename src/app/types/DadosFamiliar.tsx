@@ -1,13 +1,15 @@
 export default interface DadosFamiliar {
-    nome: string,
+    name: string,
     cpf: string,
-    telefone: string,
+    phone: string,
     email: string,
-    senha: string,
-    sexo: string,
+    password: string,
+    gender: string,
     escolaridade: string,
-    localTrabalho: string,
-    ocupacao: string,
-    telefoneTrabalho: string,
-    salario: number
+    workingPlace: string,
+    occupation: string,
+    workPhone: string,
+    income: number
+    familiarKinship: string
+    status: string
 }
