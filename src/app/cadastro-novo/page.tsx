@@ -1,7 +1,7 @@
 "use client"
 
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from 'next/image';
 import Input from "@/components/Input";
 import DadosFamiliar from "../types/DadosFamiliar";
@@ -12,23 +12,26 @@ import axios from "axios";
 export default function Cadastro() {
     const [etapa, setEtapa] = useState(1);
     const [dadosFamiliar, setDadosFamiliar] = useState<DadosFamiliar>({} as DadosFamiliar);
+    const [erro, setErro] = useState('...');
 
     async function clickProximaEtapa() {
-        alert(JSON.stringify(dadosFamiliar));
+        setDadosFamiliar({
+          ...dadosFamiliar,
+          status: "pendente",
+        });
 
+        
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/familiar/register', dadosFamiliar);
-            console.log('Success:', response.data);
+            await axios.post('http://localhost:8080/api/v1/auth/familiar/register', dadosFamiliar);
+            window.location.href = "/login-novo";
+
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                alert('Axios Error Message:'+ error.message);
-        
                 if (error.response) {
                     const errorData = error.response.data;
         
                     if (errorData) {
-                        alert(errorData.httpStatus);
-                        alert(errorData.errors);
+                        setErro(errorData.errors[0]);
                     }
                 }
   
@@ -51,6 +54,13 @@ export default function Cadastro() {
         changeDadosFamiliar({
             ...dadosFamiliar,
             cpf: value,
+        });
+    }
+
+    function handleChangeParentesco(value: string) {
+        changeDadosFamiliar({
+            ...dadosFamiliar,
+            familiarKinship: value,
         });
     }
 
@@ -85,7 +95,7 @@ export default function Cadastro() {
     function handleChangeEscolaridade(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            escolaridade: value,
+            scholarity: value,
         });
     }
 
@@ -109,11 +119,35 @@ export default function Cadastro() {
             workPhone: value,
         });
     }
+
+    const parentescoOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Pai", value: "pai" },
+        { label: "Mãe", value: "mae" },
+        { label: "Avó(ô)", value: "avó" },
+        { label: "Tia(o)", value: "tia" },
+        { label: "Irmã(o)", value: "irmã" },
+        { label: "Outro", value: "outro" },
+    ];
     
     const sexoFamiliarOptions: DropdownOption[] = [
         { label: "Selecionar", value: "" },
         { label: "Masculino", value: "Masculino" },
         { label: "Feminino", value: "Feminino" }
+    ];
+    
+    const escolaridadeOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Ensino Fundamental Incompleto", value: "Ensino Fundamental Incompleto" },
+        { label: "Ensino Fundamental Completo", value: "Ensino Fundamental Completo" },
+        { label: "Ensino Médio Incompleto", value: "Ensino Médio Incompleto" },
+        { label: "Ensino Médio Completo", value: "Ensino Médio Completo" },
+        { label: "Ensino Técnico", value: "Ensino Técnico" },
+        { label: "Ensino Superior Incompleto", value: "Ensino Superior Incompleto" },
+        { label: "Ensino Superior Completo", value: "Ensino Superior Completo" },
+        { label: "Pós Graduação", value: "Pós Graduação" },
+        { label: "Mestrado", value: "Mestrado" },
+        { label: "Doutorado", value: "Doutorado" },
     ];
 
     return (
@@ -144,7 +178,7 @@ export default function Cadastro() {
                             <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
                                 name={"NOME DO FAMILIAR"}
-                                style={"w-[100%] sm:w-[66.5%]"}
+                                style={"w-[100%] sm:w-[33%]"}
                                 value={dadosFamiliar.name}
                                 onChange={handleChangeNome}
                                 height="h-[45px]"
@@ -155,6 +189,15 @@ export default function Cadastro() {
                                 style={"w-[100%] sm:w-[33%]"}
                                 value={dadosFamiliar.cpf}
                                 onChange={handleChangeCPF}
+                                height="h-[45px]"
+                                />
+
+                                <Dropdown
+                                name={"PARENTESCO"}
+                                style={"w-[100%] sm:w-[33%]"}
+                                value={dadosFamiliar.familiarKinship}
+                                onChange={handleChangeParentesco}
+                                options={parentescoOptions}
                                 height="h-[45px]"
                                 />
 
@@ -198,11 +241,12 @@ export default function Cadastro() {
                                     height="h-[45px]"
                                 />
 
-                                <Input
+                                <Dropdown
                                     name={"ESCOLARIDADE"}
                                     style={"w-full sm:w-[33%]"}
-                                    value={dadosFamiliar.escolaridade}
+                                    value={dadosFamiliar.scholarity}
                                     onChange={handleChangeEscolaridade}
+                                    options={escolaridadeOptions}
                                     height="h-[45px]"
                                 />
                             </div>
@@ -232,6 +276,8 @@ export default function Cadastro() {
                                     height="h-[45px]"
                                 />
                             </div>
+
+                            <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
 
                             
 
