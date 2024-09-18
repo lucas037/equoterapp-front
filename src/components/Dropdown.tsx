@@ -7,6 +7,7 @@ interface InterfaceProps {
     options: DropdownOption[];
     value: string;
     onChange: (value: string) => void;
+    height?: string
 }
 
 export default function Input(props: InterfaceProps) {
@@ -20,7 +21,7 @@ export default function Input(props: InterfaceProps) {
             <select
                 value={props.value}
                 onChange={handleChange}
-                className="w-full h-[40px] border border-black p-2 rounded-lg"
+                className={`w-full ${props.height != null ? props.height : 'h-[40px]'} border border-black p-2 rounded-lg`}
             >
                 {props.options?.map((option) => (
                     <option key={option.label} value={option.value}>
