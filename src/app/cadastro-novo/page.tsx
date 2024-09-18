@@ -43,7 +43,7 @@ export default function cadastro() {
     function handleChangeNome(value: string) {
         changeDadosFamiliar({
           ...dadosFamiliar,
-          nome: value,
+          name: value,
         });
     }
 
@@ -64,21 +64,21 @@ export default function cadastro() {
     function handleChangeSenha(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            senha: value,
+            password: value,
         });
     }
 
     function handleChangeTelefone(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            telefone: value,
+            phone: value,
         });
     }
 
     function handleChangeSexo(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            sexo: value,
+            gender: value,
         });
     }
 
@@ -92,21 +92,21 @@ export default function cadastro() {
     function handleChangeLocalTrabalho(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            localTrabalho: value,
+            workingPlace: value,
         });
     }
 
     function handleChangeOcupacao(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            ocupacao: value,
+            occupation: value,
         });
     }
 
     function handleChangeTelefoneTrabalho(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            telefoneTrabalho: value,
+            workPhone: value,
         });
     }
     
@@ -145,7 +145,7 @@ export default function cadastro() {
                                 <Input
                                 name={"NOME DO FAMILIAR"}
                                 style={"w-[100%] sm:w-[66.5%]"}
-                                value={dadosFamiliar.nome}
+                                value={dadosFamiliar.name}
                                 onChange={handleChangeNome}
                                 height="h-[45px]"
                                 />
@@ -172,7 +172,7 @@ export default function cadastro() {
                                 <Input
                                 name={"SENHA"}
                                 style={"w-[100%] sm:w-[33%]"}
-                                value={dadosFamiliar.senha}
+                                value={dadosFamiliar.password}
                                 onChange={handleChangeSenha}
                                 type="password"
                                 height="h-[45px]"
@@ -184,7 +184,7 @@ export default function cadastro() {
                                 <Input
                                     name={"TELEFONE"}
                                     style={"w-full sm:w-[33%]"}
-                                    value={dadosFamiliar.telefone}
+                                    value={dadosFamiliar.phone}
                                     onChange={handleChangeTelefone}
                                     height="h-[45px]"
                                 />
@@ -193,7 +193,7 @@ export default function cadastro() {
                                     name={"SEXO"}
                                     style={"w-full sm:w-[33%]"}
                                     options={sexoFamiliarOptions}
-                                    value={dadosFamiliar.sexo}
+                                    value={dadosFamiliar.gender}
                                     onChange={handleChangeSexo}
                                     height="h-[45px]"
                                 />
@@ -211,7 +211,7 @@ export default function cadastro() {
                                 <Input
                                     name={"LOCAL DE TRABALHO"}
                                     style={"w-full sm:w-[33%]"}
-                                    value={dadosFamiliar.localTrabalho}
+                                    value={dadosFamiliar.workingPlace}
                                     onChange={handleChangeLocalTrabalho}
                                     height="h-[45px]"
                                 />
@@ -219,7 +219,7 @@ export default function cadastro() {
                                 <Input
                                     name={"OCUPAÇÃO"}
                                     style={"w-full sm:w-[33%]"}
-                                    value={dadosFamiliar.ocupacao}
+                                    value={dadosFamiliar.occupation}
                                     onChange={handleChangeOcupacao}
                                     height="h-[45px]"
                                 />
@@ -227,7 +227,7 @@ export default function cadastro() {
                                 <Input
                                     name={"TELEFONE DO TRABALHO"}
                                     style={"w-full sm:w-[33%] mb-3"}
-                                    value={dadosFamiliar.telefoneTrabalho}
+                                    value={dadosFamiliar.workPhone}
                                     onChange={handleChangeTelefoneTrabalho}
                                     height="h-[45px]"
                                 />
