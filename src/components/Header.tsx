@@ -77,7 +77,7 @@ export default function Header(props: InterfaceProps) {
                 />
                 }
                 
-                <Botao onClick={props.handleClick} className='w-[140px] h-[50px] rounded-md flex justify-center items-center'>
+                <Botao onClick={props.handleClick} className='hidden xl:flex w-[140px] h-[50px] rounded-md justify-center items-center'>
                     {props.buttonName}
                 </Botao> 
 
@@ -96,6 +96,11 @@ export default function Header(props: InterfaceProps) {
                             {item}
                         </div>
                     ))}
+
+                    
+                    <Botao onClick={props.handleClick} className='w-[140px] h-[50px] rounded-md flex justify-center items-center'>
+                        {props.buttonName}
+                    </Botao> 
                 </div>
             }
   
