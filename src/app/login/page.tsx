@@ -1,106 +1,157 @@
-"use client";
+"use client"
 
-import Header from '@/components/Header';
-import Input from '@/components/Input';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import DadosPaciente from '../types/DadosPaciente';
+import Header from "@/components/Header";
+import { useEffect, useState } from "react";
+import Image from 'next/image';
+import Input from "@/components/Input";
+import DadosFamiliar from "../types/DadosFamiliar";
+import Dropdown from "@/components/Dropdown";
+import DropdownOption from "../types/DropdownOption";
+import axios from "axios";
+
+interface DadosLogin {
+    email: string,
+    password: string
+}
 
 export default function Login() {
-  const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
+    const [dadosLogin, setDadosLogin] = useState<DadosLogin>({} as DadosLogin);
+    const [erro, setErro] = useState('...');
 
-  function handleClick() {
-    window.location.href = "/cadastro";
-  }
-
-  function handleChangeEmailFamiliar(value: string) {
-    setDadosPaciente({
-      ...dadosPaciente,
-      emailFamiliar: value
-    })
-  }
-
-  function handleChangeSenhaFamiliar(value: string) {
-    setDadosPaciente({
-      ...dadosPaciente,
-      senhaFamiliar: value
-    })
-  }
-
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      x: "-100vw"
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "tween",
-        ease: "anticipate",
-        duration: 0.6
-      }
-    },
-    exit: {
-      opacity: 0,
-      x: "100vw",
-      transition: {
-        type: "tween",
-        ease: "anticipate",
-        duration: 0.6
-      }
+    async function clickProximaEtapa() {
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosLogin);
+            alert(JSON.stringify(response.data));
+            window.location.href = "/registro";
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    const errorData = error.response.data;
+        
+                    if (errorData) {
+                        setErro(errorData.errors[0]);
+                    }
+                }
+  
+            }
+        }
     }
-  };
 
-  return (
-    <motion.div
-    initial={pageVariants.initial}
-    animate={pageVariants.animate}
-    exit={pageVariants.exit}
-  >
-      <div className="h-screen w-full flex flex-col items-center">
+    function changeDadosFamiliar(dadosLogin: DadosLogin) {
+        setDadosLogin(dadosLogin);
+    }
 
-        <Header
-            buttonName='Cadastro'
-            handleClick={handleClick}
+    function handleChangeEmail(value: string) {
+        changeDadosFamiliar({
+            ...dadosLogin,
+            email: value,
+        });
+    }
+
+    function handleChangeSenha(value: string) {
+        changeDadosFamiliar({
+            ...dadosLogin,
+            password: value,
+        });
+    }
+
+    const parentescoOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Pai", value: "pai" },
+        { label: "Mãe", value: "mae" },
+        { label: "Avó(ô)", value: "avó" },
+        { label: "Tia(o)", value: "tia" },
+        { label: "Irmã(o)", value: "irmã" },
+        { label: "Outro", value: "outro" },
+    ];
+    
+    const sexoFamiliarOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Masculino", value: "Masculino" },
+        { label: "Feminino", value: "Feminino" }
+    ];
+    
+    const escolaridadeOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Ensino Fundamental Incompleto", value: "Ensino Fundamental Incompleto" },
+        { label: "Ensino Fundamental Completo", value: "Ensino Fundamental Completo" },
+        { label: "Ensino Médio Incompleto", value: "Ensino Médio Incompleto" },
+        { label: "Ensino Médio Completo", value: "Ensino Médio Completo" },
+        { label: "Ensino Técnico", value: "Ensino Técnico" },
+        { label: "Ensino Superior Incompleto", value: "Ensino Superior Incompleto" },
+        { label: "Ensino Superior Completo", value: "Ensino Superior Completo" },
+        { label: "Pós Graduação", value: "Pós Graduação" },
+        { label: "Mestrado", value: "Mestrado" },
+        { label: "Doutorado", value: "Doutorado" },
+    ];
+
+    return (
+        <div className="">
+            <Header
+            buttonName="Cadastro"
+            handleClick={() => {window.location.href = "/cadastro"}}
             buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
-        />
+            />
 
-        <div className='h-[75%] w-[80%] flex'>
-          <img
-            src="/assets/adulto.png"
-            alt="foto"
-            className="w-auto h-full opacity-50 border border-[#C3C3C3] hidden xl:flex xl:max-w-[100%]"
-          />
+            <div className="w-full h-[calc(100vh-160px)] flex justify-center items-center">
+                <div className="w-[95%] h-[90%] border flex border-gray-400 mb-3" >
+                    <Image
+                    src = "/assets/adulto.png"
+                    alt = ""
+                    height={288}
+                    width={410}
+                    className="hidden lg:block h-full w-auto opacity-50"
+                    />
 
-          <div className='w-full h-full flex flex-col items-center justify-around text-base font-bold border border-[#C3C3C3] xl:flex xl:max-w-[100%]'>
-            <div>FAÇA LOGIN PARA ENTRAR NO SISTEMA</div>
+                    <div className="w-full h-full flex flex-col justify-around items-center">
+                        <div className="flex flex-col items-center gap-1 mt-3">
+                            <div className="text-sm font-bold">REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
+                            <div className="text-4xl">•</div>
+                        </div>
 
-            <div className='w-[80%] flex flex-col items-center gap-4 text-sm'>
-              <Input name={"EMAIL"} style={"w-full"} value={dadosPaciente.emailFamiliar} onChange={handleChangeEmailFamiliar} />
-              <Input name={"SENHA"} style={"w-full"} value={dadosPaciente.senhaFamiliar} onChange={handleChangeSenhaFamiliar} type="password" />
-              <div className='w-full flex justify-end text-sm cursor-pointer'>Esqueci minha senha</div>
-              <button
-                onClick={() => console.log('Entrar')} // Substitua com a lógica de login
-                className='w-full h-[50px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center'
-              >
-                ENTRAR
-              </button>
+                        <div className="w-[90%] text-sm font-bold flex flex-col items-center gap-3">
+                            <Input
+                            name={"EMAIL"}
+                            style={"w-[80%]"}
+                            value={dadosLogin.email}
+                            onChange={handleChangeEmail}
+                            height="h-[45px]"
+                            />
+
+                            <Input
+                            name={"SENHA"}
+                            style={"w-[80%]"}
+                            value={dadosLogin.password}
+                            onChange={handleChangeSenha}
+                            height="h-[45px]"
+                            type="password"
+                            />
+
+
+                            <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
+
+                            
+
+                            <button
+                            className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
+                            onClick={clickProximaEtapa}
+                            >
+                            PRÓXIMA ETAPA
+                            </button>
+
+                        </div>
+
+                        <div className="flex gap-1 font-bold text-sm">
+                            <div>NÃO POSSUI CONTA?</div>
+                            <div className="underline" onClick={() => {window.location.href = "/cadastro"}}>CADASTRE-SE</div>
+
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
-            <div className='text-sm flex gap-1'>
-              NÃO POSSUI CONTA?
-              <div
-                className='font-bold text-black underline cursor-pointer'
-                onClick={() => window.location.href = "/cadastro"}
-              >
-                CADASTRE-SE
-              </div>
-            </div>
-          </div>
         </div>
-
-      </div>
-    </motion.div>
-  );
+    )
 }
