@@ -20,10 +20,10 @@ export default function Cadastro() {
           status: "pendente",
         });
 
-        
         try {
             await axios.post('http://localhost:8080/api/v1/auth/familiar/register', dadosFamiliar);
-            window.location.href = "/login-novo";
+            tentarLogin();
+
 
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -36,6 +36,16 @@ export default function Cadastro() {
                 }
   
             }
+        }
+    }
+
+    async function tentarLogin() {
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosFamiliar);
+            alert(JSON.stringify(response.data));
+            window.location.href = "/preCadastro";
+        } catch (error) {
+            window.location.href = "/login";
         }
     }
 
