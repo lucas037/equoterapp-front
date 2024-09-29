@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const tokenStorage = {
   token: "",
   refreshToken: "",
@@ -37,7 +39,23 @@ const tokenStorage = {
       localStorage.removeItem('refreshToken');
       this.token = "";
     }
+  },
+
+  async generateNewToken(refreshTk: string) {
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', {
+          refreshToken: refreshTk
+      });
+
+      this.setToken(response.data.token);
+
+    } catch (error) {
+        alert("Falha ao gerar novo token.");
+        window.location.href = "/login";
+    }
   }
+
+  
 };
 
 export default tokenStorage;
