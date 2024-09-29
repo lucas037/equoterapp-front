@@ -7,7 +7,18 @@ const currentPageStorage = {
                 this.currentPage = "cadastro-paciente";
                 localStorage.setItem('currentPage', this.currentPage);
             }
+            else if (index === 2) {
+                this.currentPage = "cadastro-familia";
+                localStorage.setItem('currentPage', this.currentPage);
+            }
         }
+    },
+
+    clearCurrentPage() {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('currentPage');
+        this.currentPage = "";
+      }
     },
 
     getPage() {
