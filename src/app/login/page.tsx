@@ -7,6 +7,7 @@ import Input from "@/components/Input";
 import DropdownOption from "../types/DropdownOption";
 import axios from "axios";
 import tokenStorage from '../utils/token';
+import currentPageStorage from '../utils/currentPage';
 
 interface DadosLogin {
     email: string,
@@ -41,7 +42,6 @@ export default function Login() {
     }
 
     async function checkData(token: string) {
-        console.log("tk: "+token);
 
         try {
             const response = await axios.get('http://localhost:8080/api/v1/auth/me', {
@@ -49,12 +49,13 @@ export default function Login() {
                     'Authorization': `Bearer ${token}`
                 }
             });
-    
-            alert('foi');
+
+            currentPageStorage.changePage(response.data.familiar.status);
+            window.location.href = "/"+currentPageStorage.getPage();
+
     
         } catch (error) {
-            alert("não");
-            console.error("Erro:", error); // Logando o erro completo
+            console.error("Erro:", error);
     
             if (axios.isAxiosError(error)) {
                 if (error.response) {
@@ -69,6 +70,7 @@ export default function Login() {
                 }
             }
         }
+
     }
     
     
@@ -173,7 +175,7 @@ export default function Login() {
                             className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
                             onClick={clickProximaEtapa}
                             >
-                            PRÓXIMA ETAPA
+                            ENTRAR
                             </button>
 
                         </div>
