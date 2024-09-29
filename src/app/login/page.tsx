@@ -4,10 +4,9 @@ import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import Input from "@/components/Input";
-import DadosFamiliar from "../types/DadosFamiliar";
-import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../types/DropdownOption";
 import axios from "axios";
+import tokenStorage from '../utils/token';
 
 interface DadosLogin {
     email: string,
@@ -21,8 +20,12 @@ export default function Login() {
     async function clickProximaEtapa() {
         try {
             const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosLogin);
-            alert(JSON.stringify(response.data));
-            window.location.href = "/registro";
+
+            tokenStorage.setToken(response.data.token);
+            tokenStorage.setRefreshToken(response.data.refreshToken);
+            
+            checkData(response.data.token);
+            
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.response) {
@@ -36,6 +39,40 @@ export default function Login() {
             }
         }
     }
+
+    async function checkData(token: string) {
+        console.log("tk: "+token);
+
+        try {
+            const response = await axios.get('http://localhost:8080/api/v1/auth/me', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            alert('foi');
+    
+        } catch (error) {
+            alert("não");
+            console.error("Erro:", error); // Logando o erro completo
+    
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    const errorData = error.response.data;
+    
+                    if (errorData) {
+                        console.error("Dados do erro:", errorData);
+                        setErro(errorData.errors[0]);
+                    }
+                } else {
+                    console.error("Erro sem resposta:", error.message);
+                }
+            }
+        }
+    }
+    
+    
+    
 
     function changeDadosFamiliar(dadosLogin: DadosLogin) {
         setDadosLogin(dadosLogin);

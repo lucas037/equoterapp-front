@@ -5,7 +5,7 @@ interface InterfaceProps {
     name: string;
     style: string;
     options: DropdownOption[];
-    value: string;
+    value?: string;
     onChange: (value: string) => void;
     height?: string
 }

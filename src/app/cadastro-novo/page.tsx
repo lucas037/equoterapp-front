@@ -8,9 +8,11 @@ import DadosFamiliar from "../types/DadosFamiliar";
 import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../types/DropdownOption";
 import axios from "axios";
+import tokenStorage from '../utils/token';
+import currentPageStorage from '../utils/currentPage';
 
 export default function Cadastro() {
-    const [etapa, setEtapa] = useState(1);
+
     const [dadosFamiliar, setDadosFamiliar] = useState<DadosFamiliar>({} as DadosFamiliar);
     const [erro, setErro] = useState('...');
 
@@ -23,7 +25,6 @@ export default function Cadastro() {
         try {
             await axios.post('http://localhost:8080/api/v1/auth/familiar/register', dadosFamiliar);
             tentarLogin();
-
 
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -40,10 +41,16 @@ export default function Cadastro() {
     }
 
     async function tentarLogin() {
+
         try {
             const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosFamiliar);
-            alert(JSON.stringify(response.data));
-            window.location.href = "/preCadastro";
+
+            tokenStorage.setToken(response.data.token);
+            tokenStorage.setRefreshToken(response.data.refreshToken);
+
+            currentPageStorage.changePage(1);
+            window.location.href = "/cadastro-paciente";
+            
         } catch (error) {
             window.location.href = "/login";
         }
@@ -130,6 +137,21 @@ export default function Cadastro() {
         });
     }
 
+    function handleChangeMoraComPaciente(value: string) {
+        if (value == "s") {
+            changeDadosFamiliar({
+                ...dadosFamiliar,
+                livesWithPatient: true
+            })
+        }
+        else {
+            changeDadosFamiliar({
+                ...dadosFamiliar,
+                livesWithPatient: false
+            })
+        }
+    }
+
     const parentescoOptions: DropdownOption[] = [
         { label: "Selecionar", value: "" },
         { label: "Pai", value: "pai" },
@@ -158,6 +180,12 @@ export default function Cadastro() {
         { label: "Pós Graduação", value: "Pós Graduação" },
         { label: "Mestrado", value: "Mestrado" },
         { label: "Doutorado", value: "Doutorado" },
+    ];
+    
+    const moraComPacienteOptions: DropdownOption[] = [
+        { label: "Selecionar", value: "" },
+        { label: "Sim", value: "s" },
+        { label: "Não", value: "n" },
     ];
 
     return (
@@ -188,7 +216,7 @@ export default function Cadastro() {
                             <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
                                 name={"NOME DO FAMILIAR"}
-                                style={"w-[100%] sm:w-[33%]"}
+                                style={"w-[100%] sm:w-[66%]"}
                                 value={dadosFamiliar.name}
                                 onChange={handleChangeNome}
                                 height="h-[45px]"
@@ -199,15 +227,6 @@ export default function Cadastro() {
                                 style={"w-[100%] sm:w-[33%]"}
                                 value={dadosFamiliar.cpf}
                                 onChange={handleChangeCPF}
-                                height="h-[45px]"
-                                />
-
-                                <Dropdown
-                                name={"PARENTESCO"}
-                                style={"w-[100%] sm:w-[33%]"}
-                                value={dadosFamiliar.familiarKinship}
-                                onChange={handleChangeParentesco}
-                                options={parentescoOptions}
                                 height="h-[45px]"
                                 />
 
@@ -261,10 +280,10 @@ export default function Cadastro() {
                                 />
                             </div>
 
-                            <div className="w-full flex  flex-col gap-3 sm:flex-row sm:justify-between">
+                            <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
                                     name={"LOCAL DE TRABALHO"}
-                                    style={"w-full sm:w-[33%]"}
+                                    style={"w-full sm:w-[66%]"}
                                     value={dadosFamiliar.workingPlace}
                                     onChange={handleChangeLocalTrabalho}
                                     height="h-[45px]"
@@ -278,11 +297,31 @@ export default function Cadastro() {
                                     height="h-[45px]"
                                 />
 
+                            </div>
+
+                            <div className="w-full flex  flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
                                     name={"TELEFONE DO TRABALHO"}
                                     style={"w-full sm:w-[33%] mb-3"}
                                     value={dadosFamiliar.workPhone}
                                     onChange={handleChangeTelefoneTrabalho}
+                                    height="h-[45px]"
+                                />
+
+                                <Dropdown
+                                    name={"PARENTESCO COM O FAMILIAR"}
+                                    style={"w-[100%] sm:w-[33%]"}
+                                    value={dadosFamiliar.familiarKinship}
+                                    onChange={handleChangeParentesco}
+                                    options={parentescoOptions}
+                                    height="h-[45px]"
+                                />
+
+                                <Dropdown
+                                    name={"MORA COM O FAMILIAR"}
+                                    style={"w-[100%] sm:w-[33%]"}
+                                    onChange={handleChangeMoraComPaciente}
+                                    options={moraComPacienteOptions}
                                     height="h-[45px]"
                                 />
                             </div>
