@@ -145,7 +145,6 @@ export default function Login() {
                     <div className="w-full h-full flex flex-col justify-around items-center">
                         <div className="flex flex-col items-center gap-1 mt-3">
                             <div className="text-sm font-bold">REALIZE O PRÉ-CADASTRO NO SISTEMA</div>
-                            <div className="text-4xl">•</div>
                         </div>
 
                         <div className="w-[90%] text-sm font-bold flex flex-col items-center gap-3">
