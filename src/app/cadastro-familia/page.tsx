@@ -371,41 +371,44 @@ export default function CadastroFamilia() {
                                     </div>
 
 
-                                    {Array.from({ length: subFamiliares.length }).map((_, index) => (
-                                        <div className="flex flex-col gap-4">
+                                    {
+                                    subFamiliares.map((subFamiliar, index) => (
+                                        <div key={subFamiliar.patientId || index} className="flex flex-col gap-4">
                                             <div className="flex text-[#65ADAC]">
-                                                <div className="w-[25%] flex justify-center items-center">{subFamiliares[index].name}</div>
-                                                <div className="w-[10%] flex justify-center items-center">{subFamiliares[index].familiarKinship}</div>
-                                                <div className="w-[15%] flex justify-center items-center">{subFamiliares[index].occupation}</div>
-                                                <div className="w-[25%] flex justify-center items-center">{subFamiliares[index].scholarity}</div>
-                                                <div className="w-[10%] flex justify-center items-center">R${subFamiliares[index].income}</div>
+                                                <div className="w-[25%] flex justify-center items-center">{subFamiliar.name}</div>
+                                                <div className="w-[10%] flex justify-center items-center">{subFamiliar.familiarKinship}</div>
+                                                <div className="w-[15%] flex justify-center items-center">{subFamiliar.occupation}</div>
+                                                <div className="w-[25%] flex justify-center items-center">{subFamiliar.scholarity}</div>
+                                                <div className="w-[10%] flex justify-center items-center">R${subFamiliar.income}</div>
                                                 <div className="w-[15%] flex justify-center items-center">
                                                     <div className="flex gap-2">
                                                         <div onClick={() => editClick(index)} className="cursor-pointer flex flex-col items-center gap-1">
                                                             <Image 
-                                                            src = "/assets/svg/edit.svg"
-                                                            alt = ""
-                                                            width={30}
-                                                            height={30}
+                                                                src="/assets/svg/edit.svg"
+                                                                alt=""
+                                                                width={30}
+                                                                height={30}
                                                             />
                                                             <div className="text-[10px] text-black">EDITAR</div>
                                                         </div>
 
                                                         <div onClick={() => removeClick(index)} className="cursor-pointer flex flex-col items-center gap-1">
                                                             <Image 
-                                                            src = "/assets/svg/delete.svg"
-                                                            alt = ""
-                                                            width={30}
-                                                            height={30}
+                                                                src="/assets/svg/delete.svg"
+                                                                alt=""
+                                                                width={30}
+                                                                height={30}
                                                             />
                                                             <div className="text-[10px] text-black">REMOVER</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="h-[1px] bg-black"/>
+                                            <div className="h-[1px] bg-black" />
                                         </div>
-                                    ))}
+                                    ))
+                                    }
+
 
                                 </div>
 
