@@ -41,7 +41,10 @@ const tokenStorage = {
     }
   },
 
-  async generateNewToken(refreshTk: string) {
+  async generateNewToken(refreshTk: string | null) {
+    if (refreshTk == null)
+      return;
+    
     try {
       const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', {
           refreshToken: refreshTk
