@@ -11,6 +11,10 @@ const currentPageStorage = {
                 this.currentPage = "cadastro-familia";
                 localStorage.setItem('currentPage', this.currentPage);
             }
+            else if (index === 3) {
+                this.currentPage = "pre-cadastro";
+                localStorage.setItem('currentPage', this.currentPage);
+            }
         }
     },
 
