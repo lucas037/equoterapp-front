@@ -190,12 +190,16 @@ export default function Cadastro() {
                     <div className="w-full h-full flex flex-col justify-around items-center">
                         <div className="flex flex-col items-center gap-1 mt-3">
                             <div className="text-sm font-bold">INFORME OS DADOS DO RESPONSÁVEL DO PACIENTE</div>
+                            <div className="text-4xl flex">
+                                <div className="text-[#137472]">•</div>
+                                ••
+                            </div>
                         </div>
 
                         <div className="w-[90%] text-sm font-bold flex flex-col items-center gap-3">
                             <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
-                                name={"NOME DO FAMILIAR"}
+                                name={"NOME"}
                                 style={"w-[100%] sm:w-[66%]"}
                                 value={dadosFamiliar.name}
                                 onChange={handleChangeNome}
