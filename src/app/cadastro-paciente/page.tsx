@@ -244,6 +244,10 @@ export default function Page() {
                     <div className="w-full h-full flex flex-col justify-around items-center">
                         <div className="flex flex-col items-center gap-1 mt-3">
                             <div className="text-sm font-bold">INFORME OS DADOS DO PACIENTE</div>
+                            <div className="text-4xl flex">
+                                <div className="text-[#137472]">••</div>
+                                •
+                            </div>
                         </div>
 
                         <div className="w-[90%] text-sm font-bold flex flex-col items-center gap-3">
