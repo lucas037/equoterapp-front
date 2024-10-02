@@ -12,7 +12,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Modal from './Modal';
 export default function ValidarCadastro() {
   const [documentStatuses, setDocumentStatuses] = useState({});
-  const [documents, setDocuments] = useState([]); 
+  const [documents, setDocuments] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
   const fetchDocuments = async () => {
@@ -45,14 +45,14 @@ export default function ValidarCadastro() {
 
     } catch (error) {
       console.error("Erro ao buscar documentos", error);
-          if (error.response && error.response.status === 401) {
-            await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-          const tokenNovo = tokenStorage.getToken();
-          console.log("Token novo",tokenNovo);
-            fetchDocuments();
-          } else {
-            alert('falha ao buscar documentos');
-          }
+      if (error.response && error.response.status === 401) {
+        await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
+        const tokenNovo = tokenStorage.getToken();
+        console.log("Token novo", tokenNovo);
+        fetchDocuments();
+      } else {
+        alert('falha ao buscar documentos');
+      }
     }
   };
 
@@ -96,13 +96,13 @@ export default function ValidarCadastro() {
         if (fileNameMatch.length > 1) {
           fileName = fileNameMatch[1];  // Define o nome do arquivo extraído
         }
-        console.log(filename)
+        console.log(fileName)
       }
 
       // Criar um link temporário para o download do arquivo
       const blob = new Blob([response.data], { type: response.headers['content-type'] });
       const url = window.URL.createObjectURL(blob);
-      
+
       // Criar um elemento <a> temporário para acionar o download
       const link = document.createElement('a');
       link.href = url;
@@ -120,39 +120,39 @@ export default function ValidarCadastro() {
 
     } catch (error) {
       console.error("Erro ao baixar documento", error);
-      
+
     }
   };
 
- 
+
 
   const handleFileUpload = (documentType: string) => {
     const input = document.createElement('input');
     input.type = 'file';
-  
+
     input.onchange = async (event: any) => {
       const file = event.target.files[0];
       if (file) {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('type', documentType);
-  
+
         try {
           const token = tokenStorage.getToken();
 
           console.log("token usado", token);
-  
+
           const meResponse = await axios.get('http://localhost:8080/api/v1/auth/me', {
             headers: {
               'Authorization': `Bearer ${token}`,
             },
           });
 
-  
+
           const patientId = meResponse.data.familiar.id;
 
 
-  
+
           await axios.post(
             `http://localhost:8080/api/v1/medicaldocuments/${patientId}`,
             formData,
@@ -163,19 +163,19 @@ export default function ValidarCadastro() {
               },
             }
           );
-  
+
           // Documento enviado com sucesso! Abrir modal.
           setModalOpen(true);
-  
+
           // Atualizar os documentos após o upload
           fetchDocuments();
-  
+
         } catch (error) {
           console.error("Erro ao enviar documento", error);
           if (error.response && error.response.status === 401) {
             await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-          const tokenNovo = tokenStorage.getToken();
-          console.log("Token novo",tokenNovo);
+            const tokenNovo = tokenStorage.getToken();
+            console.log("Token novo", tokenNovo);
             handleFileUpload(documentType);
           } else {
             alert('Falha ao enviar o documento');
@@ -183,7 +183,7 @@ export default function ValidarCadastro() {
         }
       }
     };
-  
+
     input.click();
   };
 
@@ -227,7 +227,7 @@ export default function ValidarCadastro() {
 
   return (
     <motion.div>
-         {/* Exibe o modal se estiver aberto */}
+      {/* Exibe o modal se estiver aberto */}
       {modalOpen && (
         <Modal handleClose={() => setModalOpen(false)} text="Documento médico enviado com sucesso!" />
       )}
