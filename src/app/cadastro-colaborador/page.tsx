@@ -6,9 +6,56 @@ import { useState } from "react";
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../types/DropdownOption";
+import axios from 'axios';
+import tokenStorage from "../utils/token";
 
 export default function CadastroColaborador() {
     const [dadosColaborador, setDadosColaborador] = useState<DadosColaborador>({} as DadosColaborador);
+
+
+    const cadastrar = async () => {
+        try {
+            console.log("entrando na função de cadastro");
+    
+            const sexo = dadosColaborador.sexo === "Masculino" ? "Male" : "Female";
+            const token = tokenStorage.getToken();
+            console.log("token:", token);
+            console.log("sexo:", sexo);
+        
+            console.log("dadosColaborador:", dadosColaborador);
+            const response = await axios.post('http://localhost:8080/api/v1/auth/collaborator/register', 
+            {
+                name: dadosColaborador.nome,
+                email: dadosColaborador.email,
+                cpf: dadosColaborador.cpf,
+                position: dadosColaborador.cargo,
+                gender: sexo,
+                phone: dadosColaborador.telefone,
+                password: dadosColaborador.senha
+            }, 
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+        
+            console.log("Colaborador cadastrado com sucesso");
+            window.location.href = "/gerenciar-DocMedicos";
+        
+        } catch (error) {
+            console.error("Erro ao cadastrar colaborador", error);
+            alert('Falha ao cadastrar colaborador');
+            if (error.response && error.response.status === 401) {
+                await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
+                const tokenNovo = tokenStorage.getToken();
+                console.log("Token novo", tokenNovo);
+                cadastrar();
+            }
+        }
+    }
+    
+    
+    
 
     function handleClick() {
       window.location.href = "/login";
@@ -98,11 +145,9 @@ export default function CadastroColaborador() {
 
     const cargoOptions: DropdownOption[] = [
         { label: "Selecionar", value: "" },
-        { label: "Gerente", value: "Gerente" },
-        { label: "Colaborador", value: "Colaborador" },
-        { label: "Psicólogo", value: "Psicologo" },
-        { label: "Mediador", value: "Mediador" },
-        { label: "Guia", value: "Guia" }
+        { label: "ADMIN", value: "ADMIN" },
+        { label: "MANAGER", value: "MANAGER" },
+        { label: "USER", value: "USER" }
     ];
 
     return (
@@ -210,7 +255,7 @@ export default function CadastroColaborador() {
 
                     <button
                         className="w-[200px] h-[60px] bg-[#4B8A89] text-white flex justify-center items-center rounded-lg font-bold mb-4"
-                        onClick={handleClick}
+                        onClick={cadastrar}
                         >
                         CADASTRAR
                     </button>

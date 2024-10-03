@@ -17,7 +17,7 @@
     "equoterapp": "file:",
     "framer-motion": "^11.3.28",
     "jspdf": "^2.5.1",
-    "next": "14.2.5",
+    "next": "^14.2.13",
     "react": "^18",
     "react-dom": "^18",
     "react-slick": "^0.30.2",
