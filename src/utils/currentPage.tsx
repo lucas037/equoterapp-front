@@ -12,7 +12,7 @@ const currentPageStorage = {
             else if (index === 2) {
                 this.currentPage = "cadastro-familia";
             }
-            else if (index === 3) {
+            else if (index === 3 || index === 4 || index === 7) {
                 this.currentPage = "pre-cadastro";
             }
             localStorage.setItem('currentPage', this.currentPage);
