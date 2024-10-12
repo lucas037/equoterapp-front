@@ -42,7 +42,7 @@ export default function CadastroColaborador() {
             );
         
             console.log("Colaborador cadastrado com sucesso");
-            window.location.href = "/gerenciar-DocMedicos";
+            window.location.href = "/gerenciar";
     
         } catch (error) {
 
