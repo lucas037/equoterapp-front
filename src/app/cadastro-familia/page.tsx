@@ -10,6 +10,9 @@ import DadosSubFamiliar from "../../types/DadosSubFamiliar";
 import axios from "axios";
 import DropdownOption from "../../types/DropdownOption";
 import Dropdown from "@/components/Dropdown";
+import requestsAuth from '../../utils/requestsAuth';
+import requestsPatient from '../../utils/requestsPatient';
+import requestsSubFamiliar from '../../utils/requestsSubFamiliar';
 
 export default function CadastroFamilia() {
     const [addClicked, setAddClicked] = useState(false);
@@ -19,63 +22,35 @@ export default function CadastroFamilia() {
     const [subFamiliares, setSubFamiliares] = useState<DadosSubFamiliar[]>([]);
     const [numSubFamiliars, setNumSubFamiliars] = useState(0);
 
-    const [patientId, setPatientId] = useState(0);
-
     const [editClicked, setEditClicked] = useState(-1);
 
     useEffect(() => {
-        if (currentPageStorage.getPage() != "cadastro-familia") {
-            window.location.href = "/login";
-        }
-
-        const fetch = async () => {
-            const familiarId = await getFamiliarId();
-            const idPatient = await getPatientId(familiarId);
-
-            setDadosSubFamiliar({
-                ...dadosSubFamiliar,
-                patientId: idPatient
-            })
-
-            setPatientId(idPatient);
+        const fetchData = async () => {
+            if (currentPageStorage.getPage() !== "cadastro-familia") {
+                window.location.href = "/login";
+            }
+            
+            if (requestsAuth.getPatientId() <= 0)
+                await requestsPatient.getPatientId(requestsAuth.getFamiliarId());
 
         };
-
-        fetch();
-
-
+    
+        fetchData();
     }, []);
 
+    async function adicionarMembrosFamiliarRequest() {
+        if (subFamiliares.length < 2)
+            setErro("Selecione todas as pessoas que moram na mesma casa que o paciente.")
 
-    async function getFamiliarId() {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/auth/me', {
-                headers: {
-                    'Authorization': `Bearer ${tokenStorage.getToken()}`
-                }
-            });
+        else {
+            await requestsSubFamiliar.registerPatient(subFamiliares);
 
-            await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-            return response.data.familiar.id;
-
-        } catch (error) {
-            return -1;
-        }
-    }
-
-    async function getPatientId(familiaId: number) {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/familiar/getPatients/'+familiaId, {
-                headers: {
-                    'Authorization': `Bearer ${tokenStorage.getToken()}`
-                }
-            });
-
-            await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-            return response.data[0].id;
-
-        } catch (error) {
-            return -1;
+            if (requestsPatient.messageError != "")
+                setErro(requestsPatient.messageError)
+            else {
+                currentPageStorage.changePage(3);
+                window.location.href = "/"+currentPageStorage.getPage();
+            }
         }
     }
 
@@ -134,42 +109,6 @@ export default function CadastroFamilia() {
         setEditClicked(-1);
         setAddClicked(false);
     }
-    
-
-    async function adicionarMembrosRequest() {
-        const rota = 'http://localhost:8080/api/v1/subfamiliar/'+patientId;
-
-        try {
-            const response = await axios.post(rota, subFamiliares, {
-                headers: {
-                    'Authorization': `Bearer ${tokenStorage.getToken()}`
-                }
-            });
-
-
-            await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-            
-            currentPageStorage.changePage(3);
-            window.location.href = "/"+currentPageStorage.getPage();
-
-    
-        } catch (error) {
-
-    
-            if (axios.isAxiosError(error)) {
-                if (error.response) {
-                    const errorData = error.response.data;
-    
-                    if (errorData.errors && errorData.errors.length > 0) {
-                        setErro(errorData.errors[0]);
-                    } else {
-                        alert("Erro inesperado! Realize o login novamente.");
-                        window.location.href = "/login";
-                    }
-                }
-            }
-        }
-    }
 
     function clearSubMembroFamilia() {
         setDadosSubFamiliar({} as DadosSubFamiliar);
@@ -181,7 +120,7 @@ export default function CadastroFamilia() {
             occupation: '',
             scholarity: '',
             income: 0,
-            patientId: patientId,
+            patientId: requestsAuth.getPatientId(),
         });
     }
 
@@ -421,7 +360,7 @@ export default function CadastroFamilia() {
                                 <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
 
                                 <div className="flex justify-center">
-                                    <div onClick={adicionarMembrosRequest} className="cursor-pointer w-[300px] h-[50px] bg-[#48807E] text-white rounded-xl font-bold text-lg flex justify-center items-center">SALVAR</div>
+                                    <div onClick={adicionarMembrosFamiliarRequest} className="cursor-pointer w-[300px] h-[50px] bg-[#48807E] text-white rounded-xl font-bold text-lg flex justify-center items-center">SALVAR</div>
                                 </div>
                             </div>
                             

@@ -3,109 +3,36 @@
 import { useEffect, useState } from 'react';
 import tokenStorage from '../../utils/token';
 import currentPageStorage from '../../utils/currentPage';
+import requestsPatient from '../../utils/requestsPatient';
 import Image from 'next/image';
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../../types/DropdownOption";
 import Header from '@/components/Header';
 import DadosPaciente from '../../types/DadosPaciente';
-import axios from 'axios';
 
 export default function Page() {
-    const [token, setToken] = useState<string | null>(null);
-    const [refreshToken, setRefreshToken] = useState<string | null>(null);
-
     const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
     const [erro, setErro] = useState('...');
-    
 
     useEffect(() => {
         if (currentPageStorage.getPage() != "cadastro-paciente")
             window.location.href = "/login";
-
-        const storedToken = tokenStorage.getToken();
-        setToken(storedToken);
-
-        const storedRefreshToken = tokenStorage.getRefreshToken();
-        setRefreshToken(storedRefreshToken);
-
     }, []);
 
     async function clickProximaEtapa() {
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/auth/me', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+        await requestsPatient.registerPatient(dadosPaciente);
 
-            handleChangeIdFamiliar(response.data.familiar.id);
-
-            if (refreshToken != null) {
-                await tokenStorage.generateNewToken(refreshToken);
-                tryRegisrarFamiliar();
-            }
-    
-        } catch (error) {
-    
-            if (axios.isAxiosError(error)) {
-                if (error.response) {
-                    const errorData = error.response.data;
-    
-                    if (errorData.errors && errorData.errors.length > 0) {
-                        setErro(errorData.errors[0]);
-                    } else {
-                        alert("Erro inesperado! Realize o login novamente.");
-                        window.location.href = "/login";
-                    }
-                }
-            }
-        }
-    }
-
-    async function tryRegisrarFamiliar() {
-        try {
-            const response = await axios.post('http://localhost:8080/api/v1/patient', dadosPaciente, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (refreshToken != null) {
-                await tokenStorage.generateNewToken(refreshToken);
-                
-                currentPageStorage.changePage(2);
-                window.location.href = "/"+currentPageStorage.getPage();
-            }
-
-
-    
-        } catch (error) {
-    
-            if (axios.isAxiosError(error)) {
-                if (error.response) {
-                    const errorData = error.response.data;
-    
-                    if (errorData.errors && errorData.errors.length > 0) {
-                        setErro(errorData.errors[0]);
-                    } else {
-                        alert("Erro inesperado! Realize o login novamente.");
-                        window.location.href = "/login";
-                    }
-                }
-            }
+        if (requestsPatient.messageError != "")
+            setErro(requestsPatient.messageError)
+        else {
+            currentPageStorage.changePage(2);
+            window.location.href = "/"+currentPageStorage.getPage();
         }
     }
 
     function changeDadosPaciente(dadosPaciente: DadosPaciente) {
         setDadosPaciente(dadosPaciente);
-    }
-
-    function handleChangeIdFamiliar(value: number) {
-        changeDadosPaciente({
-          ...dadosPaciente,
-          familiarId: value,
-        });
     }
 
     function handleChangeNome(value: string) {

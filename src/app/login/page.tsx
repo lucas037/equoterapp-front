@@ -1,13 +1,12 @@
 "use client"
 
 import Header from "@/components/Header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from 'next/image';
 import Input from "@/components/Input";
 import DropdownOption from "../../types/DropdownOption";
-import axios from "axios";
-import tokenStorage from '../../utils/token';
 import currentPageStorage from '../../utils/currentPage';
+import requestsAuth from '../../utils/requestsAuth';
 
 interface DadosLogin {
     email: string,
@@ -19,67 +18,21 @@ export default function Login() {
     const [erro, setErro] = useState('...');
 
     async function clickProximaEtapa() {
-        try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosLogin);
+        await requestsAuth.login(dadosLogin.email, dadosLogin.password);
 
-            tokenStorage.setToken(response.data.token);
-            tokenStorage.setRefreshToken(response.data.refreshToken);
-            
-            checkData(response.data.token);
-            
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                if (error.response) {
-                    const errorData = error.response.data;
-        
-                    if (errorData) {
-                        setErro(errorData.errors[0]);
-                    }
-                }
-  
-            }
-        }
-    }
+        if (!requestsAuth.loginStatus)
+            setErro(requestsAuth.messageError);
 
-    async function checkData(token: string) {
-
-        try {
-            const response = await axios.get('http://localhost:8080/api/v1/auth/me', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!response.data.familiar) {
+        else {
+            if (requestsAuth.position != "") // É um colaborador
                 currentPageStorage.changePage(0);
-            }
-            else
-                currentPageStorage.changePage(response.data.familiar.status);
+
+            else // É um familiar
+                currentPageStorage.changePage(requestsAuth.status);
 
             window.location.href = "/"+currentPageStorage.getPage();
-
-    
-        } catch (error) {
-            console.error("Erro:", error);
-    
-            if (axios.isAxiosError(error)) {
-                if (error.response) {
-                    const errorData = error.response.data;
-    
-                    if (errorData) {
-                        console.error("Dados do erro:", errorData);
-                        setErro(errorData.errors[0]);
-                    }
-                } else {
-                    console.error("Erro sem resposta:", error.message);
-                }
-            }
         }
-
     }
-    
-    
-    
 
     function changeDadosFamiliar(dadosLogin: DadosLogin) {
         setDadosLogin(dadosLogin);
