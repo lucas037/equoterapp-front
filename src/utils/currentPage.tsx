@@ -4,21 +4,18 @@ const currentPageStorage = {
     changePage(index: number) {
         if (typeof window !== 'undefined') {
             if (index === 0) {
-                this.currentPage = "gerenciar-DocMedicos";
-                localStorage.setItem('currentPage', this.currentPage);
+                this.currentPage = "gerenciar";
             }
             if (index === 1) {
                 this.currentPage = "cadastro-paciente";
-                localStorage.setItem('currentPage', this.currentPage);
             }
             else if (index === 2) {
                 this.currentPage = "cadastro-familia";
-                localStorage.setItem('currentPage', this.currentPage);
             }
             else if (index === 3) {
                 this.currentPage = "pre-cadastro";
-                localStorage.setItem('currentPage', this.currentPage);
             }
+            localStorage.setItem('currentPage', this.currentPage);
         }
     },
 

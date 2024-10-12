@@ -30,7 +30,7 @@ export default function Header(props: InterfaceProps) {
         }
 
         else if (name === "Gerenciamento") {
-            window.location.href = "/gerenciar-DocMedicos";
+            window.location.href = "/gerenciar";
         }
         
         else if (name === "Sessões") {
