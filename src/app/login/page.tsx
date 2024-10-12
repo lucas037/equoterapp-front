@@ -4,10 +4,10 @@ import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import Input from "@/components/Input";
-import DropdownOption from "../types/DropdownOption";
+import DropdownOption from "../../types/DropdownOption";
 import axios from "axios";
-import tokenStorage from '../utils/token';
-import currentPageStorage from '../utils/currentPage';
+import tokenStorage from '../../utils/token';
+import currentPageStorage from '../../utils/currentPage';
 
 interface DadosLogin {
     email: string,
@@ -50,7 +50,12 @@ export default function Login() {
                 }
             });
 
-            currentPageStorage.changePage(response.data.familiar.status);
+            if (!response.data.familiar) {
+                currentPageStorage.changePage(0);
+            }
+            else
+                currentPageStorage.changePage(response.data.familiar.status);
+
             window.location.href = "/"+currentPageStorage.getPage();
 
     

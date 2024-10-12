@@ -1,17 +1,17 @@
 "use client"
 
 import Header from "@/components/Header";
-import DadosColaborador from "../types/DadosColaborador";
+import DadosColaborador from "../../types/DadosColaborador";
 import { useState } from "react";
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown";
-import DropdownOption from "../types/DropdownOption";
+import DropdownOption from "../../types/DropdownOption";
 import axios from 'axios';
-import tokenStorage from "../utils/token";
+import tokenStorage from "../../utils/token";
 
 export default function CadastroColaborador() {
     const [dadosColaborador, setDadosColaborador] = useState<DadosColaborador>({} as DadosColaborador);
-
+    const [erro, setErro] = useState("...");
 
     const cadastrar = async () => {
         try {
@@ -23,36 +23,45 @@ export default function CadastroColaborador() {
             console.log("sexo:", sexo);
         
             console.log("dadosColaborador:", dadosColaborador);
-            const response = await axios.post('http://localhost:8080/api/v1/auth/collaborator/register', 
-            {
-                name: dadosColaborador.nome,
-                email: dadosColaborador.email,
-                cpf: dadosColaborador.cpf,
-                position: dadosColaborador.cargo,
-                gender: sexo,
-                phone: dadosColaborador.telefone,
-                password: dadosColaborador.senha
-            }, 
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
+            const response = await axios.post(
+                'http://localhost:8080/api/v1/auth/collaborator/register',
+                {
+                    name: dadosColaborador.nome,
+                    email: dadosColaborador.email,
+                    cpf: dadosColaborador.cpf,
+                    position: dadosColaborador.cargo,
+                    gender: sexo,
+                    phone: dadosColaborador.telefone,
+                    password: dadosColaborador.senha
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
                 }
-            });
+            );
         
             console.log("Colaborador cadastrado com sucesso");
             window.location.href = "/gerenciar-DocMedicos";
-        
+    
         } catch (error) {
-            console.error("Erro ao cadastrar colaborador", error);
-            alert('Falha ao cadastrar colaborador');
-            if (error.response && error.response.status === 401) {
-                await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-                const tokenNovo = tokenStorage.getToken();
-                console.log("Token novo", tokenNovo);
-                cadastrar();
+
+    
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    const errorData = error.response.data;
+    
+                    if (errorData.errors && errorData.errors.length > 0) {
+                        setErro(errorData.errors[0]);
+                    } else {
+                        alert("Erro inesperado! Realize o login novamente.");
+                        window.location.href = "/login";
+                    }
+                }
             }
         }
     }
+    
     
     
     
@@ -159,7 +168,7 @@ export default function CadastroColaborador() {
             />
 
             <div className="h-full flex flex-col justify-center items-center">
-                <div className="w-[96%] overflow-y-auto h-auto min-h-[90%] border border-black rounded-lg flex flex-col gap-[50px] items-center">
+                <div className="w-[75%] overflow-y-auto h-auto min-h-[90%] border border-black rounded-lg flex flex-col gap-[50px] items-center">
                     <div className="flex justify-center font-bold text-xl mt-8">Realize o Pré-Cadastro do Colaborador</div>
 
                     <div className="w-full flex flex-col gap-2">
@@ -169,6 +178,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.nome}
                                 onChange={handleChangeNomeColaborador}
+                                height="h-[45px]"
                             />
 
                             <Dropdown
@@ -177,13 +187,15 @@ export default function CadastroColaborador() {
                                 options={sexoOptions}
                                 value={dadosColaborador.sexo}
                                 onChange={handleChangeSexo}
+                                height="h-[45px]"
                             />
 
                             <Input
-                                name="ANIVERSÁRIO"
+                                name="DATA DE NASCIMENTO"
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.aniversario}
                                 onChange={handleChangeAniversario}
+                                height="h-[45px]"
                             />
                         </div>
 
@@ -193,6 +205,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.cpf}
                                 onChange={handleChangeCPF}
+                                height="h-[45px]"
                             />
 
                             <Input
@@ -200,6 +213,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.telefone}
                                 onChange={handleChangeTelefone}
+                                height="h-[45px]"
                             />
                             
                             <Dropdown
@@ -208,6 +222,7 @@ export default function CadastroColaborador() {
                                 options={cargoOptions}
                                 value={dadosColaborador.cargo}
                                 onChange={handleChangeCargo}
+                                height="h-[45px]"
                             />
                         </div>
                         
@@ -217,6 +232,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.bairro}
                                 onChange={handleChangeBairro}
+                                height="h-[45px]"
                             />
 
                             <Input
@@ -224,6 +240,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.rua}
                                 onChange={handleChangeRua}
+                                height="h-[45px]"
                             />
 
                             <Input
@@ -231,6 +248,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.numeroCasa}
                                 onChange={handleChangeNumero}
+                                height="h-[45px]"
                             />
                         </div>
 
@@ -240,6 +258,7 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.email}
                                 onChange={handleChangeEmail}
+                                height="h-[45px]"
                             />
 
                             <Input
@@ -247,11 +266,14 @@ export default function CadastroColaborador() {
                                 style="w-full text-sm font-bold"
                                 value={dadosColaborador.senha}
                                 onChange={handleChangeSenha}
+                                height="h-[45px]"
                                 type="password"
                             />
                         </div>
 
                     </div>
+                    
+                    <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
 
                     <button
                         className="w-[200px] h-[60px] bg-[#4B8A89] text-white flex justify-center items-center rounded-lg font-bold mb-4"

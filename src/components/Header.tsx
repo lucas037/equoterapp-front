@@ -28,12 +28,20 @@ export default function Header(props: InterfaceProps) {
         if (name === "Perfil") {
             window.location.href = "/perfil";
         }
+
+        else if (name === "Gerenciamento") {
+            window.location.href = "/gerenciar-DocMedicos";
+        }
         
-        if (name === "Sessões") {
+        else if (name === "Sessões") {
             window.location.href = "/sessoes";
         }
 
-        if (name === "Verificar Documentos") {
+        else if (name === "Verificar Cadastros") {
+            window.location.href = "/verificar-cadastros";
+        }
+
+        else if (name === "Verificar Documentos") {
             window.location.href = "/verificacao";
         }
     }

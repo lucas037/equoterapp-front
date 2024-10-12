@@ -4,12 +4,12 @@ import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import Input from "@/components/Input";
-import DadosFamiliar from "../types/DadosFamiliar";
+import DadosFamiliar from "../../types/DadosFamiliar";
 import Dropdown from "@/components/Dropdown";
-import DropdownOption from "../types/DropdownOption";
+import DropdownOption from "../../types/DropdownOption";
 import axios from "axios";
-import tokenStorage from '../utils/token';
-import currentPageStorage from '../utils/currentPage';
+import tokenStorage from '../../utils/token';
+import currentPageStorage from '../../utils/currentPage';
 
 export default function Cadastro() {
 

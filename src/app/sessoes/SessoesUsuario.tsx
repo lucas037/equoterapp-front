@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Sessao from "../types/Sessao";
-import SessaoPorMes from "../types/SessaoPorMes";
+import Sessao from "../../types/Sessao";
+import SessaoPorMes from "../../types/SessaoPorMes";
 import Image from 'next/image';
 import Header from "@/components/Header";
 

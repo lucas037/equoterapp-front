@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import tokenStorage from '../utils/token';
-import currentPageStorage from '../utils/currentPage';
+import tokenStorage from '../../utils/token';
+import currentPageStorage from '../../utils/currentPage';
 import Image from 'next/image';
 import Input from "@/components/Input";
 import Dropdown from "@/components/Dropdown";
-import DropdownOption from "../types/DropdownOption";
+import DropdownOption from "../../types/DropdownOption";
 import Header from '@/components/Header';
-import DadosPaciente from '../types/DadosPaciente';
+import DadosPaciente from '../../types/DadosPaciente';
 import axios from 'axios';
 
 export default function Page() {

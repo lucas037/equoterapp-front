@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import BotaoDocumento from './BotaoDocumentos';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import tokenStorage from "../utils/token";
+import tokenStorage from "../../utils/token";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Modal from './Modal';

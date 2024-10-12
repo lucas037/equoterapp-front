@@ -7,7 +7,7 @@ import BotaoAceitar from './BotaoAceitar';
 import BotaoRecusar from './BotaoRecusar';
 import InfoResponsavel from './InfoResponsavel';
 import axios from 'axios';
-import tokenStorage from '../utils/token';
+import tokenStorage from '../../utils/token';
 import Modal from './Modal';
 
 export default function Verificacao() {

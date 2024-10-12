@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import currentPageStorage from "../utils/currentPage";
+import currentPageStorage from "../../utils/currentPage";
 import Header from "@/components/Header";
-import tokenStorage from "../utils/token";
+import tokenStorage from "../../utils/token";
 import Input from "@/components/Input";
-import DadosSubFamiliar from "../types/DadosSubFamiliar";
+import DadosSubFamiliar from "../../types/DadosSubFamiliar";
 import axios from "axios";
-import DropdownOption from "../types/DropdownOption";
+import DropdownOption from "../../types/DropdownOption";
 import Dropdown from "@/components/Dropdown";
 
 export default function CadastroFamilia() {

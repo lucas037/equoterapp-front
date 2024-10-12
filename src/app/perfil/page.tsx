@@ -2,10 +2,10 @@
 
 import Header from "@/components/Header";
 import Image from 'next/image';
-import SessaoPorMes from "../types/SessaoPorMes";
+import SessaoPorMes from "../../types/SessaoPorMes";
 import { useState } from "react";
-import Sessao from "../types/Sessao";
-import DadosColaborador from "../types/DadosColaborador";
+import Sessao from "../../types/Sessao";
+import DadosColaborador from "../../types/DadosColaborador";
 import DownloadPdfComponent from "./jsx";
 
 export default function Perfil() {

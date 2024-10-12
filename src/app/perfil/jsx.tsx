@@ -1,8 +1,8 @@
 import React from 'react';
 import { jsPDF } from 'jspdf';
 import Image from 'next/image';
-import DadosColaborador from '../types/DadosColaborador';
-import SessaoPorMes from '../types/SessaoPorMes';
+import DadosColaborador from '../../types/DadosColaborador';
+import SessaoPorMes from '../../types/SessaoPorMes';
 
 interface InterfaceProps {
     colaborador: DadosColaborador,

@@ -3,6 +3,10 @@ const currentPageStorage = {
 
     changePage(index: number) {
         if (typeof window !== 'undefined') {
+            if (index === 0) {
+                this.currentPage = "gerenciar-DocMedicos";
+                localStorage.setItem('currentPage', this.currentPage);
+            }
             if (index === 1) {
                 this.currentPage = "cadastro-paciente";
                 localStorage.setItem('currentPage', this.currentPage);

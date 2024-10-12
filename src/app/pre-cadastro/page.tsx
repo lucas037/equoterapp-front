@@ -5,10 +5,10 @@ import HeaderPreCadastro from '@/components/HeaderPreCadastro';
 import Input from '@/components/Input';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import MembroFamilia from '../types/MembroFamilia';
-import DropdownOption from '../types/DropdownOption';
+import MembroFamilia from '../../types/MembroFamilia';
+import DropdownOption from '../../types/DropdownOption';
 import Dropdown from '@/components/Dropdown';
-import DadosPaciente from '../types/DadosPaciente';
+import DadosPaciente from '../../types/DadosPaciente';
 import { Botao } from '@/components/Botao';
 
 

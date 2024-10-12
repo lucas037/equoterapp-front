@@ -4,7 +4,7 @@ import InfoDocColaborador from "./componentes/InfoDocColaborador";
 import Person from '@mui/icons-material/Person';
 import Person3Icon from '@mui/icons-material/Person3';
 import axios from 'axios';
-import tokenStorage from "../utils/token";
+import tokenStorage from "../../utils/token";
 import AdicionarColaborador from './componentes/AdicionarColaborador';
 import BuscarColaborador from './componentes/BuscarColaborador';
 import { motion } from 'framer-motion';
@@ -28,7 +28,7 @@ interface AgrupadoPorPosicao {
 }
 
 const handleNavigation = () => {
-  console.log('Navigating...');
+  console.log("Clique no perfil")
 };
 
 const AgruparColaboradoresPorPosicao: React.FC = () => {
@@ -58,16 +58,21 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
 
       setColaboradoresAgrupados(agrupados);
     } catch (error) {
-      console.error('Erro ao buscar colaboradores:', error);
-      if (error.response && error.response.status === 401) {
-        await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
-        const tokenNovo = tokenStorage.getToken();
-        console.log("Token novo", tokenNovo);
-        fetchColaboradores();
-      } else {
-        alert('falha ao buscar documentos');
+
+    
+      if (axios.isAxiosError(error)) {
+          if (error.response) {
+              const errorData = error.response.data;
+
+              if (errorData.errors && errorData.errors.length > 0) {
+                  console.log(errorData.errors[0]);
+              } else {
+                  alert("Erro inesperado! Realize o login novamente.");
+                  window.location.href = "/login";
+              }
+          }
       }
-    }
+  }
   };
 
   useEffect(() => {
@@ -79,8 +84,8 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
       <div>
         <Header
           buttonName='Sair'
-          handleClick={handleNavigation}
-          buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
+          handleClick={() => {window.location.href = "/login"}}
+          buttonsNames={["Verificar Documentos", "Verificar Cadastros", "Gerenciamento", "Perfil"]}
           colaborador={true}
         />
         <div className="w-full h-full px-20">

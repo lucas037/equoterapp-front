@@ -1,4 +1,4 @@
-import DropdownOption from "@/app/types/DropdownOption";
+import DropdownOption from "@/types/DropdownOption";
 import { useState } from "react";
 
 interface InterfaceProps {
