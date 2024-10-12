@@ -4,15 +4,12 @@ import Button from './Button';
 import { motion } from 'framer-motion';
 
 interface InterfaceProps {
+    nameFamiliar: string,
     buttonName: string,
     handleClick: () => void
 }
 
 export default function Header(props: InterfaceProps) {
-    function clickLogo() {
-        window.location.href = "/";
-    }
-
     const [showTooltip, setShowTooltip] = useState(false);
 
     return (
@@ -20,7 +17,7 @@ export default function Header(props: InterfaceProps) {
         <div className="w-[80%] h-[120px] flex justify-center mb-4 bg-[#4B8A89] rounded-md">
             <div className='w-[90%] h-[120px] flex justify-between items-center'>
                 <div className='text-xl flex flex-col xl:flex xl:max-w-[100%] text-white'>
-                    <div>Olá Maria,</div>
+                    <div>Olá {props.nameFamiliar},</div>
                     <div>Seu pré-cadastro no sistema se encontra</div>
                 </div>
 
