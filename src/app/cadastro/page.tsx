@@ -10,6 +10,7 @@ import DropdownOption from "../../types/DropdownOption";
 import axios from "axios";
 import tokenStorage from '../../utils/token';
 import currentPageStorage from '../../utils/currentPage';
+import requestsAuth from '../../utils/requestsAuth';
 
 export default function Cadastro() {
 
@@ -23,8 +24,20 @@ export default function Cadastro() {
         });
 
         try {
-            await axios.post('http://localhost:8080/api/v1/auth/familiar/register', dadosFamiliar);
-            tentarLogin();
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/familiar/register`, dadosFamiliar);
+
+            await requestsAuth.login(dadosFamiliar.email, dadosFamiliar.password);
+            
+            if (!requestsAuth.loginStatus) {
+                setErro(requestsAuth.messageError);
+            }
+
+            else {
+                currentPageStorage.changePage(1);
+                window.location.href = "/"+currentPageStorage.getPage();
+            }
+
+            
 
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -38,23 +51,6 @@ export default function Cadastro() {
 
             }
         }
-    }
-
-    async function tentarLogin() {
-
-        try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/login', dadosFamiliar);
-
-            tokenStorage.setToken(response.data.token);
-            tokenStorage.setRefreshToken(response.data.refreshToken);
-
-            currentPageStorage.changePage(1);
-            window.location.href = "/" + currentPageStorage.getPage();
-
-        } catch (error) {
-            window.location.href = "/login";
-        }
-
     }
 
     function changeDadosFamiliar(dadosFamiliar: DadosFamiliar) {
