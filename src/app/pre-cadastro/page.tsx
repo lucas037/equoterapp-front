@@ -76,7 +76,7 @@ export default function PreCadastroView() {
                 <HeaderPreCadastro nameFamiliar={nameFamiliar} buttonName={showStatus} handleClick={() => { throw new Error('Function not implemented.'); }} />
 
                 { showStatus == "Aprovado" && 
-                    <div onClick={() => {window.location.href = "/submissao"}} className='w-[300px] h-[60px] flex justify-center items-center mt-4 mb-4 cursor-pointer bg-red-400 font-bold text-white rounded-2xl'>
+                    <div onClick={() => {window.location.href = "/submissao"}} className='w-[300px] h-[60px] flex justify-center items-center mt-4 mb-4 cursor-pointer bg-[#4B8A89] font-bold text-white rounded-2xl'>
                         IR PARA A PRÓXIMA ETAPA
                     </div>
 
