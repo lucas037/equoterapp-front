@@ -10,10 +10,21 @@ import tokenStorage from "../../utils/token";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Modal from './Modal';
+import ModalMotivo from './ModalMotivo';
 export default function ValidarCadastro() {
   const [documentStatuses, setDocumentStatuses] = useState({});
   const [documents, setDocuments] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [motivoModalOpen, setMotivoModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+
+
+
+  const mostrarMotivo = (motivo: string) => {
+    setModalMessage(motivo);
+    setMotivoModalOpen(true);
+  }
 
   const fetchDocuments = async () => {
     try {
@@ -24,7 +35,24 @@ export default function ValidarCadastro() {
         },
       });
 
-      const patientId = meResponse.data.familiar.id;
+      const familiarID = meResponse.data.familiar.id;
+
+      console.log("Buscando documentos do familiar com id", familiarID);
+
+      const responseFamiliar = await axios.get(`http://localhost:8080/api/v1/familiar/getPatients/${familiarID}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (responseFamiliar.data.length === 0) {
+        console.error("Nenhum paciente encontrado para o familiar com id", familiarID);
+        return;
+      }
+
+      const patientId = responseFamiliar.data[0].id;
+
+      console.log("Buscando documentos do paciente com id", patientId);
 
       const response = await axios.get(`http://localhost:8080/api/v1/medicaldocuments/getAll/${patientId}`, {
         headers: {
@@ -60,6 +88,86 @@ export default function ValidarCadastro() {
     fetchDocuments();
   }, []);
 
+
+
+  const resendDocument = async (documentId: number) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+
+    console.log("entrando na função de reenvio do documento ", documentId);
+
+    input.onchange = async (event: any) => {
+      const file = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const token = tokenStorage.getToken();
+
+          console.log("token usado", token);
+
+          const meResponse = await axios.get('http://localhost:8080/api/v1/auth/me', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          const familiarID = meResponse.data.familiar.id;
+
+          console.log("Buscando documentos do familiar com id", familiarID);
+
+          const responseFamiliar = await axios.get(`http://localhost:8080/api/v1/familiar/getPatients/${familiarID}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (responseFamiliar.data.length === 0) {
+            console.error("Nenhum paciente encontrado para o familiar com id", familiarID);
+            return;
+          }
+
+          const patientId = responseFamiliar.data[0].id;
+
+          console.log("reenviando documento médico", patientId);
+
+
+
+          await axios.post(
+            `http://localhost:8080/api/v1/medicaldocuments/resendDocument/${patientId}/${documentId}`,
+            formData,
+            {
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+              },
+            }
+          );
+
+          // Documento enviado com sucesso! Abrir modal.
+          setModalOpen(true);
+
+          // Atualizar os documentos após o upload
+          fetchDocuments();
+
+        } catch (error) {
+          console.error("Erro ao enviar documento", error);
+          if (error.response && error.response.status === 401) {
+            await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
+            const tokenNovo = tokenStorage.getToken();
+            console.log("Token novo", tokenNovo);
+            handleFileUpload(documentType);
+          } else {
+            alert('Falha ao enviar o documento');
+          }
+        }
+      }
+    };
+
+    input.click();
+  };
+
   const handleNavigation = () => {
     window.location.href = '/login';
   };
@@ -73,8 +181,23 @@ export default function ValidarCadastro() {
         },
       });
 
-      const patientId = meResponse.data.familiar.id;
 
+      const familiarID = meResponse.data.familiar.id;
+
+      console.log("Buscando documentos do familiar com id", familiarID);
+
+      const responseFamiliar = await axios.get(`http://localhost:8080/api/v1/familiar/getPatients/${familiarID}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (responseFamiliar.data.length === 0) {
+        console.error("Nenhum paciente encontrado para o familiar com id", familiarID);
+        return;
+      }
+
+      const patientId = responseFamiliar.data[0].id;
       console.log("Baixando documento do paciente com id", patientId, "e id do documento", id);
 
       // Fazer a requisição para obter o documento em formato blob
@@ -84,6 +207,9 @@ export default function ValidarCadastro() {
         },
         responseType: 'blob', // Define que a resposta será um blob (arquivo)
       });
+
+
+      console.log(response.headers)
 
       // Extrair o nome do arquivo do cabeçalho 'content-disposition'
       const contentDisposition = response.headers['content-disposition'];
@@ -148,8 +274,24 @@ export default function ValidarCadastro() {
             },
           });
 
+          const familiarID = meResponse.data.familiar.id;
 
-          const patientId = meResponse.data.familiar.id;
+          console.log("Buscando documentos do familiar com id", familiarID);
+
+          const responseFamiliar = await axios.get(`http://localhost:8080/api/v1/familiar/getPatients/${familiarID}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (responseFamiliar.data.length === 0) {
+            console.error("Nenhum paciente encontrado para o familiar com id", familiarID);
+            return;
+          }
+
+          const patientId = responseFamiliar.data[0].id;
+
+          console.log("Buscando documentos do paciente com id", patientId);
 
 
 
@@ -260,7 +402,15 @@ export default function ValidarCadastro() {
                   </div>
                 </motion.div>
                 <p className={`text-lg font-bold my-2 flex justify-center items-center ${getStatusColor(documentStatuses[document.type])}`}>
-                  {getStatusLabel(document.type)}
+                  {documentStatuses[document.type] === 2 ? (
+                    <>
+                      <button onClick={() => mostrarMotivo(documents.find((doc: any) => doc.type === document.type)?.justification)} className="bg-gray-200 px-4 py-2 rounded">
+                        REPROVADO
+                      </button>
+                    </>
+                  ) : (
+                    getStatusLabel(document.type)
+                  )}
                 </p>
                 <BotaoDocumento
                   icon={getButtonIcon(documentStatuses[document.type])}
@@ -271,6 +421,10 @@ export default function ValidarCadastro() {
                       const documento = documents.find((doc: any) => doc.type === document.type);
                       console.log(documento.id);
                       downloadDocument(documento.id);
+                    } else if (documentStatuses[document.type] === 2) {
+                      const documento = documents.find((doc: any) => doc.type === document.type);
+                      console.log("clicou em reenviar");
+                      resendDocument(documento.id);
                     } else {
                       handleFileUpload(document.type);
                     }
@@ -284,6 +438,9 @@ export default function ValidarCadastro() {
 
       {modalOpen && (
         <Modal handleClose={() => setModalOpen(false)} text="Documento submetido com sucesso!" />
+      )}
+      {motivoModalOpen && (
+        <ModalMotivo handleClose={() => setMotivoModalOpen(false)} text={modalMessage} />
       )}
     </motion.div>
   );
