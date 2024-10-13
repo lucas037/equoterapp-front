@@ -64,7 +64,7 @@ export default function VericarCadastros() {
                     {index < 0 ? (
                         <div className="w-full h-full inline-flex flex-wrap gap-4">
                             {names.map((name, index) => (
-                                <div onClick={() => { activeModal(index); }} key={index} className="border-2 border-black rounded-md w-[350px] h-[100px] p-4 flex flex-col justify-between cursor-pointer">
+                                <div onClick={() => { activeModal(index); }} key={index} className="border-2 border-black rounded-md w-[350px] h-[120px] p-4 flex flex-col justify-between cursor-pointer">
                                     <div className="flex flex-row justify-between items-center">
                                         <div className="flex flex-col text-[#255A59] w-[70%]">
                                             <div className="flex items-center gap-x-2">
