@@ -18,6 +18,12 @@ export default function Login() {
     const [erro, setErro] = useState('...');
 
     async function clickProximaEtapa() {
+        
+        if (!dadosLogin.email || !dadosLogin.password) {
+            setErro('Por favor, preencha todos os campos.');
+            return;
+        }
+
         await requestsAuth.login(dadosLogin.email, dadosLogin.password);
 
         if (!requestsAuth.loginStatus)
@@ -125,8 +131,6 @@ export default function Login() {
 
 
                             <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
-
-                            
 
                             <button
                             className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
