@@ -134,7 +134,7 @@ export default function Cadastro() {
     function handleChangeTelefoneTrabalho(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            workPhone: value,
+            workPhone: aplicarMascaraTelefone(value),
         });
     }
 
