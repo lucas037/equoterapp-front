@@ -15,6 +15,8 @@ const currentPageStorage = {
             else if (index === 3 || index === 4 || index === 7) {
                 this.currentPage = "pre-cadastro";
             }
+            else if (index === 5)
+                this.currentPage = "submissao"
             localStorage.setItem('currentPage', this.currentPage);
         }
     },
