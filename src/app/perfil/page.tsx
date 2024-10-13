@@ -517,7 +517,6 @@ export default function Perfil() {
                 }
 
                 {
-                  modal &&
                   <div className="w-full xl:w-[300px] 2xl:w-[400px] h-full flex flex-col gap-2 mt-5">
                     <div className="text-sm font-bold">DADOS DO COLABORADOR</div>
                     <div className="w-full h-full border border-1 border-black rounded-lg">
