@@ -76,16 +76,8 @@ export default function PreCadastroView() {
                 <HeaderPreCadastro nameFamiliar={nameFamiliar} buttonName={showStatus} handleClick={() => { throw new Error('Function not implemented.'); }} />
 
                 { showStatus == "Aprovado" && 
-
-                    <div className='w-[80%] h-[10%] flex justify-center items-center mt-4 mb-4'>
-                        <Botao
-                            className={`w-[300px] h-[60px] rounded-md flex bg-teal-600 text-white font-extrabold ${!boolModificado ? ' opacity-50 cursor-not-allowed' : ''}`}
-                        >
-                            Salvar alterações
-                        </Botao>
-                        {/* <Botao className='w-[140px] h-[50px] rounded-md flex justify-center items-center bg-teal-600 text-white font-extrabold ml-4'>
-                        Finalizar
-                    </Botao> */}
+                    <div onClick={() => {window.location.href = "/submissao"}} className='w-[300px] h-[60px] flex justify-center items-center mt-4 mb-4 cursor-pointer bg-red-400 font-bold text-white rounded-2xl'>
+                        IR PARA A PRÓXIMA ETAPA
                     </div>
 
                 }

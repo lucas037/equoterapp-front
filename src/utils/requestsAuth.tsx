@@ -126,6 +126,13 @@ const requests = {
         return 0;
     },
 
+    getPosition() {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('position') || '';
+        }
+        return '';
+    },
+
     async clear(): Promise<void> {
         this.setLoginStatus(false);
         this.setMessageError("");

@@ -5,6 +5,9 @@ import requestsAuth from "./requestsAuth";
 
 const requests = {
     messageError: "",
+    name: "",
+    cpf: "",
+    sexo: "",
 
     async registerPatient(dadosPaciente: DadosPaciente) {
         dadosPaciente.familiarId = requestsAuth.getFamiliarId();
@@ -42,6 +45,24 @@ const requests = {
             });
 
             requestsAuth.setPatientId(response.data[0].id);
+    
+        } catch (error) {
+            this.messageError = "Ocorreu um erro inesperado ao Obter Id do Paciente. Contacte o suporte.";
+        }
+    },
+    
+    async getPatient(familiaId: number) {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/familiar/getPatients/`+familiaId, {
+                headers: {
+                    'Authorization': `Bearer ${requestsAuth.getToken()}`
+                }
+            });
+
+            requestsAuth.setPatientId(response.data[0].id);
+            this.name = response.data[0].name;
+            this.cpf = response.data[0].cpf;
+            this.sexo = response.data[0].sexo;
     
         } catch (error) {
             this.messageError = "Ocorreu um erro inesperado ao Obter Id do Paciente. Contacte o suporte.";

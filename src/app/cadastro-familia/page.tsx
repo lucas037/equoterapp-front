@@ -39,14 +39,14 @@ export default function CadastroFamilia() {
     }, []);
 
     async function adicionarMembrosFamiliarRequest() {
-        if (subFamiliares.length < 2)
+        if (subFamiliares.length < 1)
             setErro("Selecione todas as pessoas que moram na mesma casa que o paciente.")
 
         else {
             await requestsSubFamiliar.registerPatient(subFamiliares);
 
-            if (requestsPatient.messageError != "")
-                setErro(requestsPatient.messageError)
+            if (requestsSubFamiliar.messageError != "")
+                setErro(requestsSubFamiliar.messageError)
             else {
                 currentPageStorage.changePage(3);
                 window.location.href = "/"+currentPageStorage.getPage();
@@ -62,6 +62,8 @@ export default function CadastroFamilia() {
     }
 
     function adicionarSubFamiliar() {
+        dadosSubFamiliar.patientId = requestsAuth.getPatientId();
+
         if (dadosSubFamiliar.name == "" ||dadosSubFamiliar.name == undefined) {
             setErro("O nome do subfamiliar não pode ser vazio.");
             return;
