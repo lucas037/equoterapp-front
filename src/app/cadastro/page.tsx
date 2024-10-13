@@ -18,8 +18,8 @@ export default function Cadastro() {
 
     async function clickProximaEtapa() {
         setDadosFamiliar({
-          ...dadosFamiliar,
-          status: "pendente",
+            ...dadosFamiliar,
+            status: "pendente",
         });
 
         try {
@@ -30,12 +30,12 @@ export default function Cadastro() {
             if (axios.isAxiosError(error)) {
                 if (error.response) {
                     const errorData = error.response.data;
-        
+
                     if (errorData) {
                         setErro(errorData.errors[0]);
                     }
                 }
-  
+
             }
         }
     }
@@ -49,12 +49,12 @@ export default function Cadastro() {
             tokenStorage.setRefreshToken(response.data.refreshToken);
 
             currentPageStorage.changePage(1);
-            window.location.href = "/"+currentPageStorage.getPage();
-            
+            window.location.href = "/" + currentPageStorage.getPage();
+
         } catch (error) {
             window.location.href = "/login";
         }
-        
+
     }
 
     function changeDadosFamiliar(dadosFamiliar: DadosFamiliar) {
@@ -63,15 +63,15 @@ export default function Cadastro() {
 
     function handleChangeNome(value: string) {
         changeDadosFamiliar({
-          ...dadosFamiliar,
-          name: value,
+            ...dadosFamiliar,
+            name: value,
         });
     }
 
     function handleChangeCPF(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            cpf: value,
+            cpf: aplicarMascaraCPF(value),
         });
     }
 
@@ -99,7 +99,7 @@ export default function Cadastro() {
     function handleChangeTelefone(value: string) {
         changeDadosFamiliar({
             ...dadosFamiliar,
-            phone: value,
+            phone: aplicarMascaraTelefone(value),
         });
     }
 
@@ -147,13 +147,13 @@ export default function Cadastro() {
         { label: "Irmã(o)", value: "irmã" },
         { label: "Outro", value: "outro" },
     ];
-    
+
     const sexoFamiliarOptions: DropdownOption[] = [
         { label: "Selecionar", value: "" },
         { label: "Masculino", value: "Masculino" },
         { label: "Feminino", value: "Feminino" }
     ];
-    
+
     const escolaridadeOptions: DropdownOption[] = [
         { label: "Selecionar", value: "" },
         { label: "Ensino Fundamental Incompleto", value: "Ensino Fundamental Incompleto" },
@@ -167,24 +167,24 @@ export default function Cadastro() {
         { label: "Mestrado", value: "Mestrado" },
         { label: "Doutorado", value: "Doutorado" },
     ];
-    
+
 
     return (
         <div className="">
             <Header
-            buttonName="Login"
-            handleClick={() => {window.location.href = "/login"}}
-            buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
+                buttonName="Login"
+                handleClick={() => { window.location.href = "/login" }}
+                buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
             />
 
             <div className="w-full sm:h-[calc(100vh-160px)] flex justify-center items-center">
                 <div className="w-[95%] sm:h-[90%] border flex border-gray-400 mb-3" >
                     <Image
-                    src = "/assets/adulto.png"
-                    alt = ""
-                    height={288}
-                    width={410}
-                    className="hidden lg:block h-full w-auto opacity-50"
+                        src="/assets/adulto.png"
+                        alt=""
+                        height={288}
+                        width={410}
+                        className="hidden lg:block h-full w-auto opacity-50"
                     />
 
                     <div className="w-full h-full flex flex-col justify-around items-center">
@@ -199,39 +199,39 @@ export default function Cadastro() {
                         <div className="w-[90%] text-sm font-bold flex flex-col items-center gap-3">
                             <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
-                                name={"NOME"}
-                                style={"w-[100%] sm:w-[66%]"}
-                                value={dadosFamiliar.name}
-                                onChange={handleChangeNome}
-                                height="h-[45px]"
+                                    name={"NOME"}
+                                    style={"w-[100%] sm:w-[66%]"}
+                                    value={dadosFamiliar.name}
+                                    onChange={handleChangeNome}
+                                    height="h-[45px]"
                                 />
 
                                 <Input
-                                name={"CPF"}
-                                style={"w-[100%] sm:w-[33%]"}
-                                value={dadosFamiliar.cpf}
-                                onChange={handleChangeCPF}
-                                height="h-[45px]"
+                                    name={"CPF"}
+                                    style={"w-[100%] sm:w-[33%]"}
+                                    value={dadosFamiliar.cpf}
+                                    onChange={(e) => handleChangeCPF(e)}
+                                    height="h-[45px]"
                                 />
 
                             </div>
 
                             <div className="w-full flex flex-col gap-3 sm:flex-row sm:justify-between">
                                 <Input
-                                name={"EMAIL"}
-                                style={"w-[100%] sm:w-[66.5%]"}
-                                value={dadosFamiliar.email}
-                                onChange={handleChangeEmail}
-                                height="h-[45px]"
+                                    name={"EMAIL"}
+                                    style={"w-[100%] sm:w-[66.5%]"}
+                                    value={dadosFamiliar.email}
+                                    onChange={handleChangeEmail}
+                                    height="h-[45px]"
                                 />
 
                                 <Input
-                                name={"SENHA"}
-                                style={"w-[100%] sm:w-[33%]"}
-                                value={dadosFamiliar.password}
-                                onChange={handleChangeSenha}
-                                type="password"
-                                height="h-[45px]"
+                                    name={"SENHA"}
+                                    style={"w-[100%] sm:w-[33%]"}
+                                    value={dadosFamiliar.password}
+                                    onChange={handleChangeSenha}
+                                    type="password"
+                                    height="h-[45px]"
                                 />
 
                             </div>
@@ -244,7 +244,7 @@ export default function Cadastro() {
                                     onChange={handleChangeTelefone}
                                     height="h-[45px]"
                                 />
-                                
+
                                 <Dropdown
                                     name={"SEXO"}
                                     style={"w-full sm:w-[33%]"}
@@ -272,7 +272,7 @@ export default function Cadastro() {
                                     onChange={handleChangeLocalTrabalho}
                                     height="h-[45px]"
                                 />
-                                
+
                                 <Input
                                     name={"OCUPAÇÃO"}
                                     style={"w-full sm:w-[33%]"}
@@ -291,15 +291,15 @@ export default function Cadastro() {
 
                             </div>
 
-                            <div className={`${erro == "..."? 'text-white': 'text-red-600'}`}>{erro}</div>
+                            <div className={`${erro == "..." ? 'text-white' : 'text-red-600'}`}>{erro}</div>
 
-                            
+
 
                             <button
-                            className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
-                            onClick={clickProximaEtapa}
+                                className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
+                                onClick={clickProximaEtapa}
                             >
-                            PRÓXIMA ETAPA
+                                PRÓXIMA ETAPA
                             </button>
 
                         </div>
@@ -311,4 +311,29 @@ export default function Cadastro() {
 
         </div>
     )
+}
+
+export function aplicarMascaraCPF(value: string) {
+    value = value.replace(/\D/g, '');
+
+    value = value.substring(0, 11);
+
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+    return value;
+}
+
+
+export function aplicarMascaraTelefone(value: string) {
+    value = value.replace(/\D/g, '');
+
+    value = value.substring(0, 11);
+
+    // (99) 99999-9999
+    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+    value = value.replace(/(\d{5})(\d{1,4})$/, '$1-$2');
+
+    return value;
 }
