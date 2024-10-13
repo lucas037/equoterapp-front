@@ -26,15 +26,25 @@ export default function VericarCadastros() {
 
         const fetchData = async () => {
             await requestsFamiliar.getFamliars();
-            setNames(requestsFamiliar.names);
-            setIds(requestsFamiliar.ids);
-        };
+          
+            const combined = requestsFamiliar.names.map((name: string, index: number) => ({
+              name,
+              id: requestsFamiliar.ids[index],
+            }));
+            
+            combined.sort((a, b) => a.name.localeCompare(b.name));
+            
+            setNames(combined.map(item => item.name));
+            setIds(combined.map(item => item.id));
+          };
+          
 
         fetchData();
     }, []);
 
     async function activeModal(index: number) {
         setIndex(index);
+        setSubFamiliars([]);
 
         await requestsPatient.getPatient(ids[index]);
 
@@ -98,32 +108,36 @@ export default function VericarCadastros() {
 
                             <div className="w-full flex flex-col gap-4 uppercase">
                                 <div className="flex font-bold flex-wrap">
-                                    <div className="flex-1 min-w-[100px] flex justify-center">NOME</div>
-                                    <div className="flex-1 min-w-[100px] flex justify-center">PARENTESCO</div>
-                                    <div className="flex-1 min-w-[100px] flex justify-center">PROFISSÃO</div>
-                                    <div className="flex-1 min-w-[100px] flex justify-center">ESCOLARIDADE</div>
-                                    <div className="flex-1 min-w-[100px] flex justify-center">RENDA</div>
+                                    <div className="flex-1 min-w-[25%] flex justify-center">NOME</div>
+                                    <div className="flex-1 min-w-[15%] flex justify-center">PARENTESCO</div>
+                                    <div className="flex-1 min-w-[20%] flex justify-center">PROFISSÃO</div>
+                                    <div className="flex-1 min-w-[25%] flex justify-center">ESCOLARIDADE</div>
+                                    <div className="flex-1 min-w-[15%] flex justify-center">RENDA</div>
                                 </div>
 
                                 {subFamiliars.map((subFamiliar, index) => (
                                     <div key={subFamiliar.patientId || index} className="flex flex-wrap text-[#65ADAC]">
-                                        <div className="flex-1 min-w-[100px] flex justify-center items-center">{subFamiliar.name}</div>
-                                        <div className="flex-1 min-w-[100px] flex justify-center items-center">{subFamiliar.familiarKinship}</div>
-                                        <div className="flex-1 min-w-[100px] flex justify-center items-center">{subFamiliar.occupation}</div>
-                                        <div className="flex-1 min-w-[100px] flex justify-center items-center">{subFamiliar.scholarity}</div>
-                                        <div className="flex-1 min-w-[100px] flex justify-center items-center">R${subFamiliar.income}</div>
+                                        <div className="flex-1 min-w-[25%] flex justify-center items-center">{subFamiliar.name}</div>
+                                        <div className="flex-1 min-w-[15%] flex justify-center items-center">{subFamiliar.familiarKinship}</div>
+                                        <div className="flex-1 min-w-[20%] flex justify-center items-center">{subFamiliar.occupation}</div>
+                                        <div className="flex-1 min-w-[25%] flex justify-center items-center">{subFamiliar.scholarity}</div>
+                                        <div className="flex-1 min-w-[15%] flex justify-center items-center">R${subFamiliar.income}</div>
                                     </div>
                                 ))}
                             </div>
 
                             <div className="flex gap-4 mt-6 w-full items-center justify-center">
 
-                                <Botao onClick={() => { changeStatus(true); }} className='w-[40%] h-[50px] rounded-md flex justify-center items-center'>
+                                <Botao onClick={() => { changeStatus(true); }} className='w-[30%] h-[50px] rounded-md flex justify-center items-center'>
                                     Aprovar Pré Cadastro
                                 </Botao>
 
-                                <div onClick={() => { changeStatus(false); }} className=" w-[40%] h-[50px] flex text-center justify-center items-center bg-red-800 cursor-pointer text-white rounded-md">
+                                <div onClick={() => { changeStatus(false); }} className=" w-[30%] h-[50px] flex text-center justify-center items-center bg-red-800 cursor-pointer text-white rounded-md">
                                     <div>REPROVAR PRÉ-CADASTRO</div>
+                                </div>
+
+                                <div onClick={() => { setIndex(-1); }} className=" w-[30%] h-[50px] flex text-center justify-center items-center bg-[#7F7F7F] cursor-pointer text-white rounded-md">
+                                    <div>VOLTAR</div>
                                 </div>
                             </div>
                         </div>

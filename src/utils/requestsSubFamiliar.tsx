@@ -12,8 +12,6 @@ const requests = {
     async registerPatient(subFamiliars: DadosSubFamiliar[]) {
         const rota = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/subfamiliar/`+requestsAuth.getPatientId();
 
-        alert(rota);
-
         try {
             const response = await axios.post(rota, subFamiliars, {
                 headers: {
@@ -34,7 +32,6 @@ const requests = {
                 }
             }
 
-            alert(this.messageError);
         }
     },
 
