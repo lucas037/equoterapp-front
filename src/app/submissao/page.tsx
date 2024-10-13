@@ -172,7 +172,7 @@ export default function ValidarCadastro() {
     window.location.href = '/login';
   };
 
-  const downloadDocument = async (id: number) => {
+  const downloadDocument = async (url:string,id:number) => {
     try {
       const token = tokenStorage.getToken();
       const meResponse = await axios.get('http://localhost:8080/api/v1/auth/me', {
@@ -227,14 +227,14 @@ export default function ValidarCadastro() {
 
       // Criar um link temporário para o download do arquivo
       const blob = new Blob([response.data], { type: response.headers['content-type'] });
-      const url = window.URL.createObjectURL(blob);
+      const url2 = window.URL.createObjectURL(blob);
 
       // Criar um elemento <a> temporário para acionar o download
       const link = document.createElement('a');
-      link.href = url;
+      link.href = url2;
 
       // Definir o nome do arquivo extraído do content-disposition
-      link.setAttribute('download', fileName);
+      link.setAttribute('download', url);
 
       // Acionar o download
       document.body.appendChild(link);
@@ -242,7 +242,7 @@ export default function ValidarCadastro() {
 
       // Limpar o URL e remover o link temporário
       link.parentNode?.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(url2);
 
     } catch (error) {
       console.error("Erro ao baixar documento", error);
@@ -420,7 +420,7 @@ export default function ValidarCadastro() {
                       console.log("Ver documento");
                       const documento = documents.find((doc: any) => doc.type === document.type);
                       console.log(documento.id);
-                      downloadDocument(documento.id);
+                      downloadDocument(documento.url,documento.id);
                     } else if (documentStatuses[document.type] === 2) {
                       const documento = documents.find((doc: any) => doc.type === document.type);
                       console.log("clicou em reenviar");
