@@ -20,11 +20,11 @@ export default function Footer() {
       <div className="relative w-full h-[10%] bg-slate-200 text-black flex flex-col justify-between lg:pl-[25%] z-10">
         <div className="flex justify-between p-4">
           <div>
-            <div className='text-[#44807E] text-2xl'>
-              NESA
+          <div className='text-[#44807E] text-2xl sm:text-xl'>
+          NESA
             </div>
-            <div className='text-[#859594] text-lg'>
-              Núcleo de Equoterapia do Semiárido
+            <div className='text-[#859594] text-sm sm:text-lg'>
+            Núcleo de Equoterapia do Semiárido
             </div>
           </div>
           <div className="relative z-0 justify-items-center center mr-16">
@@ -34,43 +34,43 @@ export default function Footer() {
 
         <div className="p-4 flex flex-row justify-between">
           <div className="mb-0">
-            <div className='text-[#44807E] text-base'>
+            <div className='text-[#44807E] text-sm sm:text-base'>
               Localização
             </div>
-            <div className='text-black text-sm'>
+            <div className='text-black text-xs sm:text-sm'>
               Av. Francisco Mota, 572 - Bairro Costa e Silva, Mossoró/RN
             </div>
-            <div className='text-black text-sm'>
+            <div className='text-black text-xs sm:text-sm'>
               CEP: 59.625-900
             </div>
-            <div className='text-black text-sm'>
+            <div className='text-black text-xs sm:text-sm'>
               CNPJ: 24.529.265/0001-40
             </div>
           </div>
           <div className="mb-0">
-            <div className='text-[#44807E] text-base mb-3'>
-              REDES SOCIAIS
+            <div className='text-[#44807E] text-xs sm:text-base mb-3'>
+              Redes Sociais
             </div>
-            <div className='text-black text-sm flex items-center'>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
               <img src="/assets/instagram.png" alt="Instagram" className="h-4 mr-2" />
-              @NESA_UFERSA
+              @nesa_ufersa
             </div>
-            <div className='text-black text-sm flex items-center'>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
               <img src="/assets/Facebook.png" alt="Facebook" className="h-4 mr-2" />
-              @NESA UFERSA
+              @nesa_ufersa
             </div>
           </div>
           <div className='mr-20 justify-items-start ml-5'>
-            <div className='text-[#44807E] text-base mb-3'>
-              CONTATO
+            <div className='text-[#44807E] text-xs sm:text-base mb-3'>
+              Contatos
             </div>
-            <div className='text-black text-sm flex items-center'>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
               <img src="/assets/tel.png" alt="Telefone" className="h-4 mr-2 text-sm"/>
-              <div className='text-sm'>
+              <div className='text-xs sm:text-sm'>
                 +55 84 3317-8200        
               </div>
             </div>
-            <div className='text-black text-sm flex items-center'>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
               <img src="/assets/Gmail.png" alt="Email" className="h-4 mr-2" />
               nesaufersa@gmail.com
             </div>
