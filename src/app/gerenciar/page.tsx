@@ -108,7 +108,7 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
                   {grupo.colaboradores.map(colaborador => {
                     const icone = colaborador.gender === 'Male' ? <Person /> : <Person3Icon />;
                     return (
-                      <div key={colaborador.id} className="p-4 bg-white">
+                      <div key={colaborador.id} className="bg-white">
                         <InfoDocColaborador
                           nome={colaborador.name}
                           quantSessoes={colaborador.sessionsCount}
