@@ -6,7 +6,7 @@ type ModalProps = {
   text: string;
 };
 
-const Modal: React.FC<ModalProps> = ({ handleClose, text }) => {
+const ModalMotivo: React.FC<ModalProps> = ({ handleClose, text }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -20,13 +20,13 @@ const Modal: React.FC<ModalProps> = ({ handleClose, text }) => {
         exit={{ scale: 0.8 }}
         className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md w-full"
       >
-        <p className="text-lg font-semibold mb-4">MOTIVO DA REPROVAÇÃO</p>
+        <p className="text-lg font-semibold mb-4 text-red-600">MOTIVO DA REPROVAÇÃO</p>
         <p className="text-sm text-gray-600 mb-6">
-          {text}
+            {text}
         </p>
         <button
           onClick={handleClose}
-          className="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
         >
           Fechar
         </button>
@@ -35,4 +35,4 @@ const Modal: React.FC<ModalProps> = ({ handleClose, text }) => {
   );
 };
 
-export default Modal;
+export default ModalMotivo;
