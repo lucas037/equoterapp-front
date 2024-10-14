@@ -41,44 +41,43 @@ export default function Home() {
       <main className="flex-grow mt-2">
         <SlideImg />
 
-        <section className="flex flex-col lg:flex-row h-[full] justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4 mt-20">
-          {/* Card "Quem somos" */}
-          <div className="lg:w-1/2 h-full flex flex-col justify-center">
-            <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Quem somos nós?</h2>
-            <div className='bg-white flex-1'>
-              <div className="bg-gradient-to-r from-[#396e6d] via-[#4B8A89] to-[#306866] shadow-lg rounded-lg p-6 w-full h-full min-h-[300px]">
-                <p className="text-white text-left">
-                  <strong>Somos um projeto de equoterapia da UFERSA</strong> que promove o desenvolvimento <strong>físico, emocional e social</strong> de crianças autistas através da <strong>interação terapêutica com cavalos</strong>. A equoterapia combina os <strong>movimentos rítmicos dos animais</strong> com atividades personalizadas, ajudando no fortalecimento muscular, na <strong>coordenação motora</strong> e no desenvolvimento de <strong>habilidades comunicativas e sociais</strong> das crianças.
-                  <br /><br />
-                  Além disso, o contato com os cavalos proporciona <strong>melhora na autoestima</strong>, estimula o <strong>controle emocional</strong> e promove uma sensação de <strong>autonomia e confiança</strong> para as crianças. Nossa equipe é composta por profissionais de diversas áreas, garantindo um <strong>acompanhamento multidisciplinar</strong> e um ambiente seguro e acolhedor, onde cada paciente recebe o tratamento de acordo com suas necessidades específicas.
+        <section className="flex flex-col lg:flex-row h-full justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4 mt-20 items-stretch">
+  {/* Card "Quem somos" */}
+  <div className="lg:w-1/2 flex flex-col justify-center">
+    <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Quem somos nós?</h2>
+    <div className="bg-white flex-1 h-full">
+      <div className="bg-gradient-to-r from-[#396e6d] via-[#4B8A89] to-[#306866] shadow-lg rounded-lg p-6 w-full h-full">
+        <p className="text-white text-left">
+          <strong>Somos um projeto de equoterapia da UFERSA</strong> que promove o desenvolvimento <strong>físico, emocional e social</strong> de crianças autistas através da <strong>interação terapêutica com cavalos</strong>. A equoterapia combina os <strong>movimentos rítmicos dos animais</strong> com atividades personalizadas, ajudando no fortalecimento muscular, na <strong>coordenação motora</strong> e no desenvolvimento de <strong>habilidades comunicativas e sociais</strong> das crianças.
+          <br /><br />
+          Além disso, o contato com os cavalos proporciona <strong>melhora na autoestima</strong>, estimula o <strong>controle emocional</strong> e promove uma sensação de <strong>autonomia e confiança</strong> para as crianças. Nossa equipe é composta por profissionais de diversas áreas, garantindo um <strong>acompanhamento multidisciplinar</strong> e um ambiente seguro e acolhedor, onde cada paciente recebe o tratamento de acordo com suas necessidades específicas.
+        </p>
+      </div>
+    </div>
+  </div>
 
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Slide "Como Funciona" */}
-          <div className="lg:w-1/2 h-full justify-center bg-white">
-            <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Como participar?</h2>
-            <div className='bg-white'>
-              <div className="bg-gradient-to-l from-[#396e6d] via-[#4B8A89] to-[#306866] shadow-lg rounded-lg p-6 w-full">
-                <ul className="list-disc list-inside text-white text-left">
-                  <li>
-                    <strong>Pré-cadastro:</strong> O primeiro passo é realizar um pré-cadastro, onde são fornecidas informações básicas sobre o paciente. Isso pode ser feito online ou presencialmente, dependendo do processo estabelecido pelo projeto.
-                  </li>
-                  <br />
-                  <li>
-                    <strong>Aguardar aprovação:</strong> Após o envio do pré-cadastro, a equipe do projeto irá revisar as informações e, com base nos critérios de admissão, entrará em contato para informar se o paciente foi aprovado para participar.
-                  </li>
-                  <br />
-                  <li>
-                    <strong>Envio de documentos médicos:</strong> Uma vez aprovado, o responsável deve enviar documentos médicos que comprovem o diagnóstico do paciente e atestem sua aptidão para a prática da equoterapia, garantindo que ele possa participar das atividades com segurança.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Slide "Como Funciona" */}
+  <div className="lg:w-1/2 flex flex-col justify-center">
+    <h2 className="text-xl font-bold mb-4 text-[#1f5857] text-left">Como participar?</h2>
+    <div className="bg-white flex-1 h-full">
+      <div className="bg-gradient-to-l from-[#396e6d] via-[#4B8A89] to-[#306866] shadow-lg rounded-lg p-6 w-full h-full">
+        <ul className="list-disc list-inside text-white text-left">
+          <li>
+            <strong>Pré-cadastro:</strong> O primeiro passo é realizar um pré-cadastro, onde são fornecidas informações básicas sobre o paciente. Isso pode ser feito online ou presencialmente, dependendo do processo estabelecido pelo projeto.
+          </li>
+          <br />
+          <li>
+            <strong>Aguardar aprovação:</strong> Após o envio do pré-cadastro, a equipe do projeto irá revisar as informações e, com base nos critérios de admissão, entrará em contato para informar se o paciente foi aprovado para participar.
+          </li>
+          <br />
+          <li>
+            <strong>Envio de documentos médicos:</strong> Uma vez aprovado, o responsável deve enviar documentos médicos que comprovem o diagnóstico do paciente e atestem sua aptidão para a prática da equoterapia, garantindo que ele possa participar das atividades com segurança.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
         <section className="flex flex-col lg:flex-row h-full justify-between w-full px-4 lg:px-20 space-y-4 lg:space-y-0 lg:space-x-4 mt-10">
           {/* Seção "Regras" aprimorada */}
           <div className="w-full h-full items-center justify-center">
