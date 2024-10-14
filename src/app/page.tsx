@@ -33,8 +33,8 @@ export default function Home() {
 
       <Header
       userNotLogged={true}
-      buttonExtraName='Cadastro'
-      routeExtra='/cadastro'
+      buttonExtraName='Entrar'
+      routeExtra='/login'
       />
 
 
