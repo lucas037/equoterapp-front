@@ -61,14 +61,6 @@ export default function CadastroColaborador() {
             }
         }
     }
-    
-    
-    
-    
-
-    function handleClick() {
-      window.location.href = "/login";
-    }
 
     function handleChangeNomeColaborador(value: string) {
         setDadosColaborador({

@@ -8,7 +8,6 @@ import DadosFamiliar from "../../types/DadosFamiliar";
 import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../../types/DropdownOption";
 import axios from "axios";
-import tokenStorage from '../../utils/token';
 import currentPageStorage from '../../utils/currentPage';
 import requestsAuth from '../../utils/requestsAuth';
 
@@ -16,6 +15,7 @@ export default function Cadastro() {
 
     const [dadosFamiliar, setDadosFamiliar] = useState<DadosFamiliar>({} as DadosFamiliar);
     const [erro, setErro] = useState('...');
+    const [accountCreated, setAccountCreated] = useState(false);
 
     async function clickProximaEtapa() {
         setDadosFamiliar({
@@ -33,8 +33,9 @@ export default function Cadastro() {
             }
 
             else {
-                currentPageStorage.changePage(1);
-                window.location.href = "/"+currentPageStorage.getPage();
+                currentPageStorage.clearCurrentPage();
+                requestsAuth.clear();
+                setAccountCreated(true);
             }
 
             
@@ -166,13 +167,23 @@ export default function Cadastro() {
 
 
     return (
-        <div className="">
+        <div className="h-screen w-screen">
             <Header
                 userNotLogged={true}
                 buttonExtraName="Login"
                 routeExtra="/login"
                 routeLogo="/"
             />
+
+            {
+
+            accountCreated?
+            <div className="h-[calc(100vh-160px)] w-full flex flex-col justify-center items-center gap-4">
+                <div className="text-xl font-bold">Parabéns! Sua conta foi criada!</div>
+                <div onClick={() => {window.location.href = "/login"}} className="p-4 bg-[#4B8A89] text-lg text-white cursor-pointer">Realizar Login</div>
+            </div>
+
+            :
 
             <div className="w-full sm:h-[calc(100vh-160px)] flex justify-center items-center">
                 <div className="w-[95%] sm:h-[90%] border flex border-gray-400 mb-3" >
@@ -305,6 +316,7 @@ export default function Cadastro() {
                 </div>
 
             </div>
+            }
 
         </div>
     )
