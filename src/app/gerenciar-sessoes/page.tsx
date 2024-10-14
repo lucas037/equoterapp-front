@@ -92,10 +92,7 @@ export default function GerenciarPreCadastro() {
     >
       <div>
         <Header
-          buttonName='Sair'
-          handleClick={handleNavigation}
-          buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
-          colaborador={true}
+          collaborator={true}
         />
         <div className="flex w-full h-full px-20">
           <div className="hidden md:block w-[20%] h-full overflow-y-auto border-2 border-black rounded-md p-4">

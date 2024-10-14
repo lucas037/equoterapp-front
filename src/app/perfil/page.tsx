@@ -356,9 +356,6 @@ export default function Perfil() {
     return (
         <div className="flex flex-col items-center">
             <Header
-                buttonName="Sair"
-                handleClick={handleClick}
-                buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
             />
 
             <div className="w-[80%] mb-4">

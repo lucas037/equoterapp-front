@@ -302,10 +302,7 @@ export default function Verificacao() {
     <motion.div initial={pageVariants.initial} animate={pageVariants.animate} exit={pageVariants.exit}>
       <div>
         <Header
-          buttonName='Sair'
-          handleClick={handleNavigation}
-          buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
-          colaborador={true}
+          collaborator={true}
         />
 
         <div className="w-full h-full px-20">

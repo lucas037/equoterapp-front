@@ -162,9 +162,6 @@ export default function CadastroColaborador() {
     return (
         <div className="h-screen flex flex-col">
             <Header
-                buttonName='Entrar'
-                handleClick={handleClick}
-                buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
             />
 
             <div className="h-full flex flex-col justify-center items-center">

@@ -4,7 +4,7 @@ const currentPageStorage = {
     changePage(index: number) {
         if (typeof window !== 'undefined') {
             if (index === 0) {
-                this.currentPage = "gerenciar";
+                this.currentPage = "gerenciar-colaboradores";
             }
             if (index === 1) {
                 this.currentPage = "cadastro-paciente";
@@ -16,7 +16,9 @@ const currentPageStorage = {
                 this.currentPage = "pre-cadastro";
             }
             else if (index === 5)
-                this.currentPage = "submissao"
+                this.currentPage = "submissao";
+            else if (index === 6)
+                this.currentPage = "sessoes";
             localStorage.setItem('currentPage', this.currentPage);
         }
     },

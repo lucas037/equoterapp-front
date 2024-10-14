@@ -168,9 +168,10 @@ export default function Cadastro() {
     return (
         <div className="">
             <Header
-                buttonName="Login"
-                handleClick={() => { window.location.href = "/login" }}
-                buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
+                userNotLogged={true}
+                buttonExtraName="Login"
+                routeExtra="/login"
+                routeLogo="/"
             />
 
             <div className="w-full sm:h-[calc(100vh-160px)] flex justify-center items-center">

@@ -78,10 +78,7 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div>
         <Header
-          buttonName='Sair'
-          handleClick={handleNavigation}
-          buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
-          colaborador={true}
+          collaborator={true}
         />
         <div className="w-full h-full px-20">
           <div className="flex justify-between items-center mb-4">

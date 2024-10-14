@@ -32,9 +32,9 @@ export default function Home() {
     >
 
       <Header
-        buttonName='Entrar'
-        handleClick={handleNavigation}
-        buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
+      userNotLogged={true}
+      buttonExtraName='Cadastro'
+      routeExtra='/cadastro'
       />
 
 

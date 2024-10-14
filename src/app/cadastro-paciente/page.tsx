@@ -96,7 +96,7 @@ export default function Page() {
             birthDate: formattedValue,
         });
 
-        // Validação da data
+        // Validação da data'
         const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4})$/;
         if (regex.test(formattedValue)) {
             console.log("Data de nascimento válida:", formattedValue);
@@ -194,13 +194,6 @@ export default function Page() {
     return (
         <div className="">
             <Header
-                buttonName="Sair"
-                handleClick={() => {
-                    tokenStorage.clearToken();
-                    currentPageStorage.clearCurrentPage();
-                    window.location.href = "/login"
-                }}
-                buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
             />
 
             <div className="w-full sm:h-[calc(100vh-160px)] flex justify-center items-center">

@@ -309,10 +309,9 @@ export function SessoesUsuario() {
     return (
         <div className="w-screen h-screen flex flex-col items-center">
             <Header
-              buttonName='Sair'
-              handleClick={handleClick}
-              buttonsNames={["Sessões", "Agendar", "Evolução", "Perfil"]}
-              colaborador={false}
+              buttonExtraName="Sair"
+              routeExtra="/login"
+              user={true}
             />
     
             <div className="w-[90%] h-[80%] flex">

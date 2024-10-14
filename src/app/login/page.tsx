@@ -91,9 +91,10 @@ export default function Login() {
     return (
         <div className="">
             <Header
-            buttonName="Cadastro"
-            handleClick={() => {window.location.href = "/cadastro"}}
-            buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
+            userNotLogged={true}
+            buttonExtraName="Cadastro"
+            routeExtra="/cadastro"
+            routeLogo="/"
             />
 
             <div className="w-full h-[calc(100vh-160px)] flex justify-center items-center">

@@ -114,10 +114,7 @@ const AdicionarSessaoPage: React.FC = () => {
             exit={pageVariants.exit}
         >
             <Header
-                buttonName='Sair'
-                handleClick={() => window.location.href = '/login'}
-                buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
-                colaborador={true}
+                collaborator={true}
             />
 
 <div className="flex flex-col items-center justify-center mt-10 py-2">

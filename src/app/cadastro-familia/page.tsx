@@ -202,13 +202,6 @@ export default function CadastroFamilia() {
     return (
         <div className="h-screen flex flex-col justify-between">
             <Header
-                buttonName="Sair"
-                handleClick={() => {
-                    tokenStorage.clearToken();
-                    currentPageStorage.clearCurrentPage();
-                    window.location.href = "/login"
-                }}
-                buttonsNames={["Quem Somos", "Regras", "Contatos", "Documentos"]}
             />
 
             <div className="h-[calc(100vh-140px)] flex justify-center items-center">
