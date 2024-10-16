@@ -42,7 +42,7 @@ export default function CadastroColaborador() {
             );
         
             console.log("Colaborador cadastrado com sucesso");
-            window.location.href = "/gerenciar";
+            window.location.href = "/gerenciar-colaboradores";
     
         } catch (error) {
 
