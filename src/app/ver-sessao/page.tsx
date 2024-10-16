@@ -118,12 +118,10 @@ const VerSessao: React.FC = () => {
     return (
         <div className="bg-white min-h-screen p-6">
             <Header
-                buttonName='Sair'
-                handleClick={handleNavigation}
-                buttonsNames={["Verificar Documentos", "Sessões", "Gerenciamento", "Perfil"]}
-                colaborador={true}
+                collaborator={true}
             />
-            <div className="container mx-auto p-4 bg-gray-50 shadow-2xl rounded-lg">
+
+            <div className="container mx-auto p-4 bg-gray-50 shadow-2xl rounded-lg border border-t-4">
                 {session ? (
                     <>
                         <div className="flex items-center justify-between border-b pb-4">
@@ -140,7 +138,7 @@ const VerSessao: React.FC = () => {
                                 <p className="text-lg">{session.startDate ? new Date(session.startDate).toLocaleDateString() : 'Não informado'}</p>
                             </div>
                         </div>
-    
+
                         <div className="py-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
@@ -188,16 +186,16 @@ const VerSessao: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-    
+
                         <div className="w-full h-[1px] bg-[#4B8A89] my-4"></div>
-    
+
                         <div className="mt-4 bg-blue-100 p-4 rounded-lg">
                             <h3 className="font-semibold">OBSERVAÇÕES</h3>
                             <p>{getValueOrDefault(session.observations)}</p>
                         </div>
-    
+
                         <div className="w-full h-[1px] bg-[#4B8A89] my-4"></div>
-    
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <h3 className="font-semibold">ID da Sessão</h3>

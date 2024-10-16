@@ -317,7 +317,7 @@ export default function Page() {
 
 
                             <button
-                                className="w-[80%] h-[60px] bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
+                                className="w-[100%] h-[60px] mb-6 bg-[#4B8A89] text-white rounded-md flex justify-center items-center text-sm font-bold"
                                 onClick={clickProximaEtapa}
                             >
                                 PRÓXIMA ETAPA

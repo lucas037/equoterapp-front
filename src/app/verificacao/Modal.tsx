@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ handleClose, text }) => {
         exit={{ scale: 0.8 }}
         className="bg-white rounded-lg shadow-lg p-8 text-center max-w-md w-full"
       >
-        <p className="text-lg font-semibold mb-4">MOTIVO DA REPROVAÇÃO</p>
+        <p className="text-lg font-semibold mb-4">Documento aprovado</p>
         <p className="text-sm text-gray-600 mb-6">
           {text}
         </p>

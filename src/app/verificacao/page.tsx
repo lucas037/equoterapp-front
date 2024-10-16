@@ -9,7 +9,7 @@ import InfoResponsavel from './InfoResponsavel';
 import axios from 'axios';
 import tokenStorage from '../../utils/token';
 import Modal from './Modal';
-import ModalMotivo from './modalMotivo';
+import ModalMotivo from './ModalMotivo';
 
 // Modal para o motivo de reprovação
 function JustificationModal({ isOpen, handleClose, handleSubmit }) {
