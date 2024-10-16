@@ -35,6 +35,7 @@ export default function Home() {
       userNotLogged={true}
       buttonExtraName='Entrar'
       routeExtra='/login'
+      routeLogo='/'
       />
 
 
