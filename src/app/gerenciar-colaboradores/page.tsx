@@ -33,8 +33,9 @@ const handleNavigation = () => {
 
 const AgruparColaboradoresPorPosicao: React.FC = () => {
   const [colaboradoresAgrupados, setColaboradoresAgrupados] = useState<AgrupadoPorPosicao[]>([]);
-
-  const fetchColaboradores = async () => {
+  const [colaboradoresFiltrados, setColaboradoresFiltrados] = useState<AgrupadoPorPosicao[]>([]);
+  const [busca, setBusca] = useState<string>('');
+  const fetchColaboradores = async (nome?: string) => {
     try {
       const token = tokenStorage.getToken();
       console.log("Token", token);
@@ -46,7 +47,13 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
       const data: Colaborador[] = response.data;
       console.log(data);
 
-      const agrupados = data.reduce((acc: AgrupadoPorPosicao[], colaborador) => {
+      const colaboradoresFiltradosPorNome = nome
+        ? data.filter(colaborador =>
+            colaborador.name.toLowerCase().includes(nome.toLowerCase())
+          )
+        : data;
+
+      const agrupados = colaboradoresFiltradosPorNome.reduce((acc: AgrupadoPorPosicao[], colaborador) => {
         const posicaoExistente = acc.find(item => item.position === colaborador.position);
         if (posicaoExistente) {
           posicaoExistente.colaboradores.push(colaborador);
@@ -57,15 +64,16 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
       }, []);
 
       setColaboradoresAgrupados(agrupados);
+      setColaboradoresFiltrados(agrupados);
     } catch (error) {
       console.error('Erro ao buscar colaboradores:', error);
       if (error.response && error.response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         const tokenNovo = tokenStorage.getToken();
         console.log("Token novo", tokenNovo);
-        fetchColaboradores();
+        fetchColaboradores(nome);
       } else {
-        alert('falha ao buscar documentos');
+        alert('Falha ao buscar colaboradores');
       }
     }
   };
@@ -74,24 +82,28 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
     fetchColaboradores();
   }, []);
 
+ 
+  const handleSearch = (nome: string) => {
+    setBusca(nome); 
+    fetchColaboradores(nome);
+  };
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div>
-        <Header
-          collaborator={true}
-        />
+        <Header collaborator={true} />
         <div className="w-full h-full px-20">
           <div className="flex justify-between items-center mb-4">
             <div>
               <AdicionarColaborador />
             </div>
             <div>
-              <BuscarColaborador />
+              <BuscarColaborador onSearch={handleSearch} />
             </div>
           </div>
         
           <div className="w-full h-full border-2 border-black p-4">
-            {colaboradoresAgrupados.map((grupo, index) => (
+            {colaboradoresFiltrados.map((grupo, index) => (
               <div key={grupo.position} className="mb-6">
                 <div className="text-[#255A59] text-lg font-semibold mb-2 pb-6">
                   {grupo.position.toUpperCase()}
@@ -111,7 +123,7 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
                     );
                   })}
                 </div>
-                {index < colaboradoresAgrupados.length - 1 && (
+                {index < colaboradoresFiltrados.length - 1 && (
                   <hr className="border-t-2 border-gray-300 my-4" />
                 )}
               </div>
