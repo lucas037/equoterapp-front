@@ -10,7 +10,7 @@ export function SessoesUsuario() {
     const [modal, setModal] = useState(false);
     const [indexesModal, setIndexesModal] = useState([0, 0]);
     const [sessao, setSessao] = useState<Sessao>({} as Sessao);
-    const [nomePaciente, setNomePaciente] = useState("Lucas");
+    const [nomePaciente, setNomePaciente] = useState("");
 
     const sessoesPorMes: SessaoPorMes[] = [
         {
@@ -295,9 +295,15 @@ export function SessoesUsuario() {
     ];
 
     useEffect(() => {
-      requestsPatient.getPatient(requestsAuth.getFamiliarId());
-      setNomePaciente(requestsAuth.getNamePatient);
+      const fetchData = async () => {
+        await requestsPatient.getPatient(requestsAuth.getFamiliarId());
+        
+        setNomePaciente(requestsAuth.getNamePatient);
+      };
+    
+      fetchData();
     }, []);
+    
 
     function handleClickSessao(a: number, b: number) {
         setModal(true);
