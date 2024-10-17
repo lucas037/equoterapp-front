@@ -28,7 +28,7 @@ interface AgrupadoPorPosicao {
 }
 
 const handleNavigation = () => {
-  console.log('Navigating...');
+  window.location.href = '/perfil';
 };
 
 const AgruparColaboradoresPorPosicao: React.FC = () => {
