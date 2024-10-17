@@ -139,6 +139,7 @@ export default function GerenciarPreCadastro() {
                   {sessoes.map((sessao, index) => (
                     <div key={index} className="mb-6 p-4 bg-white">
                       <InfoSec
+                        idpaciente={sessao.patient.id}
                         idsessao={sessao.id}
                         quantSessoes={sessoes.length}
                         nome={sessao.patient.name}

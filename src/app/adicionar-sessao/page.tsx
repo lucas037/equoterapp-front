@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { motion } from "framer-motion";
 import axios from 'axios';
 import router from 'next/router';
+import { p } from 'framer-motion/client';
 
 const AdicionarSessaoPage: React.FC = () => {
     const [sessionData, setSessionData] = useState({
@@ -16,16 +17,7 @@ const AdicionarSessaoPage: React.FC = () => {
         guideId: 1,
         mediatorId: 1,
         harnessId: 1,
-        patient: {
-            id: 1,
-            name: '',
-            cpf: '',
-            sexo: '',
-            birthDate: '',
-            naturalness: '',
-            nationality: '',
-            familiarId: 1
-        },
+        patientId: 1,
         startDate: ''
     });
 
@@ -39,28 +31,18 @@ const AdicionarSessaoPage: React.FC = () => {
         });
     };
 
-    const handleNestedChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
-        const { name, value } = e.target;
-        setSessionData({
-            ...sessionData,
-            [field]: {
-                ...sessionData[field],
-                [name]: value
-            }
-        });
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null); // Reset error state
 
         // Validate required fields
-        if (!sessionData.description || !sessionData.horseName || !sessionData.startDate || !sessionData.patient.name || !sessionData.mediatorId || !sessionData.guideId || !sessionData.harnessId) {
+        if (!sessionData.description || !sessionData.horseName || !sessionData.startDate || !sessionData.mediatorId || !sessionData.guideId || !sessionData.harnessId) {
             setError('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
 
         const requestData = {
+            // patientId: sessionData.patientId,
             description: sessionData.description,
             status: sessionData.status,
             patientPresent: sessionData.patientPresent,
@@ -73,7 +55,7 @@ const AdicionarSessaoPage: React.FC = () => {
         };
 
         try {
-            const response = await axios.post(`http://localhost:8080/api/v1/sessions/${sessionData.patient.id}`, requestData);
+            const response = await axios.post(`http://localhost:8080/api/v1/sessions/${sessionData.patientId}`, requestData);
             console.log('Sessão criada com sucesso:', response.data);
             window.location.href = '/gerenciar-sessoes';
         } catch (error: any) {
@@ -168,9 +150,9 @@ const AdicionarSessaoPage: React.FC = () => {
                 <label className="block text-gray-700 text-sm font-bold mb-2">Nome do Paciente:</label>
                 <input
                     type="text"
-                    name="name"
-                    value={sessionData.patient.name}
-                    onChange={(e) => handleNestedChange(e, 'patient')}
+                    name="patientId"
+                    value={sessionData.patientId}
+                    onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                 />
             </div>
