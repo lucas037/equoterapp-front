@@ -1,97 +1,180 @@
 "use client";
 
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DadosColaborador from "../../types/DadosColaborador";
+import requestsAuth from "@/utils/requestsAuth";
+
+type PatientResponse = {
+    id: number;
+    name: string;
+    cpf: string;
+    sexo: string;
+    birthDate: string;
+    naturalness: string;
+    nationality: string;
+    familiarId: number;
+};
+
+type FamiliarResponse = {
+    id: number;
+    name: string;
+    email: string;
+    cpf: string;
+    phone: string;
+    workPhone: string;
+    endereco: string;
+    scholarity: string;
+    familiarKinship: string;
+    ocupation: string;
+    income: number;
+};
+
 
 export default function Perfil() {
     const [modal, setModal] = useState(false);
     const [fieldToEdit, setFieldToEdit] = useState<string | null>(null);
     const [fieldValue, setFieldValue] = useState<string>("");
-    const [colaborador, setColaborador] = useState<DadosColaborador>({
-        nome: "MARIA JOSÉ PAULINA",
-        cpf: "934.234.123-53",
-        cargo: "Psicologa",
-        email: "maria.jose@gmail.com",
-        telefone: "915644789749",
-        rua: "RUA PADRE CICERO",
-        numeroCasa: "29",
-        quantidadeSessoes: 10, // Exemplo de quantidade de sessões
-        sexo: "",
-        aniversario: "",
-        bairro: "CENTRO",
-        senha: ""
-    });
+    const [patients, setPatients] = useState<PatientResponse[]>([]);
+    const [familiar, setFamiliar] = useState<FamiliarResponse | null>(null);
+
+
+    useEffect(() => {
+        const userId = requestsAuth.getId(); // Obtém o ID do usuário logado
+        console.log(userId); // Exibe o ID do usuário logado (para depuração)
+
+        const fetchPatients = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/familiar/getPatients/${userId}`);
+                const data = await response.json();
+                setPatients(data);
+            } catch (error) {
+                console.error("Erro ao buscar os dados dos pacientes:", error);
+            }
+        };
+
+        const fetchFamiliar = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/familiar/${userId}`);
+                const data = await response.json();
+                setFamiliar(data);
+            } catch (error) {
+                console.error("Erro ao buscar os dados do familiar:", error);
+            }
+        };
+
+        fetchPatients();
+        fetchFamiliar();
+    }, []);
 
     const handleEditClick = (field: string, value: string) => {
         setFieldToEdit(field);
         setFieldValue(value);
         setModal(true);
     };
-
     const handleSave = () => {
         if (fieldToEdit) {
-            setColaborador((prev) => ({
-                ...prev,
-                [fieldToEdit]: fieldValue
-            }));
+            // Atualize o valor de um campo para um dos pacientes (se aplicável)
+
         }
         setModal(false);
     };
 
-    return (
+    if (patients.length === 0 || !familiar) {
+        return <div>Carregando...</div>;
+    }
+
+     return (
         <div className="flex flex-col items-center min-h-screen">
             <Header user={true} />
             <div className="w-[90%] h-[80%] flex flex-col items-center gap-4 xl:flex-row xl:justify-center mt-5">
+                
+                {/* Seção de dados dos pacientes */}
                 <div className="w-full xl:w-[600px] 2xl:w-[800px] h-full flex flex-col gap-2">
-                    <div className="text-sm font-bold">DADOS DO USUÁRIO</div>
-                    <div className="w-full h-full border border-1 border-black rounded-lg p-4 bg-white shadow-lg">
+                    <div className="text-sm font-bold">DADOS DOS PACIENTE</div>
+                    {patients.map((patient, index) => (
+                        <div key={index} className="w-full h-full border border-1 border-black rounded-lg p-4 bg-white shadow-lg mb-4">
+                            <div className="ml-4 mb-4 mt-4 flex flex-col gap-2">
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">NOME COMPLETO</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{patient.name}</div>
+                                <br />
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">CPF</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{patient.cpf}</div>
+                                <br />
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">SEXO</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{patient.sexo}</div>
+                                <br />
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">DATA DE NASCIMENTO</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{new Date(patient.birthDate).toLocaleDateString()}</div>
+                                <br />
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">NATURALIDADE</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{patient.naturalness}</div>
+                                <br />
+                                <div className="flex justify-between items-center">
+                                    <div className="text-[#8D8F8F] text-sm font-bold">NACIONALIDADE</div>
+                                </div>
+                                <div className="text-[#255A59] font-bold">{patient.nationality}</div>
+                                <br /><br /><br /><br />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Seção de dados do familiar */}
+                <div className="w-full xl:w-[600px] 2xl:w-[800px] h-full flex flex-col gap-2">
+                    <div className="text-sm font-bold">DADOS DO FAMILIAR</div>
+                    <div className="w-full h-full border border-1 border-black rounded-lg p-4 bg-white shadow-lg mb-4">
                         <div className="ml-4 mb-4 mt-4 flex flex-col gap-2">
                             <div className="flex justify-between items-center">
                                 <div className="text-[#8D8F8F] text-sm font-bold">NOME COMPLETO</div>
                             </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.nome}</div>
+                            <div className="text-[#255A59] font-bold">{familiar.name}</div>
                             <br />
                             <div className="flex justify-between items-center">
                                 <div className="text-[#8D8F8F] text-sm font-bold">CPF</div>
                             </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.cpf}</div>
-                            <br />
-                            <div className="flex justify-between items-center">
-                                <div className="text-[#8D8F8F] text-sm font-bold">BAIRRO</div>
-                                <button className="text-blue-500 text-sm" onClick={() => handleEditClick("bairro", colaborador.bairro)}>Editar</button>
-                            </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.bairro}</div>
-                            <div className="flex justify-between items-center">
-                                <div className="text-[#8D8F8F] text-sm font-bold">RUA</div>
-                                <button className="text-blue-500 text-sm" onClick={() => handleEditClick("rua", colaborador.rua)}>Editar</button>
-                            </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.rua}</div>
-                            <div className="flex justify-between items-center">
-                                <div className="text-[#8D8F8F] text-sm font-bold">NÚMERO DA CASA</div>
-                                <button className="text-blue-500 text-sm" onClick={() => handleEditClick("numeroCasa", colaborador.numeroCasa)}>Editar</button>
-                            </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.numeroCasa}</div>
+                            <div className="text-[#255A59] font-bold">{familiar.cpf}</div>
                             <br />
                             <div className="flex justify-between items-center">
                                 <div className="text-[#8D8F8F] text-sm font-bold">EMAIL</div>
                             </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.email}</div>
+                            <div className="text-[#255A59] font-bold">{familiar.email}</div>
                             <br />
                             <div className="flex justify-between items-center">
-                                <div className="text-[#8D8F8F] text-sm font-bold">TELEFONE</div>
-                                <button className="text-blue-500 text-sm" onClick={() => handleEditClick("telefone", colaborador.telefone)}>Editar</button>
+                                <div className="text-[#8D8F8F] text-sm font-bold">PARENTESCO</div>
                             </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.telefone}</div>
+                            <div className="text-[#255A59] font-bold">{familiar.familiarKinship}</div>
                             <br />
                             <div className="flex justify-between items-center">
-                                <div className="text-[#8D8F8F] text-sm font-bold">QUANTIDADE DE SESSÕES</div>
+                                <div className="text-[#8D8F8F] text-sm font-bold">TELEFONE PESSOAL</div>
                             </div>
-                            <div className="text-[#255A59] font-bold">{colaborador.quantidadeSessoes}</div>
+                            <div className="text-[#255A59] font-bold">{familiar.phone}</div>
                             <br />
-                            <div className="flex justify-center w-full">
-                                <button className="bg-blue-500 text-white p-2 rounded-lg font-bold w-full h-full" onClick={handleSave}>Salvar Informações</button>
+                            <div className="flex justify-between items-center">
+                                <div className="text-[#8D8F8F] text-sm font-bold">TELEFONE DO TRABALHO</div>
                             </div>
+                            <div className="text-[#255A59] font-bold">{familiar.workPhone}</div>
+                            <br />
+                            <div className="flex justify-between items-center">
+                                <div className="text-[#8D8F8F] text-sm font-bold">ENDEREÇO</div>
+                            </div>
+                            <div className="text-[#255A59] font-bold">{familiar.endereco}</div>
+                            <br />
+                            <div className="flex justify-between items-center">
+                                <div className="text-[#8D8F8F] text-sm font-bold">ESCOLARIDADE</div>
+                            </div>
+                            <div className="text-[#255A59] font-bold">{familiar.scholarity}</div>
+                           
                         </div>
                     </div>
                 </div>
