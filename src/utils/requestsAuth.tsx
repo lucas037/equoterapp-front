@@ -8,6 +8,7 @@ const requests = {
     id: "",
     name: "",
     familiarId: "",
+    colaboradorId: "",
     patientId: "",
     status: 0,
     position: "",
@@ -45,6 +46,11 @@ const requests = {
     setFamiliarId(familiarId: string) {
         this.familiarId = familiarId;
         localStorage.setItem('familiarId', familiarId);
+    },
+
+    setColaboradorId(colaboradorId: string) {
+        this.colaboradorId = colaboradorId;
+        localStorage.setItem('colaboradorId', colaboradorId);
     },
 
     setPatientId(patientId: string) {
@@ -111,6 +117,13 @@ const requests = {
         }
         return 0;
     },
+    
+    getColaboradorId() {
+        if (typeof window !== 'undefined') {
+            return parseInt(localStorage.getItem('colaboradorId') || "0");
+        }
+        return 0;
+    },
 
     getPatientId() {
         if (typeof window !== 'undefined') {
@@ -133,6 +146,10 @@ const requests = {
         return '';
     },
 
+    isCollaborator() {
+        return this.getPosition() !== '';
+    },
+
     async clear(): Promise<void> {
         this.setLoginStatus(false);
         this.setMessageError("");
@@ -142,6 +159,7 @@ const requests = {
         this.setPatientId(""),
         this.setStatus(0);
         this.setPosition("");
+        this.setColaboradorId("");
     },
 
     async login(email: string, senha: string): Promise<void> {
@@ -186,6 +204,7 @@ const requests = {
 
             if (response.data.collaborator != null) {
                 this.setPosition(response.data.collaborator.position);
+                this.setColaboradorId(response.data.collaborator.id);
             } else {
                 this.setFamiliarId(response.data.familiar.id);
                 this.setStatus(response.data.familiar.status);
