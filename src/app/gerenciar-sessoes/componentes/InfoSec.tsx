@@ -2,6 +2,7 @@ import { Person, PersonTwoTone } from '@mui/icons-material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 interface InfoSecProps {
+    idpaciente: number;
     idsessao: number;
     nome: string;
     mediador: string;
@@ -18,7 +19,7 @@ const handleNavigation = (idsessao: number, idpaciente: number) => {
     }
 };
 
-export default function InfoSec({ idsessao, nome, icon, quantSessoes, presenca, mediador }: InfoSecProps) {
+export default function InfoSec({ idsessao, idpaciente, nome, icon, quantSessoes, presenca, mediador }: InfoSecProps) {
     return (
         <div className="border-2 border-black rounded-md h-full p-4">
             <div className="flex flex-row">
@@ -69,7 +70,7 @@ export default function InfoSec({ idsessao, nome, icon, quantSessoes, presenca, 
                 </div>
 
                 <div className="flex flex-col text-[#255A59] w-[45%] justify-center items-center mt-4">
-                <button onClick={() => handleNavigation(idsessao, 1)} className="flex items-center gap-x-2 text-sm p-2 justify-center bg-green-950 text-white rounded-md">
+                <button onClick={() => handleNavigation(idsessao, idpaciente)} className="flex items-center gap-x-2 text-sm p-2 justify-center bg-green-950 text-white rounded-md">
                         Ver Detalhes
                     </button>
                 </div>
