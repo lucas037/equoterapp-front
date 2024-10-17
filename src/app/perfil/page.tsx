@@ -356,23 +356,9 @@ export default function Perfil() {
     return (
         <div className="flex flex-col items-center">
             <Header
+            collaborator={true}
             />
 
-            <div className="w-[80%] mb-4">
-                <div className="flex gap-2 items-center">
-                    <Image
-                        src = "/assets/svg/return-button.svg"
-                        alt = ""
-                        width={1}
-                        height={1}
-                        className="h-[40px] w-[30px]"
-                    />
-                    <div className="text-sm text-[#5BA0D0] font-bold">VOLTAR</div>
-
-                </div>
-            </div>
-
-            
             <div className="w-[90%] h-[80%] flex flex-col gap-4 xl:flex-row xl:justify-between mb-2">
                 <div className={`${modal? 'hidden xl:flex xl:flex-col xl:gap-2': ''} mt-5 w-[300px] sm:w-[42%] md:w-[34%] lg:w-[26%] xl:w-[18%]`}>
 
