@@ -23,12 +23,12 @@ export default function Header(props: InterfaceProps) {
 
     useEffect(() => {
         if (props.collaborator) {
-            setRoutes(["gerenciar-cadastros", "gerenciar-documentos", "gerenciar-sessoes", "gerenciar-colaboradores"]);
-            setButtonNames(["Cadastros", "Documentos", "Sessões", "Colaboradores"]);
+            setRoutes(["gerenciar-cadastros", "gerenciar-documentos", "gerenciar-sessoes", "gerenciar-colaboradores", "perfil"]);
+            setButtonNames(["Cadastros", "Documentos", "Sessões", "Colaboradores", "Perfil"]);
         }
         else if (props.user) {
-            setRoutes(["/sessoes"])
-            setButtonNames(["Sessões"])
+            setRoutes(["/sessoes", "/perfil-user", "", ""]);
+            setButtonNames(["Sessões", "Perfil"])
         }
         else if (props.userNotLogged) {
             setRoutes(["", "", "", ""]);
