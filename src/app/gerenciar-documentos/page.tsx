@@ -52,7 +52,6 @@ const ListarPacientes: React.FC = () => {
 
   const handlePatientClick = (patientId: number) => {
     localStorage.setItem('pacienteId', patientId.toString());
-    alert(`Paciente ${patientId} selecionado e salvo no localStorage`);
     window.location.href = '/verificacao';
   };
 
