@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sessao from "../../types/Sessao";
 import SessaoPorMes from "../../types/SessaoPorMes";
 import Image from 'next/image';
 import Header from "@/components/Header";
+import requestsPatient from "@/utils/requestsPatient";
+import requestsAuth from "@/utils/requestsAuth";
 
 export function SessoesUsuario() {
     const [modal, setModal] = useState(false);
     const [indexesModal, setIndexesModal] = useState([0, 0]);
     const [sessao, setSessao] = useState<Sessao>({} as Sessao);
+    const [nomePaciente, setNomePaciente] = useState("Lucas");
 
     const sessoesPorMes: SessaoPorMes[] = [
         {
@@ -19,7 +22,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-01-05",
                 dia: "5",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Clara Lima",
                 presenca: true,
                 guia: "Matheus Silveira",
@@ -32,7 +35,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-01-20",
                 dia: "20",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "João Costa",
                 presenca: false,
                 guia: "Daniel Nobre",
@@ -50,7 +53,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-02-10",
                 dia: "10",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Maria Santos",
                 presenca: true,
                 guia: "Roberto",
@@ -63,7 +66,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-02-25",
                 dia: "25",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Fernanda Oliveira",
                 presenca: true,
                 guia: "Sandra",
@@ -81,7 +84,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-03-12",
                 dia: "12",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Ricardo Silva",
                 presenca: true,
                 guia: "Gabriel",
@@ -94,7 +97,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-03-28",
                 dia: "28",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Ana Pereira",
                 presenca: false,
                 guia: "Marcos",
@@ -112,7 +115,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-04-08",
                 dia: "8",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Lucas Costa",
                 presenca: true,
                 guia: "André",
@@ -125,7 +128,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-04-22",
                 dia: "22",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Juliana Santos",
                 presenca: true,
                 guia: "Ana",
@@ -143,7 +146,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-05-10",
                 dia: "10",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Fernanda Costa",
                 presenca: false,
                 guia: "Pedro",
@@ -156,7 +159,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-05-25",
                 dia: "25",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Rodrigo Lima",
                 presenca: true,
                 guia: "Nina",
@@ -174,7 +177,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-06-05",
                 dia: "5",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Mariana Oliveira",
                 presenca: true,
                 guia: "Lucas",
@@ -187,7 +190,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-06-18",
                 dia: "18",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Gabriela Silva",
                 presenca: true,
                 guia: "Tiago",
@@ -205,7 +208,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-07-12",
                 dia: "12",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Carlos Almeida",
                 presenca: false,
                 guia: "Sandra",
@@ -218,7 +221,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-07-26",
                 dia: "26",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Tatiane Costa",
                 presenca: true,
                 guia: "Miguel",
@@ -236,7 +239,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-08-10",
                 dia: "10",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Ana Costa",
                 presenca: true,
                 guia: "Maria",
@@ -249,7 +252,7 @@ export function SessoesUsuario() {
                 turma: "Turma B",
                 data: "2024-08-20",
                 dia: "20",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Carlos Lima",
                 presenca: false,
                 guia: "Lucas",
@@ -267,7 +270,7 @@ export function SessoesUsuario() {
                 turma: "Turma A",
                 data: "2024-09-05",
                 dia: "5",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Fernanda Alves",
                 presenca: true,
                 guia: "Júlia",
@@ -280,7 +283,7 @@ export function SessoesUsuario() {
                 turma: "Turma C",
                 data: "2024-09-15",
                 dia: "15",
-                paciente: "Lucas Almeida",
+                paciente: nomePaciente,
                 mediador: "Ricardo Mendes",
                 presenca: true,
                 guia: "Bruno",
@@ -291,9 +294,10 @@ export function SessoesUsuario() {
           }
     ];
 
-    function handleClick() {
-      window.location.href = "/";
-    }
+    useEffect(() => {
+      requestsPatient.getPatient(requestsAuth.getFamiliarId());
+      setNomePaciente(requestsAuth.getNamePatient);
+    }, []);
 
     function handleClickSessao(a: number, b: number) {
         setModal(true);

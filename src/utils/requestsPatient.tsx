@@ -60,6 +60,7 @@ const requests = {
             });
 
             requestsAuth.setPatientId(response.data[0].id);
+            requestsAuth.setNamePatient(response.data[0].name);
             this.name = response.data[0].name;
             this.cpf = response.data[0].cpf;
             this.sexo = response.data[0].sexo;

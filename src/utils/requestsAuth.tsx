@@ -7,6 +7,7 @@ const requests = {
     refreshToken: "",
     id: "",
     name: "",
+    namePatient: "",
     familiarId: "",
     colaboradorId: "",
     patientId: "",
@@ -41,6 +42,11 @@ const requests = {
     setName(userName: string) {
         this.name = userName;
         localStorage.setItem('name', userName);
+    },
+
+    setNamePatient(name: string) {
+        this.namePatient = name;
+        localStorage.setItem('namePatient', name);
     },
 
     setFamiliarId(familiarId: string) {
@@ -110,6 +116,14 @@ const requests = {
         }
         return "";
     },
+    
+
+    getNamePatient() {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('namePatient') || "";
+        }
+        return "";
+    },
 
     getFamiliarId() {
         if (typeof window !== 'undefined') {
@@ -160,6 +174,7 @@ const requests = {
         this.setStatus(0);
         this.setPosition("");
         this.setColaboradorId("");
+        this.setNamePatient("");
     },
 
     async login(email: string, senha: string): Promise<void> {
@@ -219,6 +234,7 @@ const requests = {
         this.messageError = localStorage.getItem('messageError') || "";
         this.id = localStorage.getItem('id') || "";
         this.name = localStorage.getItem('name') || "";
+        this.namePatient = localStorage.getItem('name') || "";
         this.familiarId = localStorage.getItem('familiarId') || "";
         this.status = parseInt(localStorage.getItem('status') || '0', 10);
         this.position = localStorage.getItem('position') || "";
