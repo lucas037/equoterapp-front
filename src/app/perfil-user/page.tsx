@@ -40,14 +40,22 @@ export default function Perfil() {
 
 
     useEffect(() => {
-        const userId = requestsAuth.getId(); // Obtém o ID do usuário logado
+
+        if (requestsAuth.isCollaborator()) {
+            window.location.href = '/gerenciar-sessoes'; // Redireciona para a página inicial se o usuário não for um colaborador
+            return;
+        }
+
+        const userId = requestsAuth.getFamiliarId(); // Obtém o ID do usuário logado
         console.log(userId); // Exibe o ID do usuário logado (para depuração)
 
         const fetchPatients = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/v1/familiar/getPatients/${userId}`);
                 const data = await response.json();
-                setPatients(data);
+                if (data.length > 0) {
+                    setPatients([data[0]]); // Define o estado apenas com o primeiro paciente
+                }
             } catch (error) {
                 console.error("Erro ao buscar os dados dos pacientes:", error);
             }
@@ -84,50 +92,50 @@ export default function Perfil() {
         return <div>Carregando...</div>;
     }
 
-     return (
+    return (
         <div className="flex flex-col items-center min-h-screen">
             <Header user={true} />
             <div className="w-[90%] h-[80%] flex flex-col items-center gap-4 xl:flex-row xl:justify-center mt-5">
-                
+
                 {/* Seção de dados dos pacientes */}
                 <div className="w-full xl:w-[600px] 2xl:w-[800px] h-full flex flex-col gap-2">
-                    <div className="text-sm font-bold">DADOS DOS PACIENTE</div>
-                    {patients.map((patient, index) => (
-                        <div key={index} className="w-full h-full border border-1 border-black rounded-lg p-4 bg-white shadow-lg mb-4">
+                    <div className="text-sm font-bold">DADOS DO PACIENTE</div>
+                    {patients.length > 0 && (
+                        <div className="w-full h-full border border-1 border-black rounded-lg p-4 bg-white shadow-lg mb-4">
                             <div className="ml-4 mb-4 mt-4 flex flex-col gap-2">
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">NOME COMPLETO</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{patient.name}</div>
+                                <div className="text-[#255A59] font-bold">{patients[0].name}</div>
                                 <br />
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">CPF</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{patient.cpf}</div>
+                                <div className="text-[#255A59] font-bold">{patients[0].cpf}</div>
                                 <br />
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">SEXO</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{patient.sexo}</div>
+                                <div className="text-[#255A59] font-bold">{patients[0].sexo}</div>
                                 <br />
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">DATA DE NASCIMENTO</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{new Date(patient.birthDate).toLocaleDateString()}</div>
+                                <div className="text-[#255A59] font-bold">{new Date(patients[0].birthDate).toLocaleDateString()}</div>
                                 <br />
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">NATURALIDADE</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{patient.naturalness}</div>
+                                <div className="text-[#255A59] font-bold">{patients[0].naturalness}</div>
                                 <br />
                                 <div className="flex justify-between items-center">
                                     <div className="text-[#8D8F8F] text-sm font-bold">NACIONALIDADE</div>
                                 </div>
-                                <div className="text-[#255A59] font-bold">{patient.nationality}</div>
+                                <div className="text-[#255A59] font-bold">{patients[0].nationality}</div>
                                 <br /><br /><br /><br />
                             </div>
                         </div>
-                    ))}
+                    )}
                 </div>
 
                 {/* Seção de dados do familiar */}
@@ -174,7 +182,7 @@ export default function Perfil() {
                                 <div className="text-[#8D8F8F] text-sm font-bold">ESCOLARIDADE</div>
                             </div>
                             <div className="text-[#255A59] font-bold">{familiar.scholarity}</div>
-                           
+
                         </div>
                     </div>
                 </div>
