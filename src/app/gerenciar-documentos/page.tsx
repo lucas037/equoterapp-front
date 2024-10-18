@@ -35,7 +35,7 @@ const ListarPacientes: React.FC = () => {
       console.log(data);
     } catch (error) {
       console.error('Erro ao buscar pacientes:', error);
-      if (error.response && error.response.status === 401) {
+      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         const tokenNovo = tokenStorage.getToken();
         console.log("Token novo", tokenNovo);

@@ -44,39 +44,41 @@ export default function Header(props: InterfaceProps) {
         if (props.routeLogo != null)
             setRouteLogo(props.routeLogo);
 
-    }, []);
+    }, [props.collaborator,
+    props.user,
+    props.userNotLogged,
+    props.buttonExtraName,
+    props.routeExtra,
+    props.routeLogo]);
 
     function clickBurgerMenu() {
-        if (isOpenedMenu)
-            setIsOpenedMenu(false);
-        else
-            setIsOpenedMenu(true);
+        setIsOpenedMenu(!isOpenedMenu);
     }
 
     return (
-        
+
         <div className="w-[100%] flex flex-col items-center mb-4">
             <div className='w-[90%] h-[120px] flex justify-around items-center'>
-                
+
                 <button className='h-[80%] aspect-square'>
                     <Image src="/assets/logo.png"
-                    alt="foto"
-                    width={400}
-                    height={400}
-                    className="w-full h-full"
-                    onClick={
-                        () => {
-                            if (routeLogo)
-                                window.location.href = routeLogo
+                        alt="foto"
+                        width={400}
+                        height={400}
+                        className="w-full h-full"
+                        onClick={
+                            () => {
+                                if (routeLogo)
+                                    window.location.href = routeLogo
+                            }
                         }
-                    }
-                />
+                    />
                 </button>
 
-    
+
                 <div className='text-xl gap-32 items-center hidden xl:flex xl:max-w-[100%]'>
                     {buttonNames.map((item, index) => (
-                        <div 
+                        <div
                             key={index}
                             onClick={() => {
                                 if (routes[index] != "")
@@ -88,31 +90,31 @@ export default function Header(props: InterfaceProps) {
                         </div>
                     ))}
                 </div>
-        
+
                 {
-                <Image
-                    src="/assets/svg/burger-menu.svg"
-                    alt="foto"
-                    width={200}
-                    height={200}
-                    className="h-[30%] xl:hidden cursor-pointer"
-                    onClick={clickBurgerMenu}
-                />
+                    <Image
+                        src="/assets/svg/burger-menu.svg"
+                        alt="foto"
+                        width={200}
+                        height={200}
+                        className="h-[30%] xl:hidden cursor-pointer"
+                        onClick={clickBurgerMenu}
+                    />
                 }
-                
-                <Botao 
-                onClick={() => { 
-                    if (buttonExtraName == "Sair") {
-                        requestsAuth.clear();
-                        currentPageStorage.clearCurrentPage();
 
-                    }
+                <Botao
+                    onClick={() => {
+                        if (buttonExtraName == "Sair") {
+                            requestsAuth.clear();
+                            currentPageStorage.clearCurrentPage();
 
-                    window.location.href = routeExtra
-                 }} 
-                className="hidden xl:flex w-[140px] h-[50px] rounded-md justify-center items-center">
+                        }
+
+                        window.location.href = routeExtra
+                    }}
+                    className="hidden xl:flex w-[140px] h-[50px] rounded-md justify-center items-center">
                     {buttonExtraName}
-                </Botao> 
+                </Botao>
 
 
             </div>
@@ -121,8 +123,8 @@ export default function Header(props: InterfaceProps) {
                 isOpenedMenu &&
                 <div className="xl:hidden w-[80%] flex flex-col gap-3 items-center md:flex-row md:justify-between">
                     {buttonNames.map((item, index) => (
-                        <div 
-                            key={index} 
+                        <div
+                            key={index}
                             onClick={() => {
                                 if (routes[index] != "")
                                     window.location.href = routes[index];
@@ -133,13 +135,13 @@ export default function Header(props: InterfaceProps) {
                         </div>
                     ))}
 
-                    
+
                     <Botao onClick={() => { window.location.href = routeExtra }} className='w-[140px] h-[50px] rounded-md flex justify-center items-center'>
                         {buttonExtraName}
-                    </Botao> 
+                    </Botao>
                 </div>
             }
-  
+
         </div>
     )
 }

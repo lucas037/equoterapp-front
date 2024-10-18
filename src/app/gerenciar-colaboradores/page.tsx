@@ -67,7 +67,7 @@ const AgruparColaboradoresPorPosicao: React.FC = () => {
       setColaboradoresFiltrados(agrupados);
     } catch (error) {
       console.error('Erro ao buscar colaboradores:', error);
-      if (error.response && error.response.status === 401) {
+      if ((error as any).response && (error as any).response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         const tokenNovo = tokenStorage.getToken();
         console.log("Token novo", tokenNovo);

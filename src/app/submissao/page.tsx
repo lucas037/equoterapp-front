@@ -12,8 +12,8 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Modal from './Modal';
 import ModalMotivo from './ModalMotivo';
 export default function ValidarCadastro() {
-  const [documentStatuses, setDocumentStatuses] = useState({});
-  const [documents, setDocuments] = useState([]);
+  const [documentStatuses, setDocumentStatuses] = useState<{ [key: string]: number }>({});
+  const [documents, setDocuments] = useState<{ id: number, type: string, justification?: string, url?: string }[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [motivoModalOpen, setMotivoModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
@@ -61,7 +61,7 @@ export default function ValidarCadastro() {
       });
 
       const documentsFromAPI = response.data;  // Recebe a lista completa dos documentos
-      const statusMap = {};
+      const statusMap: { [key: string]: number } = {};
 
       // Mapeia o status dos documentos
       documentsFromAPI.forEach((doc: any) => {
@@ -73,7 +73,7 @@ export default function ValidarCadastro() {
 
     } catch (error) {
       console.error("Erro ao buscar documentos", error);
-      if (error.response && error.response.status === 401) {
+      if ((error as any).response && (error as any).response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         const tokenNovo = tokenStorage.getToken();
         console.log("Token novo", tokenNovo);
@@ -153,11 +153,11 @@ export default function ValidarCadastro() {
 
         } catch (error) {
           console.error("Erro ao enviar documento", error);
-          if (error.response && error.response.status === 401) {
+          if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
             await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
             const tokenNovo = tokenStorage.getToken();
             console.log("Token novo", tokenNovo);
-            handleFileUpload(documentType);
+            resendDocument(documentId);
           } else {
             alert('Falha ao enviar o documento');
           }
@@ -314,7 +314,7 @@ export default function ValidarCadastro() {
 
         } catch (error) {
           console.error("Erro ao enviar documento", error);
-          if (error.response && error.response.status === 401) {
+          if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
             await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
             const tokenNovo = tokenStorage.getToken();
             console.log("Token novo", tokenNovo);
@@ -375,10 +375,7 @@ export default function ValidarCadastro() {
       )}
       <div>
         <Header
-          buttonName='Sair'
-          handleClick={handleNavigation}
-          buttonsNames={["Submeter Documentos", "Dúvidas", "Contato", "Perfil"]}
-          colaborador={false}
+          collaborator={false}
         />
 
         <div className="w-full h-full px-20">
@@ -404,7 +401,7 @@ export default function ValidarCadastro() {
                 <p className={`text-lg font-bold my-2 flex justify-center items-center ${getStatusColor(documentStatuses[document.type])}`}>
                   {documentStatuses[document.type] === 2 ? (
                     <>
-                      <button onClick={() => mostrarMotivo(documents.find((doc: any) => doc.type === document.type)?.justification)} className="bg-gray-200 px-4 py-2 rounded">
+                      <button onClick={() => mostrarMotivo(documents.find((doc) => doc.type === document.type)?.justification || '')} className="bg-gray-200 px-4 py-2 rounded">
                         REPROVADO
                       </button>
                     </>
@@ -419,12 +416,24 @@ export default function ValidarCadastro() {
                     if (documentStatuses[document.type] === 1 || documentStatuses[document.type] === 3) {
                       console.log("Ver documento");
                       const documento = documents.find((doc: any) => doc.type === document.type);
-                      console.log(documento.id);
-                      downloadDocument(documento.url,documento.id);
+                      if (documento) {
+                        console.log(documento.id);
+                        if (documento.url) {
+                          downloadDocument(documento.url, documento.id);
+                        } else {
+                          console.error("URL do documento não encontrada");
+                        }
+                      } else {
+                        console.error("Documento não encontrado");
+                      }
                     } else if (documentStatuses[document.type] === 2) {
                       const documento = documents.find((doc: any) => doc.type === document.type);
                       console.log("clicou em reenviar");
-                      resendDocument(documento.id);
+                      if (documento) {
+                        resendDocument(documento.id);
+                      } else {
+                        console.error("Documento não encontrado");
+                      }
                     } else {
                       handleFileUpload(document.type);
                     }

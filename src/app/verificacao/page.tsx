@@ -12,7 +12,13 @@ import Modal from './Modal';
 import ModalMotivo from './ModalMotivo';
 
 // Modal para o motivo de reprovação
-function JustificationModal({ isOpen, handleClose, handleSubmit }) {
+interface JustificationModalProps {
+  isOpen: boolean;
+  handleClose: () => void;
+  handleSubmit: (justification: string) => void;
+}
+
+function JustificationModal({ isOpen, handleClose, handleSubmit }: JustificationModalProps) {
   const [justification, setJustification] = useState('');
 
   const submitAndClose = () => {
@@ -54,7 +60,15 @@ function JustificationModal({ isOpen, handleClose, handleSubmit }) {
 }
 
 export default function Verificacao() {
-  const [documents, setDocuments] = useState([]);
+  interface Document {
+    id: number;
+    type: string;
+    status: number;
+    justification?: string;
+    url: string;
+  }
+
+  const [documents, setDocuments] = useState<Document[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [motivoModalOpen, setMotivoModalOpen] = useState(false);
   const [justificationModalOpen, setJustificationModalOpen] = useState(false);
@@ -78,7 +92,7 @@ export default function Verificacao() {
       setNome(response.data.name);
     } catch (error) {
       console.error("Erro ao pegar nome", error);
-      if (error.response && error.response.status === 401) {
+      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         pegarNome();
       }
@@ -126,7 +140,7 @@ export default function Verificacao() {
       fetchDocumentData();  // Atualiza os dados da lista após reprovar
     } catch (error) {
       console.error("Erro ao reprovar documento", error);
-      if (error.response && error.response.status === 401) {
+      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         handleReprovar(id, justification);
       }
@@ -152,7 +166,7 @@ export default function Verificacao() {
       fetchDocumentData();  // Atualiza os dados da lista após aprovar
     } catch (error) {
       console.error("Erro ao aprovar documento", error);
-      if (error.response && error.response.status === 401) {
+      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         handleAprovar(id);
       }
@@ -174,7 +188,7 @@ export default function Verificacao() {
       setDocuments(response.data);
     } catch (error) {
       console.error("Erro ao listar documentos", error);
-      if (error.response && error.response.status === 401) {
+      if ((error as any).response && (error as any).response.status === 401) {
         await tokenStorage.generateNewToken(tokenStorage.getRefreshToken());
         fetchDocumentData();
       }

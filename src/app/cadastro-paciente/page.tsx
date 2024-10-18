@@ -10,7 +10,7 @@ import Dropdown from "@/components/Dropdown";
 import DropdownOption from "../../types/DropdownOption";
 import Header from '@/components/Header';
 import DadosPaciente from '../../types/DadosPaciente';
-import { aplicarMascaraCPF } from '@/app/cadastro/page';
+// import { aplicarMascaraCPF } from '@/app/cadastro/page';
 
 export default function Page() {
     const [dadosPaciente, setDadosPaciente] = useState<DadosPaciente>({} as DadosPaciente);
@@ -61,7 +61,8 @@ export default function Page() {
     function handleChangeCPF(value: string) {
         changeDadosPaciente({
             ...dadosPaciente,
-            cpf: aplicarMascaraCPF(value),
+            // cpf: aplicarMascaraCPF(value),
+            cpf: value,
         });
     }
 
