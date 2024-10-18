@@ -32,7 +32,7 @@ export default function Header(props: InterfaceProps) {
         }
         else if (props.userNotLogged) {
             setRoutes(["", "", "", ""]);
-            setButtonNames(["Quem Somos", "Regras", "Como participar?", "Documentos"]);
+            setButtonNames(["Quem Somos", "Regras", "Como participar?", "Mídias"]);
         }
 
         if (props.buttonExtraName != null)

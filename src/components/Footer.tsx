@@ -74,6 +74,14 @@ export default function Footer() {
               <img src="/assets/Gmail.png" alt="Email" className="h-4 mr-2" />
               nesaufersa@gmail.com
             </div>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
+              <img src="/assets/Gmail.png" alt="Email" className="h-4 mr-2" />
+              hudson.palhano@ufersa.edu.br
+            </div>
+            <div className='text-black text-xs sm:text-sm flex items-center'>
+              <img src="/assets/Gmail.png" alt="Email" className="h-4 mr-2" />
+              fabriciocavalcante@ufersa.edu.br
+            </div>
           </div>
         </div>
       </div>
