@@ -12,14 +12,23 @@ const handleNavigation = () => {
 };
 
 export default function Home() {
+  // const images = [
+  //   { image: '/assets/Capturar.PNG', alt: 'Imagem Principal', nameDocument: 'Avaliações Adicionais' },
+  //   { image: '/assets/Capturar2.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Complementar' },
+  //   { image: '/assets/Capturar3.PNG', alt: 'Imagem Principal', nameDocument: 'Termo de Fisiológica' },
+  //   { image: '/assets/Capturar4.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Fonaudiologa' },
+  //   { image: '/assets/Capturar5.PNG', alt: 'Imagem Principal', nameDocument: 'Avaliação Médica' },
+  //   { image: '/assets/Capturar6.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Psicológica' },
+  //   { image: '/assets/Capturar7.PNG', alt: 'Imagem Principal', nameDocument: 'Esclarecimentos Importantes' },
+  // ];
+
   const images = [
-    { image: '/assets/Capturar.PNG', alt: 'Imagem Principal', nameDocument: 'Avaliações Adicionais' },
-    { image: '/assets/Capturar2.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Complementar' },
-    { image: '/assets/Capturar3.PNG', alt: 'Imagem Principal', nameDocument: 'Termo de Fisiológica' },
-    { image: '/assets/Capturar4.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Fonaudiologa' },
-    { image: '/assets/Capturar5.PNG', alt: 'Imagem Principal', nameDocument: 'Avaliação Médica' },
-    { image: '/assets/Capturar6.PNG', alt: 'Imagem Principal2', nameDocument: 'Avaliação Psicológica' },
-    { image: '/assets/Capturar7.PNG', alt: 'Imagem Principal', nameDocument: 'Esclarecimentos Importantes' },
+    { image: '/assets/nesa_3.jpeg', alt: 'Imagem Principal2' },
+    { image: '/assets/nesa_1.jpeg', alt: 'Imagem Principal2' },
+    { image: '/assets/nesa_2.jpeg', alt: 'Imagem Principal' },
+    { image: '/assets/nesa_4.jpeg', alt: 'Imagem Principal' },
+
+
   ];
 
   return (
@@ -139,9 +148,9 @@ export default function Home() {
         <section className="flex flex-col space-y-10 lg:space-y-0 px-4 lg:px-20 mb-10">
           <div className="pt-10 h-full">
             <h2 className="text-2xl font-bold text-[#1f5857] mb-6 text-left">Fotos e vídeos</h2>
-            <div className='bg-[#2c4a4a] rounded-lg h-full h-[200px]'>
+            <div className='bg-[#2c4a4a] rounded-lg h-full'>
               <div className="bg-gradient-to-r from-[#3a5f5f] via-[#4B8A89] to-[#3a5f5f] shadow-lg rounded-lg p-6 w-full h-full">
-          <SlideDocumentos title='' images={[]} />
+                <SlideImg images={images} />
               </div>
             </div>
           </div>
